@@ -27,11 +27,14 @@ function Navbar() {
             <Link>Passageiro</Link>
           </li>
           <li id="procurar" className={styles["conjunto-busca"]}>
-            <FaSearch className={styles["icon-procurar"]}/>
+            <FaSearch className={styles["icon-procurar"]} />
             <Link className={styles["procurar"]}>Procurar</Link>
           </li>
         </ul>
-        <FaUserCircle className={styles["icon-user"]}/>
+        <Link to='login'>
+          <FaUserCircle className={styles["icon-user"]} />
+        </Link>
+
       </Container>
     </nav>
   );

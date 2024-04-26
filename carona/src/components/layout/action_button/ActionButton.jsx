@@ -1,8 +1,8 @@
 import styles from './ActionButton.module.css'
 
-function ActionButton({type, label}) {
+function ActionButton({type, label, onClickEvent}) {
     return (
-        <button>{label}</button>
+        <button onClick={onClickEvent} className={styles[type]}>{label}</button>
     )
 }
 

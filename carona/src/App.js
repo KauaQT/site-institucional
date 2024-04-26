@@ -8,6 +8,7 @@ import Caronas from './components/pages/caronas/Caronas'
 import Contato from './components/pages/contato/Contato'
 import Cadastro from './components/pages/cadastro/Cadastro'
 import QuemSomos from './components/pages/quem_somos/QuemSomos'
+import RedefinirSenha from './components/pages/redefinir_senha/RedefinirSenha'
 
 // Importando elementos de layout
 import Navbar from './components/layout/navbar/Navbar'
@@ -27,10 +28,10 @@ function App() {
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path='/contato' element={<Contato />} />
           <Route path='/quem-somos' element={<QuemSomos />} />
+          <Route path='/redefinir-senha' element={<RedefinirSenha />} />
         </Routes>
       </Container>
 
-      <Footer />
     </Router>
   );
 }

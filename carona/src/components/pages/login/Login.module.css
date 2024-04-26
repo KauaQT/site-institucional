@@ -1,0 +1,41 @@
+.div-illustration {
+    height: 100%;
+    width: 50%;
+
+}
+
+.div-forms {
+    height: 100%;
+    width: 50%;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & .forms {
+        height: 80%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        & .box-inputs {
+            width: 280px;
+            height: 220px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        & p {
+            width: 280px;
+            font-size: 20px;
+            color: #173E6D;
+            font-weight: 600;
+        }
+
+        & p:hover {
+            text-decoration: underline;
+        }
+    }
+}

@@ -5,7 +5,7 @@ function Home() {
     return (
         <div className={styles["container"]}>
             <div className={styles["imagem"]}>
-                <img src={img} className={styles["img"]}alt="imagem Home" />
+                <img src={img} alt="imagem Home" />
             </div>
         </div>
     )

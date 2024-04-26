@@ -1,0 +1,38 @@
+button {
+    width: 280px;
+    height: 40px;
+    padding: 10px 15px;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 8px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.primary {
+    background-color: #E6AD47;
+    color: #fff;
+    border: 3px solid #E6AD47;
+}
+
+.secondary {
+    background-color: #fff;
+    color: #173E6D;
+    border: 3px solid #173E6D;
+}
+
+/* .forms-context {
+    width: 280px;
+    height: 40px;
+}
+
+.card-context {
+    width: 280px;
+    height: 40px;
+} */

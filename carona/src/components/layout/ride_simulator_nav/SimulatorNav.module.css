@@ -1,0 +1,76 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  width: 75%;
+  height: 8%;
+  border-radius: 15px;
+  padding: 10px;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+  z-index: 8;
+
+  & .partida {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    & .iconPartida {
+      height: 30px;
+    }
+  }
+
+  & .seta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & .iconSeta {
+      height: 25px;
+    }
+  }
+
+  & .chegada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    & .iconChegada {
+      height: 30px;
+    }
+  }
+  & .date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    & .iconDate {
+      height: 30px;
+    }
+  }
+  
+  & .botao {
+    border: none;
+    width: 200px;
+    font-size: 16px;
+    color: #ffff;
+    margin-left: 25px;
+    font-weight: 700;
+    background-color: #e6ad47;
+  }
+
+  & input {
+    border: none;
+    outline: none;
+    font-weight: 600;
+    color: #173E6D;
+  }
+
+  & .inputPartida,
+  .inputChegada {
+    font-size: 16px;
+    width: 50%;
+  }
+}

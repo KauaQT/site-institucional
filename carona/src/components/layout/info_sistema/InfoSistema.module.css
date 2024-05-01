@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 30px;
+
+    .conjunto {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            width: 50%;
+            font-size: 18px;
+            color: #173E6D;
+            font-weight: 500;
+
+            .destaque {
+                color: #E6AD47;
+            }
+        }
+
+        img{
+            height: 250px;
+        }
+    }
+}

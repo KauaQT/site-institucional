@@ -1,0 +1,159 @@
+.div-illustration {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+
+    & img {
+        width: 70%;
+        height: 70%;
+        display: flex;
+        align-self: center;
+    }
+}
+
+.div-forms {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+
+    & .forms {
+        height: 70%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+
+        & .box-inputs {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            & .sexo-box-input {
+                width: 250px;
+                height: 72px;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: space-between;
+                color: #173E6D;
+                margin-top: 10px;
+                box-sizing: border-box;
+
+                & .sexo-input {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 40px;
+                    border: 3px solid #173E6D;
+                    border-radius: 8px;
+                    background-color: #fff;
+                    font-size: 14px;
+                }
+            }
+            
+            & .perfil-box-input {
+                width: 250px;
+                height: 72px;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: space-between;
+                color: #173E6D;
+                margin-top: 10px;
+                box-sizing: border-box;
+
+                & .perfil-options {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 35px;
+                    border: 3px solid #173E6D;
+                    border-radius: 8px;
+                    background-color: #fff;
+                    font-size: 16px;
+
+                    & input {
+                        display: none;
+                    }
+
+                    & .perfil-opt {
+                        width: 50%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        border-radius: 8px;
+
+                        & label {
+                            cursor: pointer;
+                            font-weight: 500;
+                        }
+                    }
+
+                    & .perfil-opt:hover {
+                        background-color: #f1f1f1;
+                    }
+
+                    & .perfil-checked {
+                        background-color: #173E6D;
+                        color: #fff;
+                    }
+                }
+            }
+
+            & .date-box-input {
+                width: 250px;
+                height: 72px;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: space-between;
+                color: #173E6D;
+                margin-top: 10px;
+                box-sizing: border-box;
+            
+                & .date-input {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 90%;
+                    height: 15px;
+                    border: 3px solid #173E6D;
+                    border-radius: 8px;
+                    background-color: #fff;
+                    padding: 10px;
+            
+                    & input {
+                        width: 100%;
+                        outline: none;
+                        border: none;
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: #173E6D;
+                    }
+
+                    & svg {
+                        font-size: 28px;
+                        color: #173E6D;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -14,7 +14,7 @@ function Input(props) {
                 </div>
             </div>
 
-            <Link to={props.linkTo}>{props.textLink}</Link>
+            {(props.linkTo && props.textLink) && <Link to={props.linkTo}>{props.textLink}</Link>}
         </div>
     )
 }

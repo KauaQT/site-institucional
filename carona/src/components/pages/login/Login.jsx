@@ -1,12 +1,13 @@
 import styles from './Login.module.css'
 import Container from '../../layout/container/Container'
-import Illustration from '../../../utils/assets/loginIllustration.svg'
+import img from '../../../utils/assets/login-image.svg'
 import Input from '../../layout/input/Input'
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import ActionButton from '../../layout/action_button/ActionButton'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import api from '../../../Api';
 
 
 function Login() {
@@ -17,12 +18,22 @@ function Login() {
 
     const [showPassword, setShowPassword] = useState(false)
 
+    function entrar() {
+        api.post('http://localhost:8080/usuarios/login', user)
+        .then((response) => {
+            console.log('Login realizado com sucesso')
+            sessionStorage.setItem(response.data)
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     return (
-        <>
             <Container customClass='min-height' >
                 {/* div de imagem */}
                 <div className={styles['div-illustration']}>
-                    {/* <Illustration /> */}
+                    <img src={img} alt="login-image" />
                 </div>
 
                 {/* div de forms */}
@@ -37,7 +48,7 @@ function Login() {
                             <Input type={showPassword ? 'text' : 'password'} placeholder='Digite a senha' label='Senha' id='email' onChangeEvent={(e) => setUser({senha: e.target.value})} textLink='Esqueci a senha' linkTo='/redefinir-senha' icon={showPassword ? <IoMdEyeOff /> : <IoMdEye />} iconHandleEvent={() => setShowPassword(!showPassword)} />
                         </div>
 
-                        <ActionButton type='primary' label='Entrar' />
+                        <ActionButton type='primary' label='Entrar' onClickEvent={entrar} />
 
                         <Link to='/cadastro'><p>Não tenho conta, quero me cadastrar</p></Link>
                     </form>
@@ -45,9 +56,6 @@ function Login() {
 
 
             </Container>
-
-        </>
-
     )
 }
 

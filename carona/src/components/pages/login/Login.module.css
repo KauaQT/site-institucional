@@ -1,13 +1,21 @@
 .div-illustration {
     height: 100%;
     width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    & img {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        align-self: center;
+    }
 }
 
 .div-forms {
     height: 100%;
     width: 50%;
-    background-color: #f1f1f1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,19 +27,24 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        gap: 8px;
+
 
         & .box-inputs {
             width: 280px;
             height: 220px;
             margin-bottom: 10px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         & p {
-            width: 280px;
+            width: 250px;
             font-size: 20px;
             color: #173E6D;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         & p:hover {

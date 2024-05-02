@@ -17,23 +17,23 @@ li, a {
 h1 {
   font-size: 48px;
   color: #173E6D;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 h2 {
   font-size: 36px;
   color: #173E6D;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 h3 {
   font-size: 28px;
   color: #173E6D;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 h4 {
   font-size: 20px;
   color: #173E6D;
-  font-weight: 600;
+  font-weight: 500;
 }

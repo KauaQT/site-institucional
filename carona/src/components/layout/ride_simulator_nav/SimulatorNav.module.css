@@ -6,6 +6,8 @@
   width: 75%;
   height: 8%;
   border-radius: 15px;
+  position: relative;
+  bottom: 30px;
   padding: 10px;
   filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
   z-index: 8;

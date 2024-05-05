@@ -31,7 +31,6 @@ function App() {
           <Route path='/redefinir-senha' element={<RedefinirSenha />} />
         </Routes>
       </Container>
-
     </Router>
   );
 }

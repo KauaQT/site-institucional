@@ -1,0 +1,24 @@
+.carrossel {
+  text-align: center;
+  box-sizing: border-box;
+  width: 50%;
+  max-width: 800px;
+  height: 500px;
+  position: relative;
+  margin-top: 150px;
+  right: 150px;
+  .slide {
+    display: flex;
+    flex-direction: column;
+    img {
+      height: 300px;
+      margin-bottom: 35px;
+    }
+  }
+}
+
+.titulo {
+  position: relative;
+  left: 300px;
+  height: fit-content;
+}

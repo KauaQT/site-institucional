@@ -8,11 +8,14 @@
   align-items: center;
   justify-content: space-around;
 
+
   & ul {
     width: 70%;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
+    gap: 50px;
+    
 
     & li {
       font-size: 1em;
@@ -22,21 +25,13 @@
         color: #fff;
       }
     }
-
-    /* & #procurar {
-            width: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        } */ 
   }
    .conjunto-busca {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-  
+    margin-left: 38px;
 
   & .procurar{
     margin-left: 8px;
@@ -50,6 +45,7 @@
 .icon-user{
   font-size: xx-large;
   color: #fff;
+  margin-right: 25px;
 }
 
 .conjunto-logo {
@@ -59,11 +55,9 @@
   align-items: center;
 
   & .img-logo {
-    height: 100px;
-    margin-left: 50px;
-  }
-  & .nome-logo {
-    font-weight: 700;
-    margin: 0;
+    height: 70px;
+    margin-left: 20px;
+    margin-right: 15px;
+  
   }
 }

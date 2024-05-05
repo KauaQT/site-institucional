@@ -10,7 +10,6 @@ function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles["conjunto-logo"]}>
         <img src={logo} className={styles["img-logo"]} alt="Logo CaRona" />
-        <p className={styles["nome-logo"]}>CaRona</p>
       </div>
       <Container>
         <ul>
@@ -34,7 +33,6 @@ function Navbar() {
         <Link to='login'>
           <FaUserCircle className={styles["icon-user"]} />
         </Link>
-
       </Container>
     </nav>
   );

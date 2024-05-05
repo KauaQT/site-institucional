@@ -1,0 +1,123 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  height: 60%;
+  gap: 50px;
+}
+.card {
+  display: flex;
+  gap: 25px;
+  padding: 1%;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  margin-top: 60px;
+  width: 25%;
+  background-color: #f6f6f6;
+  height: 55%;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+
+  & .motorista-info {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: space-between;
+
+    & .username-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      & span {
+        font-weight: 700;
+      }
+
+      & img {
+        height: 45px;
+      }
+    }
+
+    & .nota-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      & img {
+        height: 30px;
+      }
+    }
+  }
+
+  & .divisoria {
+    border-bottom: 3px solid #c0c0c0;
+    opacity: 0.7;
+    width: 85%;
+  }
+
+  & .ride-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+
+    & .time-info {
+      margin-top: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+
+      & .distance-cars {
+        display: flex;
+        gap: 10px;
+        & img {
+          height: 25px;
+        }
+      }
+
+      & .time {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & img {
+          height: 25px;
+          margin-right: 5px;
+        }
+      }
+    }
+    & .div {
+      border-bottom: 2px dashed #173e6d;
+      width: 50%;
+      margin-bottom: 10px;
+    }
+  }
+
+  & .reservar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+
+    & .valor {
+      & span {
+        font-weight: 700;
+      }
+    }
+
+    & .botao {
+      border: none;
+      width: 150px;
+      font-size: 16px;
+      color: #ffff;
+      margin-left: 25px;
+      font-weight: 700;
+      background-color: #e6ad47;
+    }
+  }
+}

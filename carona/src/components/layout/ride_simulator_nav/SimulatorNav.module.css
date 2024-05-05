@@ -3,12 +3,12 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  width: 75%;
+  width: 80%;
   height: 8%;
   border-radius: 15px;
   position: relative;
   bottom: 30px;
-  padding: 10px;
+  padding: 0.5%;
   filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
   z-index: 8;
 
@@ -52,22 +52,27 @@
       height: 30px;
     }
   }
-  
+
   & .botao {
     border: none;
     width: 200px;
     font-size: 16px;
     color: #ffff;
-    margin-left: 25px;
+    margin-left: 15px;
+    margin-right: 20px;
     font-weight: 700;
     background-color: #e6ad47;
+  }
+
+  & input::-webkit-calendar-picker-indicator {
+    display: none;
   }
 
   & input {
     border: none;
     outline: none;
     font-weight: 600;
-    color: #173E6D;
+    color: #173e6d;
   }
 
   & .inputPartida,

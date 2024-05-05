@@ -2,11 +2,11 @@
   text-align: center;
   box-sizing: border-box;
   width: 50%;
-  height: 400px;
+  max-width: 800px;
+  height: 500px;
   position: relative;
   margin-top: 150px;
   right: 150px;
-
   .slide {
     display: flex;
     flex-direction: column;

@@ -10,7 +10,7 @@ import { CiCalendar } from "react-icons/ci";
 function Cadastro() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOptionUser, setSelectedOptionUser] = useState(null);
-
+  const [progress, setProgress] = useState(0);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
@@ -24,6 +24,12 @@ function Cadastro() {
   function handleUserChange(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Atualiza o progresso para 100% quando o formulário é enviado
+    setProgress(10);
+  };
 
   /*  const [perfilMotoristaChecked, setPerfilMotoristaChecked] = useState(false);
   const [perfilPassageiroChecked, setPerfilPassageiroChecked] = useState(false);
@@ -55,7 +61,7 @@ function Cadastro() {
       {/* div de forms */}
       <div className={styles["div-forms"]}>
         <h1>Dados Pessoais</h1>
-        <form className={styles["forms"]}>
+        <form className={styles["forms"]} onSubmit={handleSubmit}>
           <div className={styles["box-inputs"]}>
             <Input
               type="text"
@@ -103,66 +109,69 @@ function Cadastro() {
               {/* Adicione mais opções conforme necessário */}
             </div>
             <Input
-            type="text"
-            placeholder="Digite o email"
-            name="email"
-            label="Email"
-            id="email"
-            onChangeEvent={handleUserChange}
-          />
+              type="text"
+              placeholder="Digite o email"
+              name="email"
+              label="Email"
+              id="email"
+              onChangeEvent={handleUserChange}
+            />
 
-          <Input
-            type="text"
-            placeholder="Digite o CPF"
-            name="cpf"
-            label="CPF"
-            id="cpf"
-            onChangeEvent={handleUserChange}
-          />
+            <Input
+              type="text"
+              placeholder="Digite o CPF"
+              name="cpf"
+              label="CPF"
+              id="cpf"
+              onChangeEvent={handleUserChange}
+            />
 
-          {/* <Input type='date' placeholder='dd/mm/aaaa' name='dataNascimento' label='Data de Nascimento' id='dataNascimento' onChangeEvent={handleUserChange} /> */}
-          <div className={styles["date-box-input"]}>
-            <h4>Data de Nascimento</h4>
+            {/* <Input type='date' placeholder='dd/mm/aaaa' name='dataNascimento' label='Data de Nascimento' id='dataNascimento' onChangeEvent={handleUserChange} /> */}
+            <div className={styles["date-box-input"]}>
+              <h4>Data de Nascimento</h4>
 
-            <div className={styles["date-input"]}>
-              <Calendar
-                placeholder="dd/mm/aaaa"
-                onChange={handleUserChange}
-                dateFormat="dd/mm/yy"
-              />
-
-              <CiCalendar />
-            </div>
-          </div>
-
-          <div className={styles["perfil-box-input"]}>
-            <h4>Perfil</h4>
-            <div className={styles["perfil-options"]}>
-              <div className={styles["custom-radio-option"]}>
-                <input
-                  type="radio"
-                  id="motorista"
-                  value="motorista"
-                  checked={selectedOptionUser === "motorista"}
-                  onChange={() => handleOptionUserChange("motorista")}
+              <div className={styles["date-input"]}>
+                <Calendar
+                  placeholder="dd/mm/aaaa"
+                  onChange={handleUserChange}
+                  dateFormat="dd/mm/yy"
                 />
-                <label htmlFor="motorista">Motorista</label>
-              </div>
-              <div className={styles["custom-radio-option"]}>
-                <input
-                  type="radio"
-                  id="passageiro"
-                  value="passageiro"
-                  checked={selectedOptionUser === "passageiro"}
-                  onChange={() => handleOptionUserChange("passageiro")}
-                />
-                <label htmlFor="passageiro">Passageiro</label>
+
+                <CiCalendar />
               </div>
             </div>
-          </div>
+
+            <div className={styles["perfil-box-input"]}>
+              <h4>Perfil</h4>
+              <div className={styles["perfil-options"]}>
+                <div className={styles["custom-radio-option"]}>
+                  <input
+                    type="radio"
+                    id="motorista"
+                    value="motorista"
+                    checked={selectedOptionUser === "motorista"}
+                    onChange={() => handleOptionUserChange("motorista")}
+                  />
+                  <label htmlFor="motorista">Motorista</label>
+                </div>
+                <div className={styles["custom-radio-option"]}>
+                  <input
+                    type="radio"
+                    id="passageiro"
+                    value="passageiro"
+                    checked={selectedOptionUser === "passageiro"}
+                    onChange={() => handleOptionUserChange("passageiro")}
+                  />
+                  <label htmlFor="passageiro">Passageiro</label>
+                </div>
+              </div>
+            </div>
           </div>
           <ActionButton type="primary" label="Próximo" />
         </form>
+        <div className="progress-container">
+          <div className="progress-bar" style={{ width: `${progress}%` }} />
+        </div>
       </div>
     </Container>
   );

@@ -7,7 +7,7 @@ function Input(props) {
             <h4>{props.label}</h4>
 
             <div className={styles['div-input']}>
-                <input type={props.type} placeholder={props.placeholder} name={props.name} id={props.id} onChange={props.onChangeEvent} />
+                <input type={props.type} placeholder={props.placeholder} name={props.name} id={props.id} onChange={props.onChangeEvent} value={props.value} disabled={props.disabled} />
 
                 <div className={styles['div-icon']} onClick={props.iconHandleEvent}>
                     {props.icon}

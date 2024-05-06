@@ -7,10 +7,10 @@ import { FaSearch } from "react-icons/fa";
 
 import axios from "axios";
 
-function CadastroEndereco() {
+function CadastroEndereco({handleUserEvent}) {
   const [progress, setProgress] = useState(66.6);
   const [cep, setCep] = useState("");
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState({});
   const [error, setError] = useState();
 
   const handleSearch = async () => {
@@ -19,6 +19,7 @@ function CadastroEndereco() {
         `https://viacep.com.br/ws/${encodeURIComponent(cep)}/json/`
       );
       setAddress(response.data);
+      console.log(address)
       setError(null);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -49,43 +50,31 @@ function CadastroEndereco() {
         {error && <p>{error}</p>}
         <form className={styles["forms"]} onSubmit={handleSubmit}>
           <div className={styles["box-inputs"]}>
-            <div className={styles["busca-cep"]}>
+            {/* <div className={styles["busca-cep"]}>
               <div className={styles["box"]}>
                 <label htmlFor="cep">CEP</label>
                 <div className={styles["div-input"]}>
-                  <input type="text" onChange={handleInputChange} />
+                  <input placeholder='Digite o CEP' type="text" onChange={handleInputChange} />
                   <FaSearch
                     className={styles["icon-procurar"]}
                     onClick={handleSearch}
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
+          <Input label='CEP' placeholder='Digite o CEP' onChangeEvent={(e) => {
+            setCep(e.target.value)
+            }} type="text" id='cep' icon={<FaSearch />} iconHandleEvent={handleSearch} />
 
-            <div className={styles["box-input"]}>
-              <label htmlFor="uf">UF</label>
-              <Input type="text" />
-            </div>
-
-            <div className={styles["box-input"]}>
-              <label htmlFor="cidade">Cidade</label>
-              <Input type="text" />
-            </div>
-
-            <div className={styles["box-input"]}>
-              <label htmlFor="logradouro">Logradouro</label>
-              <Input type="text" />
-            </div>
-
-            <div className={styles["box-input"]}>
-              <label htmlFor="bairro">Bairro</label>
-              <Input type="text" />
-            </div>
-
-            <div className={styles["box-input"]}>
-              <label htmlFor="numero">Número</label>
-              <Input type="text" />
-            </div>
+          <Input label='UF' placeholder='UF' value={address.uf} type="text" id='uf' disabled />
+          
+          <Input label='Cidade' placeholder='Cidade' value={address.localidade} type="text" id='cidade' disabled />
+          
+          <Input label='Logradouro' placeholder='Logradouro' value={address.logradouro} type="text" id='logradouro' disabled />
+          
+          <Input label='Bairro' placeholder='Bairro' value={address.bairro} type="text" id='bairro' disabled />
+          
+          <Input label='Número' placeholder='Digite o número' type="text" />
             
           </div>
           <div className={styles["grupo-progress"]}>
@@ -98,18 +87,9 @@ function CadastroEndereco() {
             </div>
           </div>
           <div className={styles["botoes"]}>
-            <ActionButton type="secundary" label="Voltar" />
+            <ActionButton type="secondary" label="Voltar" />
             <ActionButton type="primary" label="Próximo" />
           </div>
-          {address && (
-              <div>
-                <p>CEP: {address.cep}</p>
-                <p>Logradouro: {address.logradouro}</p>
-                <p>Bairro: {address.bairro}</p>
-                <p>Cidade: {address.localidade}</p>
-                <p>Estado: {address.uf}</p>
-              </div>
-            )}
         </form>
       </div>
     </Container>

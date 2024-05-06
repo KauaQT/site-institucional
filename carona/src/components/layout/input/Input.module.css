@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+  justify-content: space-between;
   color: #173e6d;
   margin: 10px 0;
   box-sizing: border-box;
@@ -38,6 +39,7 @@
       font-size: 16px;
       font-weight: 400;
       color: #173e6d;
+      background-color: #fff;
     }
 
     & .div-icon {
@@ -46,8 +48,9 @@
       justify-content: center;
 
       & svg {
-        font-size: 28px;
+        font-size: 20px;
         color: #173e6d;
+        cursor: pointer;
       }
     }
   }

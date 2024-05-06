@@ -26,7 +26,7 @@
 
       & .busca-cep {
         display: flex;
-        align-items: center;
+        align-items: start;
         gap: 5px;
 
         & .icon-procurar {
@@ -78,7 +78,7 @@
 }
 
 .grupo-progress {
-  width: 85%;
+  width: 91%;
   height: 5%;
   display: flex;
   align-items: start;

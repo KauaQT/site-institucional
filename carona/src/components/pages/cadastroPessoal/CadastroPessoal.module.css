@@ -50,7 +50,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          width: 100%;
+          width: 98%;
           height: 35px;
           border: 3px solid #173e6d;
           border-radius: 8px;
@@ -114,7 +114,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 100%;
+          width: 98%;
           height: 40px;
           border: 3px solid #173e6d;
           border-radius: 8px;
@@ -215,7 +215,7 @@
   }
 }
 .grupo-progress {
-  width: 85%;
+  width: 91%;
   height: 5%;
   display: flex;
   align-items: start;

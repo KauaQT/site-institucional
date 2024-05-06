@@ -1,13 +1,10 @@
 import styles from "./CadastroPessoal.module.css";
 import Container from "../../layout/container/Container";
-import img from "../../../utils/assets/cadastro-image.svg";
 import { useState } from "react";
 import ActionButton from "../../layout/action_button/ActionButton";
 import Input from "../../layout/input/Input";
-import { Calendar } from "primereact/calendar";
-import { CiCalendar } from "react-icons/ci";
 
-function CadastroPessoal() {
+function CadastroPessoal({handleUserEvent}) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOptionUser, setSelectedOptionUser] = useState(null);
   const [progress, setProgress] = useState(33.3);
@@ -19,12 +16,7 @@ function CadastroPessoal() {
   const handleOptionUserChange = (option) => {
     setSelectedOptionUser(option);
   };
-
-  const [user, setUser] = useState({});
-  function handleUserChange(e) {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  }
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     // Atualiza o progresso para 100% quando o formulário é enviado
@@ -63,7 +55,7 @@ function CadastroPessoal() {
               name="nome"
               label="Nome"
               id="nome"
-              onChangeEvent={handleUserChange}
+              onChangeEvent={handleUserEvent}
             />
 
             <div className={styles["sexo-box-input"]}>
@@ -108,7 +100,7 @@ function CadastroPessoal() {
               name="email"
               label="Email"
               id="email"
-              onChangeEvent={handleUserChange}
+              onChangeEvent={handleUserEvent}
             />
 
             <Input
@@ -117,23 +109,16 @@ function CadastroPessoal() {
               name="cpf"
               label="CPF"
               id="cpf"
-              onChangeEvent={handleUserChange}
+              onChangeEvent={handleUserEvent}
             />
 
-            {/* <Input type='date' placeholder='dd/mm/aaaa' name='dataNascimento' label='Data de Nascimento' id='dataNascimento' onChangeEvent={handleUserChange} /> */}
-            <div className={styles["date-box-input"]}>
-              <h4>Data de Nascimento</h4>
-
-              <div className={styles["date-input"]}>
-                <Calendar
-                  placeholder="dd/mm/aaaa"
-                  onChange={handleUserChange}
-                  dateFormat="dd/mm/yy"
-                />
-
-                <CiCalendar />
-              </div>
-            </div>
+            <Input 
+            type='date' 
+            placeholder='dd/mm/aaaa' 
+            onChangeEvent={handleUserEvent} 
+            name="dataNascimento"
+            label="Data de Nascimento"
+            id="dataNascimento"/>
 
             <div className={styles["perfil-box-input"]}>
               <h4>Perfil</h4>

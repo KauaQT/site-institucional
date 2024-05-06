@@ -11,6 +11,13 @@ import CadastroPessoal from "../cadastroPessoal/CadastroPessoal";
 import CadastroUser from "../cadastroUser/CadastroUser";
 
 function Cadastro() {
+  const [user, setUser] = useState({});
+  
+  function handleUserChange(e) {
+    setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(user);
+  }
+
   return (
     <Container customClass="min-height">
       {/* div de imagem*/}
@@ -19,7 +26,7 @@ function Cadastro() {
           <h1>Cadastro</h1>
           <img src={img} alt="login-imagem" />
         </div>
-        {/* <CadastroPessoal className={styles["cadastro"]} /> */}
+        {/* <CadastroPessoal className={styles["cadastro"]} handleUserEvent={handleUserChange} /> */}
         <CadastroEndereco className={styles["cadastro"]} />
         {/* <CadastroUser /> */}
       </div>

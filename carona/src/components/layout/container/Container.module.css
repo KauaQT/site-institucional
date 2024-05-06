@@ -1,23 +1,24 @@
 .container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .min-height {
-    min-height: 85vh;
+  min-height: 85vh;
 }
 
 .start {
-    justify-content: start;
+  justify-content: start;
 }
 
 .column {
-    flex-direction: column;
-    justify-content: start;
+  flex-direction: column;
+  justify-content: start;
 }
 
 .wrap {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }

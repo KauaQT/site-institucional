@@ -86,10 +86,10 @@ function CadastroEndereco({handleUserEvent}) {
               />
             </div>
           </div>
-          <div className={styles["botoes"]}>
+          {/* <div className={styles["botoes"]}>
             <ActionButton type="secondary" label="Voltar" />
             <ActionButton type="primary" label="Próximo" />
-          </div>
+          </div> */}
         </form>
       </div>
     </Container>

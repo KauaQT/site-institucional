@@ -155,7 +155,7 @@ function CadastroPessoal({handleUserEvent}) {
               />
             </div>
           </div>
-          <ActionButton type="primary" label="Próximo" />
+          {/* <ActionButton type="primary" label="Próximo" /> */}
         </form>
       </div>
     </Container>

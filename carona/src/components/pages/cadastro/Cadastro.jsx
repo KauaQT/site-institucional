@@ -11,12 +11,23 @@ import CadastroPessoal from "../cadastroPessoal/CadastroPessoal";
 import CadastroUser from "../cadastroUser/CadastroUser";
 
 function Cadastro() {
-  const [user, setUser] = useState({});
-  
-  function handleUserChange(e) {
-    setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
-  }
+  const [currentComponent, setCurrentComponent] = useState(1);
+
+  const handleClick = () => {
+    if (currentComponent === 3) {
+      alert("Cadastro realizado com sucesso");
+    } else {
+      setCurrentComponent((current) => (current % 3) + 1);
+    }
+  };
+
+  const backHandleClick = () => {
+    if (currentComponent === 1) {
+      alert("prossiga com o cadastro");
+    } else {
+      setCurrentComponent((current) => current - 1);
+    }
+  };
 
   return (
     <Container customClass="min-height">
@@ -26,9 +37,23 @@ function Cadastro() {
           <h1>Cadastro</h1>
           <img src={img} alt="login-imagem" />
         </div>
-        {/* <CadastroPessoal className={styles["cadastro"]} handleUserEvent={handleUserChange} /> */}
-        <CadastroEndereco className={styles["cadastro"]} />
-        {/* <CadastroUser /> */}
+        <div className={styles["grupo-cadastro"]}>
+          {currentComponent === 1 && <CadastroPessoal />}
+          {currentComponent === 2 && <CadastroEndereco />}
+          {currentComponent === 3 && <CadastroUser />}
+          <div className={styles["botoes"]}>
+            <ActionButton
+              onClickEvent={backHandleClick}
+              type="secondary"
+              label="Voltar"
+            />
+            <ActionButton
+              onClickEvent={handleClick}
+              type="primary"
+              label="Próximo"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   );

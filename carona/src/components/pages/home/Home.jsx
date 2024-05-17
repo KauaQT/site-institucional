@@ -6,10 +6,13 @@ import Slider from '../../layout/slider/Slider'
 import InfoUsers from '../../layout/info_users/InfoUsuarios'
 import InfoSistema from '../../layout/info_sistema/InfoSistema'
 import Footer from '../../layout/footer/Footer'
+import Navbar from '../../layout/navbar/Navbar'
 
 function Home() {
     return (
         <div className={styles["container"]}>
+            <Navbar />
+
             <div className={styles["imagem"]}>
                 <img src={img} alt="imagem Home" />
             </div>

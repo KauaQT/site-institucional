@@ -1,14 +1,14 @@
 import Sidebar from "../../layout/sidebar/Sidebar"
-import styles from './Caronas.module.css'
+import styles from './Chat.module.css'
 
-function Caronas() {
+function Chat() {
     return (
         <>
             <Sidebar currentPage={window.location.pathname} />
-            <p>Caronas</p>
+            <p>Chat</p>
         </>
 
     )
 }
 
-export default Caronas
+export default Chat

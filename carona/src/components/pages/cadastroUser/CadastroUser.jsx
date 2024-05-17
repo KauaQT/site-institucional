@@ -1,12 +1,8 @@
 import styles from "./CadastroUser.module.css";
 import Container from "../../layout/container/Container";
-import img from "../../../utils/assets/cadastro-image.svg";
 import { useState } from "react";
-import ActionButton from "../../layout/action_button/ActionButton";
 import Input from "../../layout/input/Input";
 import { BsFillPencilFill } from "react-icons/bs";
-import { Calendar } from "primereact/calendar";
-import { CiCalendar } from "react-icons/ci";
 
 function CadastroUser() {
   const [progress, setProgress] = useState(99.9);

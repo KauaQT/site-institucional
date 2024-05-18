@@ -1,14 +1,14 @@
 import Sidebar from "../../layout/sidebar/Sidebar"
-import styles from './Caronas.module.css'
+import styles from './ProcurarCarona.module.css'
 
-function Caronas() {
+function ProcurarCarona() {
     return (
         <>
             <Sidebar currentPage={window.location.pathname} />
-            <p>Caronas</p>
+            <p>Procurar Carona</p>
         </>
 
     )
 }
 
-export default Caronas
+export default ProcurarCarona

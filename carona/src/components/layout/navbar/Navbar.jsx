@@ -30,7 +30,7 @@ function Navbar() {
             <Link className={styles["procurar"]}>Procurar</Link>
           </li>
         </ul>
-        <Link to='login'>
+        <Link to='perfil'>
           <FaUserCircle className={styles["icon-user"]} />
         </Link>
       </Container>

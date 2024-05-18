@@ -1,14 +1,14 @@
 import Sidebar from "../../layout/sidebar/Sidebar"
-import styles from './Caronas.module.css'
+import styles from './Perfil.module.css'
 
-function Caronas() {
+function Perfil() {
     return (
         <>
             <Sidebar currentPage={window.location.pathname} />
-            <p>Caronas</p>
+            <p>Perfil</p>
         </>
 
     )
 }
 
-export default Caronas
+export default Perfil

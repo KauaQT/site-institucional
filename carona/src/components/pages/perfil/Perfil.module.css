@@ -1,0 +1,93 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+
+  .metricas {
+    margin-top: 50px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .kpis {
+      height: 40vh;
+      width: 40%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .viagens {
+        display: flex;
+        align-items: center;
+        height: 50%;
+        gap: 60px;
+
+        .registros {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          flex-direction: column;
+          width: 10%;
+
+          span {
+            font-size: 24px;
+            font-weight: 600;
+            color: #173e6d;
+          }
+        }
+
+        img {
+          width: 20%;
+        }
+      }
+
+      .transacoes {
+        display: flex;
+        align-items: center;
+        height: 50%;
+        gap: 60px;
+
+        .registros {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          flex-direction: column;
+          width: 10%;
+
+          span {
+            font-size: 24px;
+            font-weight: 600;
+            color: #173e6d;
+          }
+        }
+
+        img {
+          width: 20%;
+        }
+      }
+    }
+
+    .grafico {
+      height: 40vh;
+      width: 60%;
+      display: flex;
+      align-items: end;
+
+      img{
+        width: 4%;
+      }
+    }
+  }
+
+  .divisoria {
+    width: 85%;
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+  }
+}

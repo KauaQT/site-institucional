@@ -37,7 +37,7 @@ function Sidebar({ currentPage, userType }) {
                     <ImProfile />
                     <span>Meu perfil</span>
                 </li>
-                {userType == "MOTORISTA" ? 
+                {userType === "MOTORISTA" ? 
                     <li onClick={() => navigate("/oferecer-carona")} className={styles["item"]}>
                         <IoAddCircle />
                         <span>Oferecer Carona</span>

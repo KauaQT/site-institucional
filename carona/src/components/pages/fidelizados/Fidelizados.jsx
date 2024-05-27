@@ -1,10 +1,13 @@
+import { useLocation } from "react-router-dom";
 import Sidebar from "../../layout/sidebar/Sidebar"
 import styles from './Fidelizados.module.css'
 
 function Fidelizados() {
+    let local = useLocation();
+
     return (
         <>
-            <Sidebar currentPage={window.location.pathname} />
+            <Sidebar currentPageName={local.pathname} />
             <p>Fidelizados</p>
         </>
 

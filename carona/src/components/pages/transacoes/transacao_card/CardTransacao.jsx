@@ -2,7 +2,7 @@ import styles from './CardTransacao.module.css'
 import image from '../../../../utils/assets/transacao.svg'
 import { IoMdDownload } from "react-icons/io";
 
-function CardTransacao({data, valor, tipo}) {
+function CardTransacao({data, valor, tipo, onDetalhesClick, onComprovanteClick}) {
     return (
         <div className={styles["box-transacao"]}>
             <div className={styles["transacao-img"]}>
@@ -18,11 +18,11 @@ function CardTransacao({data, valor, tipo}) {
             </div>
 
             <div className={styles["transacao-actions"]}>
-                <button className={styles["button-comprovante"]}>
+                <button className={styles["button-comprovante"]} onClick={onComprovanteClick}>
                     <IoMdDownload />
                     Comprovante
                 </button>
-                <button className={styles["button-detalhes"]}>
+                <button className={styles["button-detalhes"]} onClick={onDetalhesClick}>
                     Detalhes
                 </button>
             </div>

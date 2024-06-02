@@ -3,7 +3,7 @@ import image from '../../../../utils/assets/image-proxima-viagem.svg'
 import { LuCircleDashed } from "react-icons/lu";
 import { FaRegCircle } from "react-icons/fa";
 
-function CardProximaViagem({ cidadeOrigem, cidadeDestino, valor, data }) {
+function CardProximaViagem({ cidadeOrigem, cidadeDestino, valor, data, onDetalhesClick, onCancelarClick }) {
     return (
         <div className={styles["box-proxima-viagem"]}>
             <div className={styles["viagem-img"]}>
@@ -17,7 +17,7 @@ function CardProximaViagem({ cidadeOrigem, cidadeDestino, valor, data }) {
                     <LuCircleDashed />
                     <span id="cidade-origem">{cidadeOrigem}</span>
                 </div>
-                
+
                 <div className={styles["cidade-info"]}>
                     <FaRegCircle />
                     <span id="cidade-destino">{cidadeDestino}</span>
@@ -28,8 +28,8 @@ function CardProximaViagem({ cidadeOrigem, cidadeDestino, valor, data }) {
             </div>
 
             <div className={styles["viagem-actions"]}>
-                <button className={styles["button-detalhes"]}>Detalhes</button>
-                <button className={styles["button-cancelar"]}>Cancelar</button>
+                <button className={styles["button-detalhes"]} onClick={onDetalhesClick} >Detalhes</button>
+                <button className={styles["button-cancelar"]} onClick={onCancelarClick} >Cancelar</button>
             </div>
         </div>
     )

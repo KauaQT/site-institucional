@@ -8,10 +8,8 @@ import { IoChatbubblesSharp } from "react-icons/io5";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { GrTransaction } from "react-icons/gr";
 import { MdOutlineLoyalty } from "react-icons/md";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineAddCircle } from "react-icons/md";
-import { useState } from "react";
-
 
 function Sidebar({ currentPageName, userType }) {
     const navigate = useNavigate();
@@ -50,7 +48,7 @@ function Sidebar({ currentPageName, userType }) {
                         <span>Oferecer Carona</span>
                     </li>
                     :
-                    <li onClick={() => navigate("/procurar-carona")} className={currentPageName == '/procurar-carona' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                    <li onClick={() => navigate("/viagens/procurar")} className={currentPageName == '/viagens/procurar' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
                         <FaSearch />
                         <span>Procurar</span>
                     </li>

@@ -1,0 +1,410 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+& .background-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 85%;
+    z-index: -3;
+
+    & .estrada {
+        width: 100%;
+    }
+
+    & .carro {
+        width: 110px;
+        z-index: 0;
+        position: relative;
+        bottom: 140px;
+        right: -1210px;
+    }
+
+    & .primeiro {
+        animation: andar 8s infinite linear;
+        animation-delay: 1s;
+    }
+
+    & .segundo {
+        animation: andar 8s infinite linear;
+        animation-delay: 4s;
+    }
+
+}
+
+.main {
+    width: 80vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & .container {
+        width: 70vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+
+        & .search-bar {
+            margin-top: 90px;
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            box-shadow: rgba(50, 50, 93, 0.169) 0px 13px 27px -5px, rgba(0, 0, 0, 0.123) 0px 8px 16px -8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 45px;
+            color: #173e6d;
+
+            & .arrow {
+                font-size: 28px;
+            }
+
+            & .box-input {
+                width: 20%;
+                height: 36px;
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                gap: 15px;
+
+                & svg {
+                    font-size: 24px;
+                }
+
+                & input {
+                    border: none;
+                    outline: none;
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: #173e6d;
+                    height: 100%;
+                    width: 100%;
+                    background-color: #fff;
+                }
+
+                & input::-webkit-calendar-picker-indicator {
+                    display: none;
+                }
+            }
+
+            & .reservar-button {
+                width: 15%;
+                height: 36px;
+                font-size: 16px;
+                background-color: #E6AD47;
+                border: 2px solid #E6AD47;
+                color: #fff;
+                transition: all 0.2s;
+                margin: 0;
+            }
+
+            & .reservar-button:hover {
+                background-color: #c0903b;
+                border: 2px solid #c0903b;
+                color: #f1f1f1;
+                transition: all 0.2s;
+            }
+        }
+
+        & .viagem-quadro {
+            margin-top: 20px;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: rgba(50, 50, 93, 0.169) 0px 13px 27px -5px, rgba(0, 0, 0, 0.123) 0px 8px 16px -8px;
+
+
+            & .info {
+                height: 100%;
+                width: 50%;
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                & .separator {
+                    width: 90%;
+                    border-bottom: 2px solid #E6E6E6;
+                    margin: 15px 0;
+                }
+
+                & .motorista {
+                    width: 90%;
+                    height: 60px;
+                    margin-top: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 16px;
+                    transition: all 0.2s;
+
+                    & img {
+                        background-color: #000;
+                        border-radius: 50%;
+                        height: 60px;
+                        width: 60px;
+                    }
+
+                    & .nome-nota {
+                        height: 100%;
+                        width: 80%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        justify-content: space-evenly;
+
+                        & h4 {
+                            font-weight: 600;
+                        }
+
+                        & .nota {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 8px;
+
+                            & svg {
+                                color: #E6AD47;
+                                font-size: 20px;
+                            }
+
+                            & span {
+                                color: #173e6d;
+                                font-size: 16px;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+
+                & .motorista:hover {
+                    background-color: #f1f1f1;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                }
+
+                & .hora-endereco {
+                    width: 90%;
+                    height: 80px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 16px;
+
+                    & .horarios {
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: end;
+                        justify-content: space-between;
+                        font-size: 16px;
+                        font-weight: 600;
+
+                        & span {
+                            height: 33.33%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        & .hora-definida {
+                            color: #173e6d;
+                        }
+
+                        & .tempo-estimado {
+                            color: #9B9B9B;
+                        }
+                    }
+
+                    & .enderecos {
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        justify-content: space-between;
+
+                        & span {
+                            height: 33.33%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 16px;
+                            font-weight: 500;
+                            color: #173e6d;
+                        }
+                    }
+                }
+
+                & .info-carro {
+                    width: 90%;
+                    height: 50px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    justify-content: center;
+                    gap: 5px;
+
+                    & .modelo-carro {
+                        display: flex;
+                        align-items: center;
+                        justify-content: start;
+                        gap: 10px;
+
+                        & svg {
+                            font-size: 24px;
+                            width: 24px;
+                        }
+
+                        & span {
+                            font-size: 16px;
+                            color: #173e6d;
+                            font-weight: 500;
+                        }
+                    }
+
+                    & .placa-carro {
+                        display: flex;
+                        align-items: center;
+                        justify-content: start;
+                        gap: 10px;
+
+                        & img {
+                            width: 24px;
+                        }
+
+                        & span {
+                            font-size: 16px;
+                            color: #173e6d;
+                            font-weight: 500;
+                        }
+                    }
+                }
+
+                & .passageiros {
+                    width: 90%;
+                    height: 80px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    justify-content: space-between;
+
+                    & h5 {
+                        color: #173e6d;
+                        font-size: 16px;
+                    }
+
+                    & .users {
+                        width: 100%;
+                        height: 52px;
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        gap: 20px;
+
+                        .user {
+                            width: 180px;
+                            height: 100%;
+                            display: flex;
+                            align-items: center;
+                            background-color: #fff;
+                            border-radius: 10px;
+                            box-shadow: rgba(0, 0, 0, 0.242) 0px 5px 15px;
+
+                            & img {
+                                background-color: #000;
+                                border-radius: 50%;
+                                height: 40px;
+                                width: 40px;
+                            }
+
+                            & .nome-nota {
+                                height: 100%;
+                                width: 80%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: start;
+                                justify-content: space-evenly;
+
+                                & h5 {
+                                    font-weight: 500;
+                                }
+
+                                & .nota-passageiro {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap: 5px;
+
+                                    & svg {
+                                        color: #E6AD47;
+                                        font-size: 20px;
+                                    }
+
+                                    & span {
+                                        color: #173e6d;
+                                        font-size: 16px;
+                                        font-weight: 500;
+                                    }
+                                }
+                            }
+                        }
+
+                         .user:hover {
+                            cursor: pointer;
+                            transition: all 0.2s;
+                         }
+                    }
+                }
+            }
+        }
+
+        & .info::-webkit-scrollbar {
+            width: 20px;
+        }
+
+        & .info::-webkit-scrollbar-track {
+            border-radius: 10px;
+        }
+
+        & .info::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            border: 6px solid #fff;
+            background: #bfbfbf;
+        }
+
+        & .mapa {
+            height: 100%;
+            width: 50%;
+            background-color: #808080;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+}
+
+
+@keyframes andar {
+    from {
+        right: -1210px;
+    }
+
+    to {
+        right: 300px;
+    }
+}

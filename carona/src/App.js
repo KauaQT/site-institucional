@@ -3,23 +3,22 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 // Importando as páginas
 import Home from './components/pages/home/Home'
+import Chat from './components/pages/chat/Chat'
 import Login from './components/pages/login/Login'
+import Perfil from './components/pages/perfil/Perfil'
 import Caronas from './components/pages/caronas/Caronas'
 import Contato from './components/pages/contato/Contato'
+import Viagens from './components/pages/viagens/Viagens'
 import Cadastro from './components/pages/cadastro/Cadastro'
 import QuemSomos from './components/pages/quem_somos/QuemSomos'
-import RedefinirSenha from './components/pages/redefinir_senha/RedefinirSenha'
-import Viagens from './components/pages/viagens/Viagens'
 import Transacoes from './components/pages/transacoes/Transacoes'
 import Fidelizados from './components/pages/fidelizados/Fidelizados'
-import Chat from './components/pages/chat/Chat'
+import RedefinirSenha from './components/pages/redefinir_senha/RedefinirSenha'
 import OferecerCarona from './components/pages/oferecer_carona/OferecerCarona'
-import Perfil from './components/pages/perfil/Perfil'
 import ProcurarCarona from './components/pages/procurar_carona/ProcurarCarona'
+import DetalhesViagem from './components/pages/detalhes_viagem/DetalhesViagem'
 
 // Importando elementos de layout
-import Navbar from './components/layout/navbar/Navbar'
-import Footer from './components/layout/footer/Footer'
 import Container from './components/layout/container/Container'
 
 function App() {
@@ -39,8 +38,9 @@ function App() {
           <Route path='/transacoes' element={<Transacoes />} />
           <Route path='/fidelizados' element={<Fidelizados />} />
           <Route path='/chat' element={<Chat />} />
-          <Route path='/oferecer-carona' element={<OferecerCarona />} />
-          <Route path='/procurar-carona' element={<ProcurarCarona />} />
+          <Route path='/viagens/oferecer' element={<OferecerCarona />} />
+          <Route path='/viagens/procurar' element={<ProcurarCarona />} />
+          <Route path='/viagens/detalhes/:id' element={<DetalhesViagem />} />
         </Routes>
       </Container>
     </Router>

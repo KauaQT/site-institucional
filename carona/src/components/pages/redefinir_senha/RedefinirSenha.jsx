@@ -96,12 +96,12 @@ function RedefinirSenha() {
                     <h4>Código</h4>
 
                     <div className={styles["codigo-inputs"]}>
-                        <input type="text" maxLength={1} name={`c${1}`} ref={inputRef1} onChange={(e) => handleCodigoChange(e, inputRef2, inputRef1)} />
-                        <input type="text" maxLength={1} name={`c${2}`} ref={inputRef2} onChange={(e) => handleCodigoChange(e, inputRef3, inputRef1)} />
-                        <input type="text" maxLength={1} name={`c${3}`} ref={inputRef3} onChange={(e) => handleCodigoChange(e, inputRef4, inputRef2)} />
-                        <input type="text" maxLength={1} name={`c${4}`} ref={inputRef4} onChange={(e) => handleCodigoChange(e, inputRef5, inputRef3)} />
-                        <input type="text" maxLength={1} name={`c${5}`} ref={inputRef5} onChange={(e) => handleCodigoChange(e, inputRef6, inputRef4)} />
-                        <input type="text" maxLength={1} name={`c${6}`} ref={inputRef6} onChange={(e) => handleCodigoChange(e, inputRef6, inputRef5)} />
+                        <input autoComplete='off' type="text" maxLength={1} name={`c${1}`} ref={inputRef1} onChange={(e) => handleCodigoChange(e, inputRef2, inputRef1)} />
+                        <input autoComplete='off' type="text" maxLength={1} name={`c${2}`} ref={inputRef2} onChange={(e) => handleCodigoChange(e, inputRef3, inputRef1)} />
+                        <input autoComplete='off' type="text" maxLength={1} name={`c${3}`} ref={inputRef3} onChange={(e) => handleCodigoChange(e, inputRef4, inputRef2)} />
+                        <input autoComplete='off' type="text" maxLength={1} name={`c${4}`} ref={inputRef4} onChange={(e) => handleCodigoChange(e, inputRef5, inputRef3)} />
+                        <input autoComplete='off' type="text" maxLength={1} name={`c${5}`} ref={inputRef5} onChange={(e) => handleCodigoChange(e, inputRef6, inputRef4)} />
+                        <input autoComplete='off' type="text" maxLength={1} name={`c${6}`} ref={inputRef6} onChange={(e) => handleCodigoChange(e, inputRef6, inputRef5)} />
                     </div>
                 </div>
 

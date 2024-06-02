@@ -1,0 +1,214 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+& .background-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 85%;
+    z-index: -3;
+
+    & .estrada {
+        width: 100%;
+    }
+
+    & .carro {
+        width: 110px;
+        z-index: 0;
+        position: relative;
+        bottom: 140px;
+        right: -1210px;
+    }
+
+    & .primeiro {
+        animation: andar 8s infinite linear;
+        animation-delay: 1s;
+    }
+
+    & .segundo {
+        animation: andar 8s infinite linear;
+        animation-delay: 4s;
+    }
+
+}
+
+.main {
+    width: 80vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & .container {
+        width: 70vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+
+        & .search-bar {
+            margin-top: 90px;
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            box-shadow: rgba(50, 50, 93, 0.169) 0px 13px 27px -5px, rgba(0, 0, 0, 0.123) 0px 8px 16px -8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 45px;
+            color: #173e6d;
+
+            & .arrow {
+                font-size: 28px;
+            }
+
+            & .box-input {
+                width: 20%;
+                height: 36px;
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                gap: 15px;
+
+                & svg {
+                    font-size: 24px;
+                }
+
+                & input {
+                    border: none;
+                    outline: none;
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: #173e6d;
+                    height: 100%;
+                    width: 100%;
+                }
+
+                & input::-webkit-calendar-picker-indicator {
+                    display: none;
+                }
+            }
+
+            & .search-button {
+                width: 15%;
+                height: 36px;
+                font-size: 16px;
+                background-color: #E6AD47;
+                border: 2px solid #E6AD47;
+                color: #fff;
+                transition: all 0.2s;
+                margin: 0;
+            }
+
+            & .search-button:hover {
+                background-color: #c0903b;
+                border: 2px solid #c0903b;
+                color: #f1f1f1;
+                transition: all 0.2s;
+            }
+        }
+
+        & .filtros {
+            margin-top: 20px;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            & .box-filtro {
+                width: 22%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: center;
+                gap: 8px;
+
+                & span {
+                    font-weight: 600;
+                    color: #173e6d;
+                    font-size: 16px;
+                }
+
+                & .box-select {
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    border-radius: 10px;
+                    box-shadow: rgba(50, 50, 93, 0.169) 0px 13px 27px -5px, rgba(0, 0, 0, 0.123) 0px 8px 16px -8px;
+                    outline: none;
+                    font-size: 16px;
+                    display: flex;
+                    text-align: center;
+                    color: #173e6d;
+                    font-weight: 600;
+
+                    & option {
+                        color: #173e6d;
+                        font-weight: 500;
+                        font-size: 16px;
+                    }
+
+                }
+            }
+        }
+
+        & .viagens {
+            width: 100%;
+            height: 310px;
+            display: flex;
+            flex-wrap: wrap;
+            overflow-y: auto;
+            margin-top: 20px;
+            overflow-y: auto;
+        }
+
+        & .viagens::-webkit-scrollbar {
+            width: 20px;
+        }
+
+        & .viagens::-webkit-scrollbar-track {
+            border-radius: 10px;
+        }
+
+        & .viagens::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            border: 6px solid #F7F7F7;
+            background: #bfbfbf;
+        }
+
+        & .not-to-show {
+            width: 100%;
+            height: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+
+            & img {
+                height: 70%;
+            }
+        }
+    }
+}
+
+@keyframes andar {
+    from {
+        right: -1210px;
+    }
+
+    to {
+        right: 300px;
+    }
+}

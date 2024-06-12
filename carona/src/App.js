@@ -23,6 +23,7 @@ import Footer from "./components/layout/footer/Footer";
 import Container from "./components/layout/container/Container";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import ChatContainer from "./components/pages/chat/chat_container/ChatContainer";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
           <Route path='/viagens' element={<Viagens />} />
           <Route path='/transacoes' element={<Transacoes />} />
           <Route path='/fidelizados' element={<Fidelizados />} />
-          <Route path='/chat' element={<Chat />} />
+          <Route path='/chat' element={<ChatContainer />} />
           <Route path='/oferecer-carona' element={<OferecerCarona />} />
           <Route path='/procurar-carona' element={<ProcurarCarona />} />
         </Routes>

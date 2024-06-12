@@ -3,6 +3,9 @@ import Container from "../../layout/container/Container";
 import { useState } from "react";
 import Input from "../../layout/input/Input";
 import { BsFillPencilFill } from "react-icons/bs";
+import axios from 'axios';
+import { CloudinaryContext, Image, Transformation } from 'cloudinary-react';
+import { Cloudinary } from 'cloudinary-core';
 
 function CadastroUser() {
   const [progress, setProgress] = useState(99.9);
@@ -17,6 +20,39 @@ function CadastroUser() {
     // Atualiza o progresso para 100% quando o formulário é enviado
     setProgress(99.9);
   };
+
+  // const openWidget = () => {
+  //   const cloudinary = new Cloudinary({ cloud_name: 'YOUR_CLOUD_NAME' });
+
+  //   cloudinary.createUploadWidget(
+  //     {
+  //       cloudName: 'YOUR_CLOUD_NAME',
+  //       uploadPreset: 'YOUR_UPLOAD_PRESET',
+  //       sources: ['local', 'url', 'camera'],
+  //       multiple: false,
+  //       cropping: true,
+  //     },
+  //     (error, result) => {
+  //       if (result.event === 'success') {
+  //         setFormData({
+  //           ...formData,
+  //           imageUrl: result.info.secure_url,
+  //         });
+  //       }
+  //     }
+  //   ).open();
+  // };
+
+  // const handleSubmitImg = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post('/api/register', formData);
+  //     console.log(response.data);
+  //     // Redirecione ou informe o usuário sobre o sucesso do cadastro
+  //   } catch (error) {
+  //     console.error('Error registering user:', error);
+  //   }
+  // };
 
   return (
     <Container customClass="min-height">

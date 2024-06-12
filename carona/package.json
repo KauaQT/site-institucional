@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.16.5",
     "axios": "^1.6.8",
+    "cloudinary": "^2.2.0",
+    "cloudinary-react": "^1.8.1",
     "ngx-toastr": "^18.0.0",
     "primereact": "^10.6.5",
     "react": "^18.2.0",

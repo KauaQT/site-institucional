@@ -1,8 +1,13 @@
+import Sidebar from "../../layout/sidebar/Sidebar"
 import styles from './Caronas.module.css'
 
 function Caronas() {
     return (
-        <p>Caronas</p>
+        <>
+            <Sidebar currentPage={window.location.pathname} />
+            <p>Caronas</p>
+        </>
+
     )
 }
 

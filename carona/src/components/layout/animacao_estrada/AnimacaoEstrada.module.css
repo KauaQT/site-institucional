@@ -1,0 +1,40 @@
+.background-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 85%;
+    z-index: -3;
+
+    & .estrada {
+        width: 100%;
+    }
+
+    & .carro {
+        width: 110px;
+        z-index: 0;
+        position: relative;
+        bottom: 140px;
+        right: -1210px;
+    }
+
+    & .primeiro {
+        animation: andar 8s infinite linear;
+        animation-delay: 1s;
+    }
+
+    & .segundo {
+        animation: andar 8s infinite linear;
+        animation-delay: 4s;
+    }
+
+}
+
+@keyframes andar {
+    from {
+        right: -1210px;
+    }
+
+    to {
+        right: 300px;
+    }
+}

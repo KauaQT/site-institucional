@@ -19,10 +19,10 @@ function Login() {
     const [showPassword, setShowPassword] = useState(false)
 
     function entrar() {
-        api.post('http://localhost:8080/usuarios/login', user)
+        api.post('/usuarios/login', user)
         .then((response) => {
             console.log('Login realizado com sucesso')
-            sessionStorage.setItem(response.data)
+            localStorage.setItem(response.data)
         })
         .catch(error => {
             console.log(error);
@@ -33,7 +33,7 @@ function Login() {
             <Container customClass='min-height' >
                 {/* div de imagem */}
                 <div className={styles['div-illustration']}>
-                    <img src={img} alt="login-image" />
+                    <img src={img} alt="Imagem de Login" />
                 </div>
 
                 {/* div de forms */}

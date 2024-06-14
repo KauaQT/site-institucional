@@ -1,0 +1,79 @@
+.box-saldo {
+    background-color: #fff;
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.169) 0px 13px 27px -5px, rgba(0, 0, 0, 0.123) 0px 8px 16px -8px;
+    display: flex;
+    align-items: center;
+
+    & .saldo-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 15%;
+
+        & img {
+            height: 90px;
+        }
+    }
+
+    & .column-separator {
+        height: 100%;
+        border-right: 2px solid #E6E6E6;
+    }
+
+    & .saldo-info {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        height: 100%;
+        width: 65%;
+        margin-left: 20px;
+    }
+
+    & .saldo-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-evenly;
+        height: 100%;
+        width: 20%;
+
+        & button {
+            width: 90%;
+            height: 32px;
+            font-size: 16px;
+        }
+
+        & .button-sacar {
+            background-color: #173e6d;
+            border: 3px solid #173e6d;
+            color: #fff;
+            transition: all 0.2s;
+        }
+
+        & .button-sacar:hover {
+            color: #f1f1f1;
+            border: 3px solid #0F2949;
+            background-color: #0F2949;
+            transition: all 0.2s;
+        }
+
+        & .button-depositar {
+            background-color: #E6AD47;
+            border: 3px solid #E6AD47;
+            color: #fff;
+            transition: all 0.2s;
+        }
+
+        & .button-depositar:hover {
+            color: #f1f1f1;
+            border: 3px solid #c0903b;
+            background-color: #c0903b;
+            transition: all 0.2s;
+        }
+    }
+}

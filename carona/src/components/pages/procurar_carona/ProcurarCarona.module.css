@@ -5,37 +5,6 @@ body {
     overflow-x: hidden;
 }
 
-& .background-image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 85%;
-    z-index: -3;
-
-    & .estrada {
-        width: 100%;
-    }
-
-    & .carro {
-        width: 110px;
-        z-index: 0;
-        position: relative;
-        bottom: 140px;
-        right: -1210px;
-    }
-
-    & .primeiro {
-        animation: andar 8s infinite linear;
-        animation-delay: 1s;
-    }
-
-    & .segundo {
-        animation: andar 8s infinite linear;
-        animation-delay: 4s;
-    }
-
-}
-
 .main {
     width: 80vw;
     height: 90vh;
@@ -62,25 +31,50 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 45px;
+            gap: 15px;
             color: #173e6d;
+            padding: 0 5px;
+            box-sizing: border-box;
 
             & .arrow {
                 font-size: 28px;
             }
 
             & .box-input {
-                width: 20%;
+                width: 30%;
                 height: 36px;
                 font-size: 20px;
                 display: flex;
                 align-items: center;
                 justify-content: start;
+                position: relative;
                 gap: 15px;
 
                 & svg {
                     font-size: 24px;
                 }
+
+                & input {
+                    border: none;
+                    outline: none;
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: #173e6d;
+                    height: 100%;
+                    width: 100%;
+                }
+
+            }
+
+            & .box-input-date {
+                width: 15%;
+                height: 36px;
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                position: relative;
+                gap: 15px;
 
                 & input {
                     border: none;
@@ -200,15 +194,5 @@ body {
                 height: 70%;
             }
         }
-    }
-}
-
-@keyframes andar {
-    from {
-        right: -1210px;
-    }
-
-    to {
-        right: 300px;
     }
 }

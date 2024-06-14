@@ -43,7 +43,7 @@ function Sidebar({ currentPageName, userType }) {
                     <span>Meu perfil</span>
                 </li>
                 {userType == "MOTORISTA" ?
-                    <li onClick={() => navigate("/oferecer-carona")} className={currentPageName == '/oferecer-carona' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                    <li onClick={() => navigate("/viagens/oferecer")} className={currentPageName == '/viagens/oferecer' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
                         <MdOutlineAddCircle />
                         <span>Oferecer Carona</span>
                     </li>

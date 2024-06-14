@@ -1,5 +1,5 @@
 import styles from './DetalhesViagem.module.css'
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Sidebar from "../../layout/sidebar/Sidebar"
 import { FaArrowRightLong } from "react-icons/fa6";
 import { LuCircleDashed } from "react-icons/lu";
@@ -8,20 +8,19 @@ import { FaDotCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import api from '../../../Api'
 import { FaStar } from "react-icons/fa";
-import backgroundImage from '../../../utils/assets/procurar-viagem-image.svg'
-import carroAndando1 from '../../../utils/assets/carro-andando-1.svg'
-import carroAndando2 from '../../../utils/assets/carro-andando-2.svg'
 import placaIcon from '../../../utils/assets/license-plate.png'
 import { FaCar } from "react-icons/fa";
+import AnimacaoEstrada from '../../layout/animacao_estrada/AnimacaoEstrada';
+import CardPassageiro from './card_passageiro/CardPassageiro';
+import MapGeolocation from '../../map/MapGeolocation';
 
-function DetalhesViagem(props) {
-    let local = useLocation();
+function DetalhesViagem() {
     const { viagemId } = useParams()
 
     const [viagem, setViagem] = useState({
         preco: 36,
         data: "17/05/2024",
-        horarioSaida: "23:00",
+        horarioSaida: "15:00",
         horarioChegada: "17:00",
         tempoEstimado: "2:00",
         carro: {
@@ -57,12 +56,14 @@ function DetalhesViagem(props) {
             {
                 id: '1',
                 nome: "Lucas Arantes",
-                nota: "4.7"
+                nota: "4.7",
+                foto: ""
             },
             {
                 id: '2',
-                nome: "Ewerton Lima",
-                nota: "4.9"
+                nome: "Ewerton Oliveira",
+                nota: "4.9",
+                foto: ""
             }
         ]
     })
@@ -82,13 +83,9 @@ function DetalhesViagem(props) {
 
     return (
         <>
-            <Sidebar currentPageName={local.pathname} />
+            <Sidebar currentPageName={'/viagens'} />
 
-            <div className={styles["background-image"]}>
-                <img src={backgroundImage} alt="Imagem de viagem" className={styles["estrada"]} />
-                <img src={carroAndando1} alt="Carro de viagem" className={`${styles["carro"]} ${styles["primeiro"]}`} />
-                <img src={carroAndando2} alt="Carro de viagem" className={`${styles["carro"]} ${styles["segundo"]}`} />
-            </div>
+            <AnimacaoEstrada />
 
             <div className={styles["main"]}>
                 <div className={styles["container"]}>
@@ -103,7 +100,7 @@ function DetalhesViagem(props) {
                             <FaDotCircle />
                             <input value={`${viagem.enderecoDestino.cidade}, ${viagem.enderecoDestino.uf}`} name="cidadeDestino" id="chegadaId" className={styles["inputChegada"]} disabled />
                         </div>
-                        <div className={styles["box-input"]}>
+                        <div className={styles["box-input-date"]}>
                             <FaCalendarDays />
                             <input value={viagem.data} name="data" className={styles["inputDate"]} id="dateId" disabled />
                         </div>
@@ -158,34 +155,20 @@ function DetalhesViagem(props) {
                             <div className={styles["passageiros"]}>
                                 <h5>Passageiros</h5>
                                 <div className={styles["users"]}>
-                                    <div className={styles["user"]}>
-                                        <img src="" alt="Foto do passageiro" />
-                                        <div className={styles["nome-nota"]}>
-                                            <h5>{viagem.passageiros[0].nome}</h5>
-                                            <div className={styles["nota-passageiro"]}>
-                                                <FaStar />
-                                                <span>{viagem.passageiros[0].nota}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className={styles["user"]}>
-                                        <img src="" alt="Foto do passageiro" />
-                                        <div className={styles["nome-nota"]}>
-                                            <h5>{viagem.passageiros[1].nome}</h5>
-                                            <div className={styles["nota-passageiro"]}>
-                                                <FaStar />
-                                                <span>{viagem.passageiros[1].nota}</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {
+                                        viagem.passageiros.length > 0
+                                            ? viagem.passageiros.map(passageiro => (
+                                                <CardPassageiro key={passageiro.id} foto={passageiro.foto} nome={passageiro.nome} nota={passageiro.nota} />
+                                            ))
+                                            : <p>Nenhum passageiro reservou esta viagem até o momento</p>
+                                    }
                                 </div>
                             </div>
 
                         </div>
 
                         <div className={styles["mapa"]}>
-
+                            {/* <MapGeolocation /> */}
                         </div>
                     </div>
                 </div>

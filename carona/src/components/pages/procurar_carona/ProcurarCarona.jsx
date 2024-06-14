@@ -9,14 +9,17 @@ import { useEffect, useState } from "react";
 import api from '../../../Api'
 import { FaStar } from "react-icons/fa";
 import notFound from '../../../utils/assets/image-not-found-viagem.svg'
-import backgroundImage from '../../../utils/assets/procurar-viagem-image.svg'
-import carroAndando1 from '../../../utils/assets/carro-andando-1.svg'
-import carroAndando2 from '../../../utils/assets/carro-andando-2.svg'
+import AnimacaoEstrada from '../../layout/animacao_estrada/AnimacaoEstrada';
+import SearchGeocode from '../../map/search_geocode/SearchGeocode';
 
 function ProcurarCarona() {
     let local = useLocation();
 
-    const [viagemAPesquisar, setViagemAPesquisar] = useState({})
+    const [viagemAPesquisar, setViagemAPesquisar] = useState({
+        pontoPartida: '',
+        pontoChegada: '',
+    })
+
     const [viagensEncontradas, setViagensEncontradas] = useState([])
 
     let opcoesAvaliacao = [
@@ -26,6 +29,16 @@ function ProcurarCarona() {
         [<FaStar />, <FaStar />, <FaStar />, <FaStar />],
         [<FaStar />, <FaStar />, <FaStar />, <FaStar />, <FaStar />]
     ]
+
+    const setPartida = (placeName) => {
+        setViagemAPesquisar({ pontoPartida: placeName })
+        console.log(viagemAPesquisar);
+    }
+
+    const setChegada = (placeName) => {
+        setViagemAPesquisar({ pontoChegada: placeName })
+        console.log(viagemAPesquisar);
+    }
 
     const handleViagemAPesquisar = (e) => {
         setViagemAPesquisar({ ...viagemAPesquisar, [e.target.name]: e.target.value })
@@ -46,26 +59,31 @@ function ProcurarCarona() {
         <>
             <Sidebar currentPageName={local.pathname} />
 
-            <div className={styles["background-image"]}>
-                <img src={backgroundImage} alt="Imagem de viagem" className={styles["estrada"]} />
-                <img src={carroAndando1} alt="Carro de viagem" className={`${styles["carro"]} ${styles["primeiro"]}`} />
-                <img src={carroAndando2} alt="Carro de viagem" className={`${styles["carro"]} ${styles["segundo"]}`} />
-            </div>
+            <AnimacaoEstrada />
 
             <div className={styles["main"]}>
                 <div className={styles["container"]}>
                     <div className={styles["search-bar"]}>
 
-                        <div className={styles["box-input"]}>
-                            <LuCircleDashed />
-                            <input type="text" name="cidadeOrigem" id="partidaId" className={styles["inputPartida"]} placeholder="Partida" onChange={handleViagemAPesquisar} />
-                        </div>
+                        <SearchGeocode
+                            placeholder='Partida'
+                            startIcon={<LuCircleDashed />}
+                            name='cidadeOrigem'
+                            className={styles["box-input"]}
+                            onClickEvent={(placeName) => setPartida(placeName)}
+                        />
+
                         <FaArrowRightLong className={styles["arrow"]} />
-                        <div className={styles["box-input"]}>
-                            <FaDotCircle />
-                            <input type="text" name="cidadeDestino" id="chegadaId" className={styles["inputChegada"]} placeholder="Chegada" onChange={handleViagemAPesquisar} />
-                        </div>
-                        <div className={styles["box-input"]}>
+
+                        <SearchGeocode
+                            placeholder='Chegada'
+                            startIcon={<FaDotCircle />}
+                            name='cidadeDestino'
+                            className={styles["box-input"]}
+                            onClickEvent={(placeName) => setChegada(placeName)}
+                        />
+
+                        <div className={styles["box-input-date"]}>
                             <FaCalendarDays />
                             <input type="date" name="data" className={styles["inputDate"]} id="dateId" onChange={handleViagemAPesquisar} />
                         </div>

@@ -7,10 +7,9 @@ import Chat from './components/pages/chat/Chat'
 import Login from './components/pages/login/Login'
 import Perfil from './components/pages/perfil/Perfil'
 import Caronas from './components/pages/caronas/Caronas'
-import Contato from './components/pages/contato/Contato'
 import Viagens from './components/pages/viagens/Viagens'
+import Feedback from './components/pages/feedback/Feedback'
 import Cadastro from './components/pages/cadastro/Cadastro'
-import QuemSomos from './components/pages/quem_somos/QuemSomos'
 import Transacoes from './components/pages/transacoes/Transacoes'
 import Fidelizados from './components/pages/fidelizados/Fidelizados'
 import RedefinirSenha from './components/pages/redefinir_senha/RedefinirSenha'
@@ -21,6 +20,9 @@ import DetalhesViagem from './components/pages/detalhes_viagem/DetalhesViagem'
 // Importando elementos de layout
 import Container from './components/layout/container/Container'
 
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+
 function App() {
   return (
     <Router>
@@ -30,17 +32,16 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/caronas' element={<Caronas />} />
           <Route path='/cadastro' element={<Cadastro />} />
-          <Route path='/contato' element={<Contato />} />
-          <Route path='/quem-somos' element={<QuemSomos />} />
           <Route path='/redefinir-senha' element={<RedefinirSenha />} />
           <Route path='/meu-perfil' element={<Perfil />} />
-          <Route path='/viagens' element={<Viagens />} />
+          <Route path='/viagens/:idUser' element={<Viagens />} />
           <Route path='/transacoes' element={<Transacoes />} />
-          <Route path='/fidelizados' element={<Fidelizados />} />
+          <Route path='/fidelizados/:idUser' element={<Fidelizados />} />
           <Route path='/chat' element={<Chat />} />
           <Route path='/viagens/oferecer' element={<OferecerCarona />} />
           <Route path='/viagens/procurar' element={<ProcurarCarona />} />
-          <Route path='/viagens/detalhes/:id' element={<DetalhesViagem />} />
+          <Route path='/viagens/detalhes/:idViagem' element={<DetalhesViagem />} />
+          <Route path='/feedback/:idUser' element={<Feedback />} />
         </Routes>
       </Container>
     </Router>

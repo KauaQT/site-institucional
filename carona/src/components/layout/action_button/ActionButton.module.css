@@ -1,31 +1,32 @@
 button {
-    width: 250px;
-    height: 40px;
-    padding: 10px 15px;
-    font-size: 20px;
-    font-weight: 600;
-    border-radius: 8px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin-top: 8px;
+  width: 250px;
+  height: 40px;
+  padding: 10px 15px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  gap: 10px;
 }
 
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .primary {
-    background-color: #E6AD47;
-    color: #fff;
-    border: 3px solid #E6AD47;
+  background-color: #e6ad47;
+  color: #fff;
+  border: 3px solid #e6ad47;
 }
 
 .secondary {
-    background-color: #fff;
-    color: #173E6D;
-    border: 3px solid #173E6D;
+  background-color: #fff;
+  color: #173e6d;
+  border: 3px solid #173e6d;
 }
 
 /* .forms-context {

@@ -9,7 +9,7 @@ import ActionButton from '../../layout/action_button/ActionButton';
 import { FaCheck } from "react-icons/fa";
 
 function RedefinirSenha() {
-    var keycode = require('keycode');
+   // var keycode = require('keycode');
     const [codigo, setCodigo] = useState()
     const [codigoFormatado, setCodigoFormatado] = useState('')
 

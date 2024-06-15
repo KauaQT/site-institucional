@@ -7,7 +7,7 @@ import { FaSearch } from "react-icons/fa";
 
 import axios from "axios";
 
-function CadastroEndereco({handleUserEvent}) {
+function CadastroEndereco({ handleUserEvent }) {
   const [progress, setProgress] = useState(66.6);
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState({});
@@ -19,7 +19,7 @@ function CadastroEndereco({handleUserEvent}) {
         `https://viacep.com.br/ws/${encodeURIComponent(cep)}/json/`
       );
       setAddress(response.data);
-      console.log(address)
+      console.log(address);
       setError(null);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -36,6 +36,13 @@ function CadastroEndereco({handleUserEvent}) {
     e.preventDefault();
     // Atualiza o progresso para 100% quando o formulário é enviado
     setProgress(66.6);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSearch();
+    }
   };
 
   console.log(`https://viacep.com.br/ws/${cep}/json/`);
@@ -62,20 +69,56 @@ function CadastroEndereco({handleUserEvent}) {
                 </div>
               </div>
             </div> */}
-          <Input label='CEP' placeholder='Digite o CEP' onChangeEvent={(e) => {
-            setCep(e.target.value)
-            }} type="text" id='cep' icon={<FaSearch />} iconHandleEvent={handleSearch} />
+            <Input
+              label="CEP"
+              placeholder="Digite o CEP"
+              onChangeEvent={(e) => {
+                setCep(e.target.value);
+              }}
+              type="text"
+              id="cep"
+              icon={<FaSearch />}
+              iconHandleEvent={handleSearch}
+              onKeyPress={handleKeyPress}
+            />
 
-          <Input label='UF' placeholder='UF' value={address.uf} type="text" id='uf' disabled />
-          
-          <Input label='Cidade' placeholder='Cidade' value={address.localidade} type="text" id='cidade' disabled />
-          
-          <Input label='Logradouro' placeholder='Logradouro' value={address.logradouro} type="text" id='logradouro' disabled />
-          
-          <Input label='Bairro' placeholder='Bairro' value={address.bairro} type="text" id='bairro' disabled />
-          
-          <Input label='Número' placeholder='Digite o número' type="text" />
-            
+            <Input
+              label="UF"
+              placeholder="UF"
+              value={address.uf}
+              type="text"
+              id="uf"
+              disabled
+            />
+
+            <Input
+              label="Cidade"
+              placeholder="Cidade"
+              value={address.localidade}
+              type="text"
+              id="cidade"
+              disabled
+            />
+
+            <Input
+              label="Logradouro"
+              placeholder="Logradouro"
+              value={address.logradouro}
+              type="text"
+              id="logradouro"
+              disabled
+            />
+
+            <Input
+              label="Bairro"
+              placeholder="Bairro"
+              value={address.bairro}
+              type="text"
+              id="bairro"
+              disabled
+            />
+
+            <Input label="Número" placeholder="Digite o número" type="text" />
           </div>
           <div className={styles["grupo-progress"]}>
             <h4>Etapa 2 de 3</h4>

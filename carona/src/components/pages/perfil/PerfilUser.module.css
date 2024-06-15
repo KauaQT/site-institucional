@@ -1,0 +1,303 @@
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 45px;
+  width: 80vw;
+  height: 90vh;
+
+  .metricas {
+    margin-top: 50px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .conjunto-user {
+      height: 40vh;
+      width: 40%;
+      gap: 20px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      span {
+        color: #173e6d;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      .box-user {
+        background-color: #fff;
+        width: 100%;
+        border-radius: 15px;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        box-shadow: 2px 4px 10px #4b4b4b4b;
+
+        .user-foto {
+          width: 47%;
+          height: 100%;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          & img {
+            width: 90px;
+            height: 90px;
+            background-color: #fff;
+            border-radius: 50%;
+          }
+        }
+
+        .user-infos {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+
+          span,
+          p {
+            color: #173e6d;
+            font-weight: 600;
+            font-size: 18px;
+          }
+
+          .box-nota {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 10px;
+
+            & svg {
+              color: #e6ad47;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+
+      .box-viagens {
+        background-color: #fff;
+        width: 100%;
+        border-radius: 15px;
+        height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        box-shadow: 2px 4px 10px #4b4b4b4b;
+
+        img {
+          width: 60px;
+          height: 60px;
+        }
+
+        .registros {
+          width: 60%;
+          display: flex;
+          justify-content: space-around;
+        }
+      }
+    }
+
+    .grafico {
+      position: relative;
+      height: 40vh;
+      width: 50%;
+      margin-left: 25px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+
+      .disabled {
+        display: none;
+      }
+
+      .visible {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        height: 120px;
+        background-color: #fff;
+        border-radius: 15px;
+        left: 80px;
+        position: absolute;
+        gap: 5px;
+        padding: 15px;
+        box-shadow: 5px 0 15px #4b4b4b4b;
+
+        .conjunto-info {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          & span {
+            color: #173e6d;
+            font-weight: 600;
+          }
+
+          & svg {
+            color: #173e6d;
+            font-size: 25px;
+          }
+        }
+      }
+
+      .info {
+        width: 5%;
+        position: absolute;
+        left: 80px;
+        cursor: pointer;
+        color: #000;
+        font-size: 25px;
+        border-radius: 100%;
+        border: none;
+        box-shadow: 1px 0 10px #4b4b4b4b;
+      }
+
+      .charts {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        height: 100%;
+        margin-left: 45px;
+        border-radius: 12px;
+
+        .conjunto-chart {
+          width: 15%;
+          text-align: center;
+
+          .chart {
+            background-color: #cccccc;
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            height: 90%;
+            border-radius: 12px;
+
+            .metrica {
+              border-radius: 12px;
+              background-color: #173e6d;
+              width: 100%;
+              height: 70%;
+            }
+          }
+          & svg {
+            margin-top: 5px;
+            font-size: 40px;
+            color: #173e6d;
+          }
+        }
+      }
+    }
+  }
+
+  .divisoria {
+    width: 85%;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+  }
+
+  .avaliacoes {
+    flex-direction: column;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+
+    span {
+      color: #173e6d;
+      font-weight: 600;
+      font-size: 24px;
+    }
+
+    .comentario {
+      background-color: #fff;
+      width: 100%;
+      border-radius: 15px;
+      flex-direction: column;
+      height: 100px;
+      padding: 20px 10px 0px 10px;
+      align-items: flex-start;
+      display: flex;
+      justify-content: flex-start;
+      box-shadow: 2px 4px 10px #4b4b4b4b;
+
+      span {
+        margin-left: 1%;
+        margin-top: 2%;
+        font-size: 20px;
+        font-weight: 400;
+      }
+
+      .header {
+        justify-content: space-between;
+        width: 100%;
+        display: flex;
+        height: 30%;
+
+        .user-infos {
+          height: 100%;
+          width: 25%;
+          display: flex;
+          justify-content: flex-start;
+          gap: 10px;
+
+          span,
+          p {
+            color: #173e6d;
+            font-weight: 600;
+            font-size: 18px;
+          }
+          .user-foto {
+            margin-left: 5px;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & img {
+              width: 50px;
+              height: 50px;
+              background-color: #fff;
+              border-radius: 50%;
+            }
+          }
+        }
+        .box-nota {
+          margin-right: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          gap: 10px;
+
+          & span {
+            color: #173e6d;
+            font-weight: 600;
+            font-size: 18px;
+          }
+
+          & svg {
+            color: #e6ad47;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+body {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+h3 {
+  font-weight: 700;
+}

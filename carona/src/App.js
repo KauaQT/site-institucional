@@ -1,5 +1,5 @@
 // Importando os elementos para poder navegar entre as páginas
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Importando as páginas
 import Home from './components/pages/home/Home'
@@ -28,6 +28,22 @@ function App() {
     <Router>
       <Container customClass="min-height">
         <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/caronas" element={<Caronas />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/contato" element={<Contato />} />
+          <Route path="/quem-somos" element={<QuemSomos />} />
+          <Route path="/redefinir-senha" element={<RedefinirSenha />} />
+          <Route path="/meu-perfil" element={<Perfil />} />
+          <Route path="/perfil" element={<PerfilUser />} />
+          <Route path="/viagens" element={<Viagens />} />
+          <Route path="/transacoes" element={<Transacoes />} />
+          <Route path="/fidelizados" element={<Fidelizados />} />
+          <Route path="/chat" element={<ChatContainer />} />
+          <Route path="/oferecer-carona" element={<OferecerCarona />} />
+          <Route path="/procurar-carona" element={<ProcurarCarona />} />
+          <Route path="/cadastro-carro" element={<CadastroCarro />} />
           <Route exact path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/caronas' element={<Caronas />} />

@@ -1,5 +1,5 @@
 .main {
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,7 +35,7 @@
   position: relative;
   bottom: 50px;
   display: flex;
-  width: 70%;
+  width: 60%;
   justify-content: space-between;
 }
 

@@ -6,13 +6,16 @@ import ActionButton from "../../layout/action_button/ActionButton";
 import CadastroEndereco from "../cadastroEndereco/CadastroEndereco";
 import CadastroPessoal from "../cadastroPessoal/CadastroPessoal";
 import CadastroUser from "../cadastroUser/CadastroUser";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Cadastro() {
+  const navigate = useNavigate();
   const [currentComponent, setCurrentComponent] = useState(1);
 
   const handleClick = () => {
     if (currentComponent === 3) {
-      alert("Cadastro realizado com sucesso");
+      toast.success("cadastro realizado com sucesso!");
     } else {
       setCurrentComponent((current) => (current % 3) + 1);
     }
@@ -20,7 +23,7 @@ function Cadastro() {
 
   const backHandleClick = () => {
     if (currentComponent === 1) {
-      alert("prossiga com o cadastro");
+      toast.error("prossiga com o cadastro");
     } else {
       setCurrentComponent((current) => current - 1);
     }

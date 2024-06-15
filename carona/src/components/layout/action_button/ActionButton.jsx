@@ -1,9 +1,12 @@
-import styles from './ActionButton.module.css'
+import styles from "./ActionButton.module.css";
 
-function ActionButton({type, label, onClickEvent}) {
-    return (
-        <button onClick={onClickEvent} className={styles[type]}>{label}</button>
-    )
+function ActionButton({ type, iconLabel, label, onClickEvent }) {
+  return (
+    <button onClick={onClickEvent} className={styles[type]}>
+      {iconLabel}
+      {label}
+    </button>
+  );
 }
 
-export default ActionButton
+export default ActionButton;

@@ -9,9 +9,14 @@ import MapGeolocation from "../../map/MapGeolocation";
 import SearchGeocode from "../../map/search_geocode/SearchGeocode";
 import api from '../../../Api'
 import loading from '../../../utils/assets/loading.gif'
+import { inputSomenteNumero } from "../../../utils/InputValidations";
 
 function OferecerCarona() {
-    const userId = sessionStorage.getItem('userId')
+    const idUser = localStorage.getItem('idUser')
+    // const generoUser = localStorage.getItem('generoUser')
+    const generoUser = 'FEMININO'
+
+
     let local = useLocation();
     const navigate = useNavigate()
 
@@ -24,6 +29,15 @@ function OferecerCarona() {
             modelo: "Ka"
         }
     ])
+
+    useEffect(() => {
+        api.get(`/carros/${idUser}`)
+        .then((res) => {
+            console.log(res.data);
+            setCarrosUser(res.data)
+        })
+        .catch(error => console.log(error))
+    }, [idUser])
 
     // gerar horas para combo box a partir da hora atual
     function gerarHorarioComboBox() {
@@ -61,7 +75,7 @@ function OferecerCarona() {
     })
 
     const [viagem, setViagem] = useState({
-        idMotorista: userId,
+        idMotorista: idUser,
         latitudePartida: '',
         longitudePartida: '',
         latitudeDestino: '',
@@ -74,13 +88,13 @@ function OferecerCarona() {
     })
 
     // useEffect(() => {
-    //     api.get(`/listar-carros/${userId}`)
+    //     api.get(`/listar-carros/${idUser}`)
     //         .then(res => {
     //             console.log(res.data);
     //             setCarrosUser(res.data)
     //         })
     //         .catch(error => console.log(error))
-    // }, [userId])
+    // }, [idUser])
 
     const handleViagemSave = async () => {
         setViagem({ ...viagem, horario: `${dataHora.data}T${dataHora.hora}:00` })
@@ -92,7 +106,7 @@ function OferecerCarona() {
 
     return (
         <>
-            <Sidebar currentPageName={local.pathname} userType={'MOTORISTA'} />
+            <Sidebar currentPageName={local.pathname} />
 
             <div className={styles["main"]}>
                 <div className={styles["container"]}>
@@ -180,8 +194,16 @@ function OferecerCarona() {
 
                                 <div className={styles["box-input"]} style={{ width: "44%" }}>
                                     <h4>Preço (passageiro)</h4>
-                                    <div className={styles["input-div"]}>
-                                        <input type="text" name="preco" placeholder="00,00" onChange={(e) => setViagem({ ...viagem, valor: e.target.value })} />
+                                    <div className={styles["input-div-preco"]}>
+                                        <span>R$</span>
+                                        <input
+                                            className={styles["input-preco"]}
+                                            type="text"
+                                            name="preco"
+                                            placeholder="00,00"
+                                            onChange={(e) => setViagem({ ...viagem, valor: e.target.value })}
+                                            onInput={inputSomenteNumero}
+                                        />
                                     </div>
                                 </div>
 
@@ -200,16 +222,19 @@ function OferecerCarona() {
                                     </div>
                                 </div>
 
-                                <div className={styles["box-input"]} style={{ width: "44%" }}>
-                                    <h4>Apenas mulheres</h4>
+                                {
+                                    generoUser == "FEMININO" &&
+                                    <div className={styles["box-input"]} style={{ width: "44%" }}>
+                                        <h4>Apenas mulheres</h4>
 
-                                    <div
-                                        className={viagem.soMulheres ? `${styles["toggle-button"]} ${styles["ativado"]}` : styles["toggle-button"]}
-                                        onClick={() => setViagem({ ...viagem, soMulheres: !viagem.soMulheres })}
-                                    >
-                                        <input type="checkbox" name="soMulheres" value={viagem.soMulheres} />
+                                        <div
+                                            className={viagem.soMulheres ? `${styles["toggle-button"]} ${styles["ativado"]}` : styles["toggle-button"]}
+                                            onClick={() => setViagem({ ...viagem, soMulheres: !viagem.soMulheres })}
+                                        >
+                                            <input type="checkbox" name="soMulheres" value={viagem.soMulheres} />
+                                        </div>
                                     </div>
-                                </div>
+                                }
 
                                 <div className={styles["action-buttons"]}>
                                     <button

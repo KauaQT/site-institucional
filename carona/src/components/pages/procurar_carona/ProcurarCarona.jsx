@@ -16,43 +16,25 @@ function ProcurarCarona() {
     let local = useLocation();
 
     const [viagemAPesquisar, setViagemAPesquisar] = useState({
-        pontoPartida: '',
-        pontoChegada: '',
+        latitudePartida: '',
+        longitudePartida: '',
+        latitudeDestino: '',
+        longitudeDestino: '',
+        data: '',
     })
 
     const [viagensEncontradas, setViagensEncontradas] = useState([])
 
-    let opcoesAvaliacao = [
-        [<FaStar />],
-        [<FaStar />, <FaStar />],
-        [<FaStar />, <FaStar />, <FaStar />],
-        [<FaStar />, <FaStar />, <FaStar />, <FaStar />],
-        [<FaStar />, <FaStar />, <FaStar />, <FaStar />, <FaStar />]
-    ]
+    const handleSubmitViagem = async () => {
+        console.log(viagemAPesquisar)
 
-    const setPartida = (placeName) => {
-        setViagemAPesquisar({ pontoPartida: placeName })
-        console.log(viagemAPesquisar);
-    }
-
-    const setChegada = (placeName) => {
-        setViagemAPesquisar({ pontoChegada: placeName })
-        console.log(viagemAPesquisar);
-    }
-
-    const handleViagemAPesquisar = (e) => {
-        setViagemAPesquisar({ ...viagemAPesquisar, [e.target.name]: e.target.value })
-    }
-
-    const HandleSubmitViagem = () => {
-        useEffect(() => {
-            api.get('/viagens')
-                .then(res => {
-                    console.log(res.data);
-                    setViagensEncontradas(res.data)
-                })
-                .catch(error => console.log(error))
-        }, [])
+        // const response = await api.post('/buscar-viagens', viagemAPesquisar)
+        
+        // .then((res) => {
+        //     console.log(res.data);
+        //     setViagensEncontradas(res.data)
+        // })
+        // .catch((error) => console.log(error))
     }
 
     return (
@@ -70,7 +52,11 @@ function ProcurarCarona() {
                             startIcon={<LuCircleDashed />}
                             name='cidadeOrigem'
                             className={styles["box-input"]}
-                            onClickEvent={(placeName) => setPartida(placeName)}
+                            onClickEvent={(place) => setViagemAPesquisar({
+                                ...viagemAPesquisar,
+                                latitudePartida: place.geometry.coordinates[0],
+                                longitudePartida: place.geometry.coordinates[1]
+                            })}
                         />
 
                         <FaArrowRightLong className={styles["arrow"]} />
@@ -80,15 +66,27 @@ function ProcurarCarona() {
                             startIcon={<FaDotCircle />}
                             name='cidadeDestino'
                             className={styles["box-input"]}
-                            onClickEvent={(placeName) => setChegada(placeName)}
+                            onClickEvent={(place) => setViagemAPesquisar({
+                                ...viagemAPesquisar,
+                                latitudeDestino: place.geometry.coordinates[0],
+                                longitudeDestino: place.geometry.coordinates[1]
+                            })}
                         />
 
                         <div className={styles["box-input-date"]}>
                             <FaCalendarDays />
-                            <input type="date" name="data" className={styles["inputDate"]} id="dateId" onChange={handleViagemAPesquisar} />
+                            <input type="date" name="data" className={styles["inputDate"]} id="dateId" onChange={(e) => setViagemAPesquisar({
+                                ...viagemAPesquisar,
+                                data: e.target.value
+                            })} />
                         </div>
 
-                        <button className={styles["search-button"]} onClick={HandleSubmitViagem}>Ver caronas</button>
+                        <button
+                            className={styles["search-button"]}
+                            onClick={handleSubmitViagem}
+                        >
+                            Ver caronas
+                        </button>
 
                     </div>
 
@@ -114,7 +112,7 @@ function ProcurarCarona() {
                                 </select>
                             </div>
 
-                            <div className={styles["box-filtro"]}>
+                            {/* <div className={styles["box-filtro"]}>
                                 <span>Avaliação</span>
                                 <select name="avaliacao" id="avaliacao" className={styles["box-select"]} >
                                     <option value="">{opcoesAvaliacao[0]}</option>
@@ -123,7 +121,7 @@ function ProcurarCarona() {
                                     <option value="">{opcoesAvaliacao[3]}</option>
                                     <option value="">{opcoesAvaliacao[4]}</option>
                                 </select>
-                            </div>
+                            </div> */}
 
                             <div className={styles["box-filtro"]}>
                                 <span>Apenas mulheres</span>

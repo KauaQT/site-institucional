@@ -1,17 +1,16 @@
-import styles from "./CadastroEndereco.module.css";
+import React, { useState } from "react";
 import Container from "../../layout/container/Container";
-import { useState } from "react";
-import ActionButton from "../../layout/action_button/ActionButton";
+import styles from "./CadastroEndereco.module.css";
 import Input from "../../layout/input/Input";
 import { FaSearch } from "react-icons/fa";
-
 import axios from "axios";
 
-function CadastroEndereco({ handleUserEvent }) {
+function CadastroEndereco({ handleUserEvent, handleAddressData, onNextClick }) {
   const [progress, setProgress] = useState(66.6);
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState({});
   const [error, setError] = useState();
+  const [numero, setNumero] = useState(""); // Estado para armazenar o número digitado
 
   const handleSearch = async () => {
     try {
@@ -19,12 +18,17 @@ function CadastroEndereco({ handleUserEvent }) {
         `https://viacep.com.br/ws/${encodeURIComponent(cep)}/json/`
       );
       setAddress(response.data);
-      console.log(address);
       setError(null);
+      handleAddressData(response.data);
+      // Ao buscar o CEP, preencha o número se já estiver definido
+      if (numero) {
+        setNumero(numero);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
       setError("CEP não encontrado");
-      setAddress(null);
+      setAddress({});
+      handleAddressData({});
     }
   };
 
@@ -32,10 +36,25 @@ function CadastroEndereco({ handleUserEvent }) {
     setCep(e.target.value);
   };
 
+  const handleNumeroChange = (e) => {
+    const { value } = e.target;
+    setNumero(value); // Atualiza o estado 'numero' com o valor digitado
+    setAddress({
+      ...address,
+      numero: value, // Define o valor do número no estado 'address'
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Atualiza o progresso para 100% quando o formulário é enviado
+    // Verifica se o número está preenchido antes de permitir avançar
+    if (!numero) {
+      setError("Por favor, preencha o número.");
+      return;
+    }
     setProgress(66.6);
+    setError(null); // Limpa o erro se o número estiver preenchido
+    onNextClick(); // Chama a função para avançar para a próxima etapa
   };
 
   const handleKeyPress = (e) => {
@@ -45,36 +64,18 @@ function CadastroEndereco({ handleUserEvent }) {
     }
   };
 
-  console.log(`https://viacep.com.br/ws/${cep}/json/`);
-
   return (
     <Container customClass="min-height">
-      {/* div de imagem*/}
-
-      {/* div de forms */}
       <div className={styles["div-forms"]}>
         <h1>Endereço</h1>
         {error && <p>{error}</p>}
         <form className={styles["forms"]} onSubmit={handleSubmit}>
           <div className={styles["box-inputs"]}>
-            {/* <div className={styles["busca-cep"]}>
-              <div className={styles["box"]}>
-                <label htmlFor="cep">CEP</label>
-                <div className={styles["div-input"]}>
-                  <input placeholder='Digite o CEP' type="text" onChange={handleInputChange} />
-                  <FaSearch
-                    className={styles["icon-procurar"]}
-                    onClick={handleSearch}
-                  />
-                </div>
-              </div>
-            </div> */}
             <Input
               label="CEP"
               placeholder="Digite o CEP"
-              onChangeEvent={(e) => {
-                setCep(e.target.value);
-              }}
+              onChangeEvent={handleInputChange}
+              value={cep}
               type="text"
               id="cep"
               icon={<FaSearch />}
@@ -85,7 +86,7 @@ function CadastroEndereco({ handleUserEvent }) {
             <Input
               label="UF"
               placeholder="UF"
-              value={address.uf}
+              value={address.uf || ""}
               type="text"
               id="uf"
               disabled
@@ -94,7 +95,7 @@ function CadastroEndereco({ handleUserEvent }) {
             <Input
               label="Cidade"
               placeholder="Cidade"
-              value={address.localidade}
+              value={address.localidade || ""}
               type="text"
               id="cidade"
               disabled
@@ -103,7 +104,7 @@ function CadastroEndereco({ handleUserEvent }) {
             <Input
               label="Logradouro"
               placeholder="Logradouro"
-              value={address.logradouro}
+              value={address.logradouro || ""}
               type="text"
               id="logradouro"
               disabled
@@ -112,13 +113,19 @@ function CadastroEndereco({ handleUserEvent }) {
             <Input
               label="Bairro"
               placeholder="Bairro"
-              value={address.bairro}
+              value={address.bairro || ""}
               type="text"
               id="bairro"
               disabled
             />
 
-            <Input label="Número" placeholder="Digite o número" type="text" />
+            <Input
+              label="Número"
+              placeholder="Digite o número"
+              type="text"
+              value={numero}
+              onChangeEvent={handleNumeroChange}
+            />
           </div>
           <div className={styles["grupo-progress"]}>
             <h4>Etapa 2 de 3</h4>
@@ -129,10 +136,6 @@ function CadastroEndereco({ handleUserEvent }) {
               />
             </div>
           </div>
-          {/* <div className={styles["botoes"]}>
-            <ActionButton type="secondary" label="Voltar" />
-            <ActionButton type="primary" label="Próximo" />
-          </div> */}
         </form>
       </div>
     </Container>

@@ -1,57 +1,76 @@
 import styles from "./CadastroUser.module.css";
 import Container from "../../layout/container/Container";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../layout/input/Input";
 import { BsFillPencilFill } from "react-icons/bs";
-import axios from 'axios';
-import { CloudinaryContext, Image, Transformation } from 'cloudinary-react';
-import { Cloudinary } from 'cloudinary-core';
+import axios from "axios";
 
 function CadastroUser() {
   const [progress, setProgress] = useState(99.9);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
+    script.async = true;
+    script.onload = () => {
+      console.log("Cloudinary widget carregou");
+    };
+    document.body.appendChild(script);
+  }, []);
+
+  const openWidget = () => {
+    // const cloudinary = new Cloudinary({ cloud_name: "caronaCloudinary" });
+
+    window.cloudinary
+      .openUploadWidget(
+        {
+          cloudName: "dkzjrifqn",
+          uploadPreset: "profile_pictures",
+          sources: ["local", "url", "camera"],
+          multiple: false,
+          cropping: true,
+        },
+        (error, result) => {
+          if (result.event === "success") {
+            setImage(result.info.secure_url);
+            localStorage.setItem("userProfileImage", result.info.secure_url);
+          }
+        }
+      )
+      .open();
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      senha: e.target.senha.value,
+      confirmaSenha: e.target["confirma-senha"].value,
+      imageUrl: image,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://localhost:8080/usuarios/cadastrar",
+        formData
+      );
+      console.log(response.data);
+
+      setProgress(99.9);
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
+  };
 
   const handleImageChange = (event) => {
     setImage(URL.createObjectURL(event.target.files[0]));
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Atualiza o progresso para 100% quando o formulário é enviado
-    setProgress(99.9);
   };
 
-  // const openWidget = () => {
-  //   const cloudinary = new Cloudinary({ cloud_name: 'YOUR_CLOUD_NAME' });
-
-  //   cloudinary.createUploadWidget(
-  //     {
-  //       cloudName: 'YOUR_CLOUD_NAME',
-  //       uploadPreset: 'YOUR_UPLOAD_PRESET',
-  //       sources: ['local', 'url', 'camera'],
-  //       multiple: false,
-  //       cropping: true,
-  //     },
-  //     (error, result) => {
-  //       if (result.event === 'success') {
-  //         setFormData({
-  //           ...formData,
-  //           imageUrl: result.info.secure_url,
-  //         });
-  //       }
-  //     }
-  //   ).open();
-  // };
-
-  // const handleSubmitImg = async (e) => {
+  // const handleSubmit = (e) => {
   //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post('/api/register', formData);
-  //     console.log(response.data);
-  //     // Redirecione ou informe o usuário sobre o sucesso do cadastro
-  //   } catch (error) {
-  //     console.error('Error registering user:', error);
-  //   }
+  //   // Atualiza o progresso para 100% quando o formulário é enviado
+  //   setProgress(99.9);
   // };
 
   return (
@@ -78,10 +97,19 @@ function CadastroUser() {
               />
             </div>
             <div className={styles["image-box"]}>
-              <div className={styles["circle-input"]}>
-                <label htmlFor="file"><BsFillPencilFill /></label>
-                <input type="file" id="file" onChange={handleImageChange}/>
-                <img src={image} alt="" />
+              <div className={styles["circle-input"]} onClick={openWidget}>
+                <input type="file" id="file" style={{ display: "none" }} />
+                {image ? (
+                  <img
+                    src={image}
+                    alt="User profile"
+                    className={styles["profile-image"]}
+                  />
+                ) : (
+                  <div className={styles["placeholder-image"]}>
+                    {/* <BsFillPencilFill className={styles["pencil-icon"]} /> */}
+                  </div>
+                )}
               </div>
             </div>
           </div>

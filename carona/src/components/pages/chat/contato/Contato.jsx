@@ -5,10 +5,14 @@ const Contact = ({ contact, onClick }) => {
   return (
     <>
       <div className={styles["contact"]} onClick={onClick}>
-        {/* <img src="" alt="" /> */}
-        <div className={styles["message"]}>
-          <h3>{contact.name}</h3>
-          <span>Av. Paulista, 2000</span>
+        <div className={styles["contact-info"]}>
+          <div className={styles["user-foto"]}>
+            <img src={localStorage.getItem("userProfileImage")} alt="Profile" />
+          </div>
+          <div className={styles["message"]}>
+            <h3>{contact.name}</h3>
+            <span>Av. Paulista, 2000</span>
+          </div>
         </div>
         <div className={styles["notification"]}>2</div>
       </div>

@@ -28,6 +28,7 @@ function Perfil() {
     <>
       <Sidebar currentPageName={local.pathname} />
       <div className={styles["main"]}>
+        <h3>Meu Perfil</h3>
         <div className={styles["metricas"]}>
           <div className={styles["kpis"]}>
             <div className={styles["viagens"]}>

@@ -1,9 +1,9 @@
 import React from "react";
-import "./Message.module.css";
+import styles from "./Message.module.css";
 
 const Message = ({ content, isSentByCurrentUser }) => {
   return (
-    <div className={`message ${isSentByCurrentUser ? "sent" : "received"}`}>
+    <div className={styles[`${isSentByCurrentUser ? "sent" : "received"}`]}>
       <span>{content}</span>
     </div>
   );

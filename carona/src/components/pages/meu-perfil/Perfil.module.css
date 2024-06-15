@@ -2,9 +2,14 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 25px;
   width: 80vw;
   height: 90vh;
+
+  h3 {
+    width: 80%;
+    display: flex;
+    text-align: start;
+  }
 
   .metricas {
     margin-top: 50px;
@@ -74,11 +79,13 @@
     }
 
     .grafico {
+      position: relative;
       height: 40vh;
-      width: 70%;
+      width: 50%;
+      margin-left: 25px;
       display: flex;
-      align-items: end;
-      justify-content: space-between;
+      align-items: flex-end;
+      justify-content: flex-end;
 
       .disabled {
         display: none;
@@ -91,7 +98,8 @@
         height: 120px;
         background-color: #fff;
         border-radius: 15px;
-        position: fixed;
+        left: 80px;
+        position: absolute;
         gap: 5px;
         padding: 15px;
         box-shadow: 5px 0 15px #4b4b4b4b;
@@ -114,8 +122,9 @@
       }
 
       .info {
-        width: 1.7%;
+        width: 5%;
         position: absolute;
+        left: 80px;
         cursor: pointer;
         color: #000;
         font-size: 25px;
@@ -127,7 +136,7 @@
       .charts {
         display: flex;
         justify-content: space-between;
-        width: 90%;
+        width: 70%;
         height: 100%;
         margin-left: 45px;
         border-radius: 12px;
@@ -163,6 +172,7 @@
 
   .divisoria {
     width: 85%;
+    margin: 25px 20px;
     border: 1px solid #cccccc;
     border-radius: 5px;
   }

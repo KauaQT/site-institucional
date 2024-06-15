@@ -1,6 +1,6 @@
 .message {
   padding: 10px;
-  margin: 5px;
+  margin: 15px;
   border-radius: 10px;
   max-width: 60%;
   word-wrap: break-word;
@@ -12,6 +12,10 @@
   align-self: flex-end;
   width: fit-content;
   color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-top: 10px;
 }
 
 .received {
@@ -19,4 +23,7 @@
   align-self: flex-start;
   width: fit-content;
   color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: auto;
 }

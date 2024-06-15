@@ -6,6 +6,7 @@ import { FaArrowUp } from "react-icons/fa6";
 const Chat = ({ selectedContact }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const imageUrl = `https://res.cloudinary.com/dkzjrifqn/image/upload/k3xzen0rgeoq9v05lhcb`;
 
   useEffect(() => {
     if (selectedContact) {
@@ -42,7 +43,8 @@ const Chat = ({ selectedContact }) => {
   if (!selectedContact) {
     return (
       <div className={styles["chat-empty"]}>
-        Selecione um contato para iniciar uma conversa
+        <img src={imageUrl} alt="chatImage" />
+        <span>Clique em uma conversa para exibir as mensagens</span>
       </div>
     );
   }
@@ -80,6 +82,40 @@ const Chat = ({ selectedContact }) => {
 };
 
 export default Chat;
+//Parte para integração
+// const Chat = () => {
+  // const [messages, setMessages] = useState([]);
+  // const [newMessage, setNewMessage] = useState('');
+
+  // useEffect(() => {
+  //   if (selectedContact) {
+  //     fetchMessages(selectedContact.id);
+  //   }
+  // }, [selectedContact]);
+
+  // const fetchMessages = async (contactId) => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:8080/api/messages?contactId=${contactId}`);
+  //     setMessages(response.data);
+  //   } catch (error) {
+  //     console.error('Erro ao buscar mensagens:', error);
+  //   }
+  // };
+
+  // const sendMessage = async () => {
+  //   if (newMessage.trim() === '') return;
+  //   try {
+  //     const response = await axios.post('http://localhost:8080/api/messages', {
+  //       content: newMessage,
+  //       contactId: selectedContact.id,
+  //       isSentByCurrentUser: true,
+  //     });
+  //     setMessages([...messages, response.data]);
+  //     setNewMessage('');
+  //   } catch (error) {
+  //     console.error('Erro ao enviar mensagem:', error);
+  //   }
+  // };
 
 // import { useLocation } from "react-router-dom";
 // import Sidebar from "../../layout/sidebar/Sidebar";

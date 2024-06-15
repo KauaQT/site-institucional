@@ -8,11 +8,13 @@ import { IoChatbubblesSharp } from "react-icons/io5";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { GrTransaction } from "react-icons/gr";
 import { MdOutlineLoyalty } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MdOutlineAddCircle } from "react-icons/md";
 
 function Sidebar({ currentPageName, userType }) {
     const navigate = useNavigate();
+
+    const { idUser } = useParams()
 
     function logout() {
         localStorage.clear()
@@ -57,15 +59,15 @@ function Sidebar({ currentPageName, userType }) {
                     <IoChatbubblesSharp />
                     <span>Chat</span>
                 </li>
-                <li onClick={() => navigate("/viagens")} className={currentPageName == '/viagens' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                <li onClick={() => navigate(`/viagens/${idUser}`)} className={currentPageName == '/viagens' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
                     <FaMapLocationDot />
                     <span>Viagens</span>
                 </li>
-                <li onClick={() => navigate("/transacoes")} className={currentPageName == '/transacoes' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                <li onClick={() => navigate(`/transacoes/${idUser}`)} className={currentPageName == '/transacoes' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
                     <GrTransaction />
                     <span>Transações</span>
                 </li>
-                <li onClick={() => navigate("/fidelizados")} className={currentPageName == '/fidelizados' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                <li onClick={() => navigate(`/fidelizados/${idUser}`)} className={currentPageName == '/fidelizados' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
                     <MdOutlineLoyalty />
                     <span>Fidelizados</span>
                 </li>

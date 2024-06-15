@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import Sidebar from "../../layout/sidebar/Sidebar"
 import styles from './Viagens.module.css'
 import CardProximaViagem from './card_proxima_viagem/CardProximaViagem'
@@ -8,8 +8,6 @@ import notFound from '../../../utils/assets/image-not-found-viagem.svg'
 import api from "../../../Api"
 
 function Viagens() {
-    let local = useLocation();
-
     const { idUser } = useParams()
 
     const [viagens, setViagens] = useState([{
@@ -24,7 +22,7 @@ function Viagens() {
     const [viagemPendente, setViagemPendente] = useState({})
 
     useEffect(() => {
-        api.get(`viagens/${idUser}`)
+        api.get(`/viagens/${idUser}`)
             .then(res => {
                 console.log(res);
                 setViagens(res.data)
@@ -35,7 +33,7 @@ function Viagens() {
                 });
             })
             .catch(error => console.log(error))
-    }, [idUser])
+    }, [idUser, viagens])
 
     function filtrarViagens() {
         // useEffect(() => {
@@ -63,7 +61,7 @@ function Viagens() {
 
     return (
         <>
-            <Sidebar currentPageName={local.pathname} />
+            <Sidebar currentPageName={'/viagens'} />
 
             <div className={styles["main"]}>
                 <div className={styles["container"]}>

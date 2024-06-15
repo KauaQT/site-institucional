@@ -35,7 +35,7 @@ function App() {
           <Route path='/redefinir-senha' element={<RedefinirSenha />} />
           <Route path='/meu-perfil' element={<Perfil />} />
           <Route path='/viagens/:idUser' element={<Viagens />} />
-          <Route path='/transacoes' element={<Transacoes />} />
+          <Route path='/transacoes/:idUser' element={<Transacoes />} />
           <Route path='/fidelizados/:idUser' element={<Fidelizados />} />
           <Route path='/chat' element={<Chat />} />
           <Route path='/viagens/oferecer' element={<OferecerCarona />} />

@@ -22,7 +22,12 @@ function Login() {
         api.post('/usuarios/login', user)
         .then((response) => {
             console.log('Login realizado com sucesso')
-            localStorage.setItem(response.data)
+
+            localStorage.setItem('idUser', response.data.id)
+            localStorage.setItem('nomeUser', response.data.id)
+            localStorage.setItem('dataNascimentoUser', response.data.dataNascimento)
+            localStorage.setItem('generoUser', response.data.genero)
+            localStorage.setItem('imagemUser', response.data.imagem)
         })
         .catch(error => {
             console.log(error);

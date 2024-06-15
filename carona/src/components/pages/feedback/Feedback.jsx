@@ -5,17 +5,25 @@ import { FaDotCircle, FaStar, FaRegStar } from "react-icons/fa";
 import { FaCalendarDays } from "react-icons/fa6";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import api from '../../../Api'
 
 function Feedback() {
   const navigate = useNavigate()
   const { userId } = useParams(1)
+  // const userId = sessionStorage.getItem('idUser')
+  const tipoUser = 'MOTORISTA'
+  // const tipoUser = sessionStorage.getItem('tipoUser')
 
   const [feedback, setFeedback] = useState({
-    user: 0,
-    pontualidade: 0,
-    comunicacao: 0,
-    dirigibilidade: 0,
-    seguranca: 0,
+    notaUser: 0,
+    notaPontualidade: 0,
+    notaComunicacao: 0,
+    notaDirigibilidade: null,
+    notaComportamento: null,
+    notaSeguranca: 0,
+    comentario: '',
+    idUser: userId,
+    idAvaliado: 0
   })
 
   const viagem = {
@@ -29,26 +37,24 @@ function Feedback() {
     dataHora: '17/05/2024 13:00',
   };
 
-  // const handleHoverStars = (array, valor) => {
-  //   for (let i = 0; i <= valor; i++) {
-  //     array[i] = <FaStar />;
-
-  //   }
-  // }
-
   const handleCancelFeedback = () => {
     navigate(`/viagens/${userId}`)
   }
 
   const handleSaveFeedback = async () => {
     console.log(feedback);
+
+    // const response = await api.post(`/feedback/criar-feedback/${viagem.usuario.id}`)
+    // .then((res) => {
+    //   console.log(res.data);
+    //   navigate('/viage')
+    // })
+    // .catch((error => {
+    //   console.log(error)
+    // }))
   }
 
   let valoresStars = [1, 2, 3, 4, 5]
-  // let valoresStarsCriterio1 = [1, 2, 3, 4, 5]
-  // let valoresStarsCriterio2 = [1, 2, 3, 4, 5]
-  // let valoresStarsCriterio3 = [1, 2, 3, 4, 5]
-  // let valoresStarsCriterio4 = [1, 2, 3, 4, 5]
 
   return (
     <>
@@ -56,10 +62,10 @@ function Feedback() {
 
       <div className={styles["main"]}>
         <div className={styles["container"]}>
-          {viagem.usuario.tipo == "MOTORISTA" ? (
-            <h3>Avaliar Motorista</h3>
-          ) : (
+          {tipoUser == "MOTORISTA" ? (
             <h3>Avaliar Passageiro</h3>
+          ) : (
+            <h3>Avaliar Motorista</h3>
           )}
 
           <div className={styles["container-feedback"]}>
@@ -94,10 +100,10 @@ function Feedback() {
                         valoresStars.map(starValue => (
                           <span
                             key={starValue}
-                            onClick={() => setFeedback({ ...feedback, user: starValue })}
+                            onClick={() => setFeedback({ ...feedback, notaUser: starValue })}
                           >
                             {
-                              starValue <= feedback.user
+                              starValue <= feedback.notaUser
                                 ? <FaStar />
                                 : <FaRegStar />
                             }
@@ -110,7 +116,7 @@ function Feedback() {
 
                 <div className={styles["comentario"]}>
                   <h4>Comentário</h4>
-                  <input type="text" placeholder={`Comente sobre sua experiência com ${viagem.usuario.nome}...`} />
+                  <input type="text" onChange={(e) => setFeedback({ ...feedback, comentario: e.target.value })} placeholder={`Comente sobre sua experiência com ${viagem.usuario.nome}...`} />
                 </div>
               </div>
 
@@ -122,10 +128,10 @@ function Feedback() {
                       valoresStars.map(starValue => (
                         <span
                           key={starValue}
-                          onClick={() => setFeedback({ ...feedback, pontualidade: starValue })}
+                          onClick={() => setFeedback({ ...feedback, notaPontualidade: starValue })}
                         >
                           {
-                            starValue <= feedback.pontualidade
+                            starValue <= feedback.notaPontualidade
                               ? <FaStar />
                               : <FaRegStar />
                           }
@@ -142,10 +148,10 @@ function Feedback() {
                       valoresStars.map(starValue => (
                         <span
                           key={starValue}
-                          onClick={() => setFeedback({ ...feedback, comunicacao: starValue })}
+                          onClick={() => setFeedback({ ...feedback, notaComunicacao: starValue })}
                         >
                           {
-                            starValue <= feedback.comunicacao
+                            starValue <= feedback.notaComunicacao
                               ? <FaStar />
                               : <FaRegStar />
                           }
@@ -155,25 +161,48 @@ function Feedback() {
                   </div>
                 </div>
 
-                <div className={styles["criterio"]}>
-                  <h4>Dirigibilidade</h4>
-                  <div className={styles["estrelas"]}>
-                    {
-                      valoresStars.map(starValue => (
-                        <span
-                          key={starValue}
-                          onClick={() => setFeedback({ ...feedback, dirigibilidade: starValue })}
-                        >
-                          {
-                            starValue <= feedback.dirigibilidade
-                              ? <FaStar />
-                              : <FaRegStar />
-                          }
-                        </span>
-                      ))
-                    }
-                  </div>
-                </div>
+                {
+                  tipoUser == 'MOTORISTA'
+                    ? <div className={styles["criterio"]}>
+                      <h4>Comportamento</h4>
+                      <div className={styles["estrelas"]}>
+                        {
+                          valoresStars.map(starValue => (
+                            <span
+                              key={starValue}
+                              onClick={() => setFeedback({ ...feedback, notaComportamento: starValue })}
+                            >
+                              {
+                                starValue <= feedback.notaComportamento
+                                  ? <FaStar />
+                                  : <FaRegStar />
+                              }
+                            </span>
+                          ))
+                        }
+                      </div>
+                    </div>
+                    : <div className={styles["criterio"]}>
+                      <h4>Dirigibilidade</h4>
+                      <div className={styles["estrelas"]}>
+                        {
+                          valoresStars.map(starValue => (
+                            <span
+                              key={starValue}
+                              onClick={() => setFeedback({ ...feedback, notaDirigibilidade: starValue })}
+                            >
+                              {
+                                starValue <= feedback.notaDirigibilidade
+                                  ? <FaStar />
+                                  : <FaRegStar />
+                              }
+                            </span>
+                          ))
+                        }
+                      </div>
+                    </div>
+                }
+
 
                 <div className={styles["criterio"]}>
                   <h4>Segurança</h4>
@@ -182,10 +211,10 @@ function Feedback() {
                       valoresStars.map(starValue => (
                         <span
                           key={starValue}
-                          onClick={() => setFeedback({ ...feedback, seguranca: starValue })}
+                          onClick={() => setFeedback({ ...feedback, notaSeguranca: starValue })}
                         >
                           {
-                            starValue <= feedback.seguranca
+                            starValue <= feedback.notaSeguranca
                               ? <FaStar />
                               : <FaRegStar />
                           }

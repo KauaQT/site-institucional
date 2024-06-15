@@ -4,7 +4,6 @@ import styles from './Perfil.module.css'
 
 function Perfil() {
     let local = useLocation();
-    console.log(local.pathname);
 
     return (
         <>

@@ -25,6 +25,7 @@ function Login() {
 
             localStorage.setItem('idUser', response.data.id)
             localStorage.setItem('nomeUser', response.data.id)
+            localStorage.setItem('tipoUser', response.data.tipo)
             localStorage.setItem('dataNascimentoUser', response.data.dataNascimento)
             localStorage.setItem('generoUser', response.data.genero)
             localStorage.setItem('imagemUser', response.data.imagem)

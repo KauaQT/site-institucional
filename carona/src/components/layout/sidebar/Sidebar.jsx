@@ -8,7 +8,7 @@ import { IoChatbubblesSharp } from "react-icons/io5";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { GrTransaction } from "react-icons/gr";
 import { MdOutlineLoyalty } from "react-icons/md";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineAddCircle } from "react-icons/md";
 import { useState } from "react";
 
@@ -40,88 +40,39 @@ function Sidebar({ currentPageName, userType }) {
         </div>
       </div>
 
-      <ul className={styles["itens-sidebar"]}>
-        <li
-          onClick={() => navigate("/meu-perfil")}
-          className={
-            currentPageName == "/meu-perfil"
-              ? `${styles["item"]} ${styles["current-page"]}`
-              : styles["item"]
-          }
-        >
-          <ImProfile />
-          <span>Meu perfil</span>
-        </li>
-        {userType == "MOTORISTA" ? (
-          <li
-            onClick={() => navigate("/oferecer-carona")}
-            className={
-              currentPageName == "/oferecer-carona"
-                ? `${styles["item"]} ${styles["current-page"]}`
-                : styles["item"]
-            }
-          >
-            <MdOutlineAddCircle />
-            <span>Oferecer Carona</span>
-          </li>
-        ) : (
-          <li
-            onClick={() => navigate("/procurar-carona")}
-            className={
-              currentPageName == "/procurar-carona"
-                ? `${styles["item"]} ${styles["current-page"]}`
-                : styles["item"]
-            }
-          >
-            <FaSearch />
-            <span>Procurar</span>
-          </li>
-        )}
-        <li
-          onClick={() => navigate("/chat")}
-          className={
-            currentPageName == "/chat"
-              ? `${styles["item"]} ${styles["current-page"]}`
-              : styles["item"]
-          }
-        >
-          <IoChatbubblesSharp />
-          <span>Chat</span>
-        </li>
-        <li
-          onClick={() => navigate("/viagens")}
-          className={
-            currentPageName == "/viagens"
-              ? `${styles["item"]} ${styles["current-page"]}`
-              : styles["item"]
-          }
-        >
-          <FaMapLocationDot />
-          <span>Viagens</span>
-        </li>
-        <li
-          onClick={() => navigate("/transacoes")}
-          className={
-            currentPageName == "/transacoes"
-              ? `${styles["item"]} ${styles["current-page"]}`
-              : styles["item"]
-          }
-        >
-          <GrTransaction />
-          <span>Transações</span>
-        </li>
-        <li
-          onClick={() => navigate("/fidelizados")}
-          className={
-            currentPageName == "/fidelizados"
-              ? `${styles["item"]} ${styles["current-page"]}`
-              : styles["item"]
-          }
-        >
-          <MdOutlineLoyalty />
-          <span>Fidelizados</span>
-        </li>
-      </ul>
+            <ul className={styles["itens-sidebar"]}>
+                <li onClick={() => navigate("/meu-perfil")} className={currentPageName == '/meu-perfil' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                    <ImProfile />
+                    <span>Meu perfil</span>
+                </li>
+                {userType == "MOTORISTA" ?
+                    <li onClick={() => navigate("/viagens/oferecer")} className={currentPageName == '/viagens/oferecer' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                        <MdOutlineAddCircle />
+                        <span>Oferecer Carona</span>
+                    </li>
+                    :
+                    <li onClick={() => navigate("/viagens/procurar")} className={currentPageName == '/viagens/procurar' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                        <FaSearch />
+                        <span>Procurar</span>
+                    </li>
+                }
+                <li onClick={() => navigate("/chat")} className={currentPageName == '/chat' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                    <IoChatbubblesSharp />
+                    <span>Chat</span>
+                </li>
+                <li onClick={() => navigate("/viagens")} className={currentPageName == '/viagens' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                    <FaMapLocationDot />
+                    <span>Viagens</span>
+                </li>
+                <li onClick={() => navigate("/transacoes")} className={currentPageName == '/transacoes' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                    <GrTransaction />
+                    <span>Transações</span>
+                </li>
+                <li onClick={() => navigate("/fidelizados")} className={currentPageName == '/fidelizados' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+                    <MdOutlineLoyalty />
+                    <span>Fidelizados</span>
+                </li>
+            </ul>
 
       <div className={styles["logout"]} onClick={logout}>
         <LuLogOut />

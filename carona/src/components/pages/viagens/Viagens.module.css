@@ -32,7 +32,7 @@ body {
             & .header-proxima-viagem {
                 display: flex;
                 align-items: center;
-                gap: 20px;
+                gap: 15px;
 
                 & .alerta-viagem {
                     height: 20px;
@@ -67,7 +67,7 @@ body {
 
         & .historico-header {
             width: 100%;
-            height: 42px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -79,32 +79,84 @@ body {
                 align-items: center;
                 justify-content: end;
 
-                & .box-select {
+                & .box-filtro {
                     width: 48%;
                     height: 100%;
-                    border: none;
-                    border-radius: 10px;
-                    box-shadow: rgba(50, 50, 93, 0.169) 0px 13px 27px -5px, rgba(0, 0, 0, 0.123) 0px 8px 16px -8px;
-                    outline: none;
-                    font-size: 16px;
                     display: flex;
-                    text-align: center;
-                    color: #173e6d;
-                    font-weight: 600;
+                    flex-direction: column;
+                    align-items: start;
+                    justify-content: center;
+                    gap: 5px;
 
-                    & option {
+                    & span {
+                        font-size: 16px;
+                        font-weight: 600;
                         color: #173e6d;
-                        font-weight: 500;
                     }
 
+                    & .box-select {
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        border-radius: 10px;
+                        box-shadow: rgba(50, 50, 93, 0.169) 0px 13px 27px -5px, rgba(0, 0, 0, 0.123) 0px 8px 16px -8px;
+                        outline: none;
+                        font-size: 16px;
+                        display: flex;
+                        text-align: center;
+                        color: #173e6d;
+                        font-weight: 600;
+
+                        & option {
+                            color: #173e6d;
+                            font-weight: 500;
+                        }
+
+                    }
                 }
+
             }
         }
 
         & .historico-viagens {
             width: 100%;
-            height: 350px;
-            box-sizing: content-box;
+            height: 280px;
+            margin-top: 20px;
+            overflow: auto;
+        }
+
+        & .historico-viagens::-webkit-scrollbar {
+            width: 20px;
+        }
+
+        & .historico-viagens::-webkit-scrollbar-track {
+            border-radius: 10px;
+        }
+
+        & .historico-viagens::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            border: 6px solid #F7F7F7;
+            background: #bfbfbf;
+        }
+
+        & .not-found {
+            width: 100%;
+            height: 280px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+
+            & h4 {
+                font-weight: 500;
+            }
+
+            & img {
+                height: 80%;
+                width: 80%;
+            }
         }
 
     }

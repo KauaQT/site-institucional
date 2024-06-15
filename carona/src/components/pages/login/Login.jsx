@@ -19,7 +19,7 @@ function Login() {
     const [showPassword, setShowPassword] = useState(false)
 
     function entrar() {
-        api.post('http://localhost:8080/usuarios/login', user)
+        api.post('/usuarios/login', user)
         .then((response) => {
             console.log('Login realizado com sucesso')
             localStorage.setItem(response.data)

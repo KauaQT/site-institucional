@@ -3,7 +3,7 @@ import image from '../../../../utils/assets/image-viagem-passada.svg'
 import { LuCircleDashed } from "react-icons/lu";
 import { FaRegCircle } from "react-icons/fa";
 
-function CardViagemFeita({ cidadeOrigem, cidadeDestino, valor, data }) {
+function CardViagemFeita({ cidadeOrigem, cidadeDestino, valor, data, onDetalhesClick }) {
     return (
         <div className={styles["box-viagem-feita"]}>
             <div className={styles["viagem-img"]}>
@@ -29,7 +29,7 @@ function CardViagemFeita({ cidadeOrigem, cidadeDestino, valor, data }) {
 
             <div className={styles["viagem-actions"]}>
                 <button className={styles["button-avaliar"]}>Avaliar</button>
-                <button className={styles["button-detalhes"]}>Detalhes</button>
+                <button className={styles["button-detalhes"]} onClick={onDetalhesClick}>Detalhes</button>
             </div>
         </div>
     )

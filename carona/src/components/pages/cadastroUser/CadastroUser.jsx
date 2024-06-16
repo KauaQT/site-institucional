@@ -5,9 +5,10 @@ import Input from "../../layout/input/Input";
 import { BsFillPencilFill } from "react-icons/bs";
 import axios from "axios";
 
-function CadastroUser() {
+function CadastroUser({ handleUserEvent }) {
   const [progress, setProgress] = useState(99.9);
   const [image, setImage] = useState("");
+  const [senha, setSenha] = useState("");
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -19,9 +20,13 @@ function CadastroUser() {
     document.body.appendChild(script);
   }, []);
 
-  const openWidget = () => {
-    // const cloudinary = new Cloudinary({ cloud_name: "caronaCloudinary" });
+  const handleSenhaChange = (event) => {
+    const newSenha = event.target.value;
+    setSenha(newSenha);
+    handleUserEvent(event);
+  };
 
+  const openWidget = () => {
     window.cloudinary
       .openUploadWidget(
         {
@@ -32,9 +37,14 @@ function CadastroUser() {
           cropping: true,
         },
         (error, result) => {
-          if (result.event === "success") {
-            setImage(result.info.secure_url);
-            localStorage.setItem("userProfileImage", result.info.secure_url);
+          if (result && result.event === "success") {
+            const imageUrl = result.info.secure_url;
+            console.log("URL da imagem salva:", imageUrl);
+            setImage(imageUrl);
+            handleUserEvent({ target: { name: "imageUrl", value: imageUrl } });
+            localStorage.setItem("userProfileImage", imageUrl);
+          } else if (error) {
+            console.error("Erro ao fazer upload:", error);
           }
         }
       )
@@ -67,12 +77,6 @@ function CadastroUser() {
     setImage(URL.createObjectURL(event.target.files[0]));
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Atualiza o progresso para 100% quando o formulário é enviado
-  //   setProgress(99.9);
-  // };
-
   return (
     <Container customClass="min-height">
       {/* div de imagem*/}
@@ -87,7 +91,9 @@ function CadastroUser() {
                 label="Senha"
                 type="password"
                 placeholder="*************"
+                name="senha"
                 id="senha"
+                onChangeEvent={handleSenhaChange}
               />
               <Input
                 label="Confirmação de senha"
@@ -122,10 +128,6 @@ function CadastroUser() {
               />
             </div>
           </div>
-          {/* <div className={styles["botoes"]}>
-            <ActionButton type="secondary" label="Voltar" />
-            <ActionButton type="primary" label="Próximo" />
-          </div> */}
         </form>
       </div>
     </Container>

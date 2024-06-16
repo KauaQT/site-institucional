@@ -3,13 +3,11 @@ import styles from './Transacoes.module.css'
 import { useEffect, useState } from "react"
 import CardTransacao from "./transacao_card/CardTransacao"
 import SaldoCard from "./saldo_card/SaldoCard"
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import notFound from '../../../utils/assets/image-not-found-viagem.svg'
 import api from "../../../Api"
 
 function Transacoes() {
-    let local = useLocation();
-
     const { idUser } = useParams()
 
     const [transacoes, setTransacoes] = useState([{
@@ -19,7 +17,7 @@ function Transacoes() {
     }])
 
     useEffect(() => {
-        api.get(`transacoes/${idUser}`)
+        api.get(`/transacoes/${idUser}`)
             .then(res => {
                 console.log(res);
                 setTransacoes(res.data)
@@ -28,24 +26,24 @@ function Transacoes() {
     }, [idUser])
 
     const handleDetalhesTransacao = (id) => {
-
+        console.log(id);
     }
 
     const handleComprovanteTransacao = (id) => {
-
+        console.log(id);
     }
 
     return (
         <>
-            <Sidebar currentPageName={local.pathname} />
+            <Sidebar currentPageName={'/transacoes'} />
 
             <div className={styles["main"]}>
                 <div className={styles["container"]}>
-                    <div className={styles["container-saldo-user"]}>
+                    {/* <div className={styles["container-saldo-user"]}>
                         <SaldoCard saldoUser='46,00' />
                     </div>
 
-                    <div className={styles["line-separator"]}></div>
+                    <div className={styles["line-separator"]}></div> */}
 
                     <div className={styles["historico"]}>
                         <div className={styles["historico-header"]}>
@@ -78,7 +76,14 @@ function Transacoes() {
                             {
                                 transacoes.length > 0 ?
                                     transacoes.map((transacao) => (
-                                        <CardTransacao data={transacao.dataHora} tipo={transacao.tipoTransacao} valor={transacao.preco} onComprovanteClick={() => handleComprovanteTransacao(transacao.id)} onDetalhesClick={() => handleComprovanteTransacao(transacao.id)} />
+                                        <CardTransacao
+                                            key={transacao.id}
+                                            data={transacao.dataHora}
+                                            tipo={transacao.tipoTransacao}
+                                            valor={transacao.preco}
+                                            onComprovanteClick={() => handleComprovanteTransacao(transacao.id)}
+                                            onDetalhesClick={() => handleDetalhesTransacao(transacao.id)}
+                                        />
                                     ))
                                     :
                                     <div className={styles["not-to-show"]}>

@@ -2,7 +2,7 @@ import styles from './FidelizadoCard.module.css'
 import { IoChatbubblesSharp } from "react-icons/io5";
 import { FaTrashAlt } from "react-icons/fa";
 
-function FidelizadoCard({ nome, idade, totalViagens }) {
+function FidelizadoCard({ nome, idade, totalViagens, onRemoveClick, onConversarClick }) {
     return (
         <div className={styles["box-fidelizado"]}>
 
@@ -15,11 +15,17 @@ function FidelizadoCard({ nome, idade, totalViagens }) {
             </div>
 
             <div className={styles["fidelizado-actions"]}>
-                <button className={styles["button-conversar"]} onClick={''}>
+                <button
+                 className={styles["button-conversar"]} 
+                 onClick={onConversarClick}
+                 >
                     <IoChatbubblesSharp />
                     <span>Conversar</span>
                 </button>
-                <button className={styles["button-remover"]} onClick={''}>
+                <button
+                 className={styles["button-remover"]} 
+                 onClick={onRemoveClick}
+                 >
                     <FaTrashAlt />
                     <span>Remover</span>
                 </button>

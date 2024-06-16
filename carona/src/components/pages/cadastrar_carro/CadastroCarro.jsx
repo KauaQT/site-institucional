@@ -5,7 +5,6 @@ import { MdOutlineAddCircle } from "react-icons/md";
 import ActionButton from "../../layout/action_button/ActionButton";
 import { useLocation } from "react-router-dom";
 import CardCarro from "./card_carro/CardCarro";
-import { TfiTrash } from "react-icons/tfi";
 
 const CadastroCarro = () => {
   const [formData, setFormData] = useState({
@@ -77,7 +76,7 @@ const CadastroCarro = () => {
 
   return (
     <>
-      <Sidebar currentPageName={local.pathname} />
+      <Sidebar currentPageName={'/carros'} />
       <div className={styles["main"]}>
         <div className={styles["container"]}>
           <div className={styles["container-meu-carro"]}>

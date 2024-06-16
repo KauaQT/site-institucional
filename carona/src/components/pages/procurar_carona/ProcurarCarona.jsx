@@ -78,6 +78,7 @@ function ProcurarCarona() {
 
                         <div className={styles["box-input-date"]}>
                             <FaCalendarDays />
+
                             <input type="date" name="diaViagem" className={styles["inputDate"]} id="dateId" onChange={(e) => setViagemAPesquisar({
                                 ...viagemAPesquisar,
                                 diaViagem: e.target.value

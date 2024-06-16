@@ -18,7 +18,7 @@ function Sidebar({ currentPageName }) {
   // const tipoUser = localStorage.getItem('tipoUser');
   // const nomeUser = localStorage.getItem('nomeUser');
   // const notaUser = localStorage.getItem('notaUser');
-  const tipoUser = 'MOTORISTA';
+  const tipoUser = 'PASSAGEIRO';
   const nomeUser = 'Gustavo';
   const notaUser = '4.7';
 

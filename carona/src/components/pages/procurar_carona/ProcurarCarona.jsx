@@ -1,5 +1,5 @@
 import styles from './ProcurarCarona.module.css'
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../../layout/sidebar/Sidebar"
 import { FaArrowRightLong } from "react-icons/fa6";
 import { LuCircleDashed } from "react-icons/lu";
@@ -7,13 +7,15 @@ import { FaCalendarDays } from "react-icons/fa6";
 import { FaDotCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import api from '../../../Api'
-import { FaStar } from "react-icons/fa";
 import notFound from '../../../utils/assets/image-not-found-viagem.svg'
 import AnimacaoEstrada from '../../layout/animacao_estrada/AnimacaoEstrada';
 import SearchGeocode from '../../map/search_geocode/SearchGeocode';
+import CardViagem from './card_viagem/CardViagem';
 
 function ProcurarCarona() {
     let local = useLocation();
+
+    const navigate = useNavigate()
 
     const [viagemAPesquisar, setViagemAPesquisar] = useState({
         latitudePartida: '',
@@ -23,13 +25,13 @@ function ProcurarCarona() {
         data: '',
     })
 
-    const [viagensEncontradas, setViagensEncontradas] = useState([])
+    const [viagensEncontradas, setViagensEncontradas] = useState(['a'])
 
     const handleSubmitViagem = async () => {
         console.log(viagemAPesquisar)
 
         // const response = await api.post('/buscar-viagens', viagemAPesquisar)
-        
+
         // .then((res) => {
         //     console.log(res.data);
         //     setViagensEncontradas(res.data)
@@ -136,7 +138,22 @@ function ProcurarCarona() {
                     {
                         viagensEncontradas.length > 0
                             ? <div className={styles["viagens"]}>
-                                <p>viagens</p>
+                                <CardViagem
+                                    nomeUser={'Gustavo Medeiros'}
+                                    notaUser={4.7}
+                                    horarioPartida={"17:00"}
+                                    horarioChegada={"19:00"}
+                                    preco={30}
+                                    onClickEvent={() => navigate(`/viagens/detalhes/`)}
+                                />
+                                <CardViagem
+                                    nomeUser={'Gustavo Medeiros'}
+                                    notaUser={4.7}
+                                    horarioPartida={"17:00"}
+                                    horarioChegada={"19:00"}
+                                    preco={30}
+                                    onClickEvent={() => navigate(`/viagens/detalhes/`)}
+                                />
                             </div>
                             : <div className={styles["not-to-show"]}>
                                 <h4>Nenhuma viagem para mostrar</h4>

@@ -32,26 +32,32 @@ function Login() {
     api.post('/usuario/login', null, { params: user })
       .then((response) => {
         console.log('Login realizado com sucesso:', response.data);
-        localStorage.setItem('userData', JSON.stringify(response.data));
-
-        // Após o login, obter os detalhes do perfil
-        obterDetalhesPerfil(response.data.sessionStorage.idUsuario); // Aqui você deve substituir 'userId' com a propriedade correta do objeto de resposta
-
-        // Redirecionar para a página do perfil
-        // window.location = "/meu-perfil"; // Redirecionamento antigo
-
+  
+        sessionStorage.setItem('idUsuario', response.data.idUsuario);
+        sessionStorage.setItem('urlImagemUsuario' , response.data.urlImagemUsuario)
+  
+        obterDetalhesPerfil(response.data.idUsuario);
+  
+  
       })
       .catch(error => {
-        console.log('Erro ao realizar login:', error);
+        if (error.response && error.response.status === 401) {
+          console.log('Erro ao realizar login: Credenciais inválidas.');
+          // Trate aqui o erro de credenciais inválidas
+          // Exemplo: exibir uma mensagem de erro para o usuário
+        } else {
+          console.log('Erro ao realizar login:', error);
+        }
       })
       .finally(() => {
         setIsLoading(false);
       });
   }
+  
 
   // Função para obter os detalhes do perfil
   const obterDetalhesPerfil = (userId) => {
-    api.get(`/usuario/detalhes/${userId}`)
+    api.post(`/usuario/detalhes/${userId}`)
       .then((response) => {
         console.log('Detalhes do perfil obtidos com sucesso:', response.data);
         // Aqui você pode lidar com os detalhes do perfil como quiser

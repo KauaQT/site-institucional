@@ -11,6 +11,7 @@ import notFound from '../../../utils/assets/image-not-found-viagem.svg'
 import AnimacaoEstrada from '../../layout/animacao_estrada/AnimacaoEstrada';
 import SearchGeocode from '../../map/search_geocode/SearchGeocode';
 import CardViagem from './card_viagem/CardViagem';
+import axios from 'axios';
 
 function ProcurarCarona() {
     let local = useLocation();
@@ -22,23 +23,25 @@ function ProcurarCarona() {
         longitudePartida: '',
         latitudeDestino: '',
         longitudeDestino: '',
-        data: '',
-    })
+        diaViagem: '',
+    });
 
-    const [viagensEncontradas, setViagensEncontradas] = useState(['a'])
+    const [viagensEncontradas, setViagensEncontradas] = useState([]);
 
     const handleSubmitViagem = async () => {
-        console.log(viagemAPesquisar)
+        console.log("Viagem a pesquisar: " + JSON.stringify(viagemAPesquisar));
+    
+        try {
+            const response = await axios.post('http://localhost:8080/viagem/buscar-viagens', viagemAPesquisar);
 
-        // const response = await api.post('/buscar-viagens', viagemAPesquisar)
-
-        // .then((res) => {
-        //     console.log(res.data);
-        //     setViagensEncontradas(res.data)
-        // })
-        // .catch((error) => console.log(error))
+            console.log("ESSE FDP DO CARALHO DEU RESULTADO" + JSON.stringify(response.data))
+            console.log(response.data);
+            setViagensEncontradas(response.data);
+        } catch (error) {
+            console.log(error);
+        }
     }
-
+    
     return (
         <>
             <Sidebar currentPageName={local.pathname} />
@@ -56,8 +59,8 @@ function ProcurarCarona() {
                             className={styles["box-input"]}
                             onClickEvent={(place) => setViagemAPesquisar({
                                 ...viagemAPesquisar,
-                                latitudePartida: place.geometry.coordinates[0],
-                                longitudePartida: place.geometry.coordinates[1]
+                                latitudePartida: place.geometry.coordinates[1], // Correção de coordenadas
+                                longitudePartida: place.geometry.coordinates[0] // Correção de coordenadas
                             })}
                         />
 
@@ -70,16 +73,17 @@ function ProcurarCarona() {
                             className={styles["box-input"]}
                             onClickEvent={(place) => setViagemAPesquisar({
                                 ...viagemAPesquisar,
-                                latitudeDestino: place.geometry.coordinates[0],
-                                longitudeDestino: place.geometry.coordinates[1]
+                                latitudeDestino: place.geometry.coordinates[1], // Correção de coordenadas
+                                longitudeDestino: place.geometry.coordinates[0] // Correção de coordenadas
                             })}
                         />
 
                         <div className={styles["box-input-date"]}>
                             <FaCalendarDays />
-                            <input type="date" name="data" className={styles["inputDate"]} id="dateId" onChange={(e) => setViagemAPesquisar({
+
+                            <input type="date" name="diaViagem" className={styles["inputDate"]} id="dateId" onChange={(e) => setViagemAPesquisar({
                                 ...viagemAPesquisar,
-                                data: e.target.value
+                                diaViagem: e.target.value
                             })} />
                         </div>
 
@@ -113,17 +117,6 @@ function ProcurarCarona() {
                                     <option value="4">4</option>
                                 </select>
                             </div>
-
-                            {/* <div className={styles["box-filtro"]}>
-                                <span>Avaliação</span>
-                                <select name="avaliacao" id="avaliacao" className={styles["box-select"]} >
-                                    <option value="">{opcoesAvaliacao[0]}</option>
-                                    <option value="">{opcoesAvaliacao[1]}</option>
-                                    <option value="">{opcoesAvaliacao[2]}</option>
-                                    <option value="">{opcoesAvaliacao[3]}</option>
-                                    <option value="">{opcoesAvaliacao[4]}</option>
-                                </select>
-                            </div> */}
 
                             <div className={styles["box-filtro"]}>
                                 <span>Apenas mulheres</span>
@@ -163,7 +156,6 @@ function ProcurarCarona() {
                 </div>
             </div>
         </>
-
     )
 }
 

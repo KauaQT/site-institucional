@@ -1,47 +1,28 @@
-import styles from "./CadastroPessoal.module.css";
+import React, { useState } from "react";
 import Container from "../../layout/container/Container";
-import { useState } from "react";
-import ActionButton from "../../layout/action_button/ActionButton";
+import styles from "./CadastroPessoal.module.css";
 import Input from "../../layout/input/Input";
 
-function CadastroPessoal({handleUserEvent}) {
+function CadastroPessoal({ handleUserEvent }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOptionUser, setSelectedOptionUser] = useState(null);
   const [progress, setProgress] = useState(33.3);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
+    handleUserEvent({ target: { name: "sexo", value: option } });
   };
 
   const handleOptionUserChange = (option) => {
     setSelectedOptionUser(option);
+    handleUserEvent({ target: { name: "perfil", value: option } });
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Atualiza o progresso para 100% quando o formulário é enviado
-    setProgress(33.3);
+    setProgress(100);
   };
 
-  /*  const [perfilMotoristaChecked, setPerfilMotoristaChecked] = useState(false);
-  const [perfilPassageiroChecked, setPerfilPassageiroChecked] = useState(false);
-
-  const [masculinoUsuarioChecked, setMasculinoUsuarioChecked] = useState(false);
-  const [femininoUsuarioChecked, setFemininoUsuarioChecked] = useState(false);
-  const [outroUsuarioChecked, setOutroUsuarioChecked] = useState(false);
-
-  
-
-  function checkPerfil(e) {
-    if (e.target.id == "passageiro-div") {
-      setPerfilPassageiroChecked(true);
-      setPerfilMotoristaChecked(false);
-    } else {
-      setPerfilMotoristaChecked(true);
-      setPerfilPassageiroChecked(false);
-    }
-  }
-*/
   return (
     <Container customClass="min-height">
       {/* div de forms */}
@@ -92,8 +73,8 @@ function CadastroPessoal({handleUserEvent}) {
                   <label htmlFor="outros">Outros</label>
                 </div>
               </div>
-              {/* Adicione mais opções conforme necessário */}
             </div>
+
             <Input
               type="text"
               placeholder="Digite o email"
@@ -112,13 +93,14 @@ function CadastroPessoal({handleUserEvent}) {
               onChangeEvent={handleUserEvent}
             />
 
-            <Input 
-            type='date' 
-            placeholder='dd/mm/aaaa' 
-            onChangeEvent={handleUserEvent} 
-            name="dataNascimento"
-            label="Data de Nascimento"
-            id="dataNascimento"/>
+            <Input
+              type="date"
+              placeholder="dd/mm/aaaa"
+              onChangeEvent={handleUserEvent}
+              name="dataNascimento"
+              label="Data de Nascimento"
+              id="dataNascimento"
+            />
 
             <div className={styles["perfil-box-input"]}>
               <h4>Perfil</h4>

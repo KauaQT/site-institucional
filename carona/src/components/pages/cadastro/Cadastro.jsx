@@ -21,10 +21,10 @@ function Cadastro() {
     cidade: "",
     estado: "",
   });
-  
+
   const [userData, setUserData] = useState({
     senha: "",
-    urlImagem: ""
+    urlImagem: "",
   });
 
   const handleUserEvent = (event) => {
@@ -33,7 +33,7 @@ function Cadastro() {
       ...pessoalData,
       [name]: value,
     });
-    console.log("JSON de usuario " + JSON.stringify(pessoalData))
+    console.log("JSON de usuario " + JSON.stringify(pessoalData));
   };
 
   const handleAddressData = (data) => {
@@ -46,8 +46,8 @@ function Cadastro() {
       estado: data.uf || "",
     });
 
-    console.log("JSON de usuario " + JSON.stringify(pessoalData))
-    console.log("JSON de cadastro " + JSON.stringify(enderecoData))
+    console.log("JSON de usuario " + JSON.stringify(pessoalData));
+    console.log("JSON de cadastro " + JSON.stringify(enderecoData));
   };
 
   const validatePessoalData = () => {
@@ -75,8 +75,7 @@ function Cadastro() {
     } else if (validatePessoalData()) {
       setCurrentComponent((current) => current + 1);
     } else {
-      toast.error("Preencha todos os campos obrigatórios antes de avançar.");
-      alert("Preencha todos os campos para avançar");
+      toast.error("Preencha todos os campos.");
     }
   };
 
@@ -91,7 +90,7 @@ function Cadastro() {
   const enviarDadosParaBackend = (dados) => {
     // Extrair os dados necessários do objeto `dados`
     const { pessoalData, enderecoData, userData } = dados;
-  
+
     // Montar o objeto JSON no formato esperado pelo backend
     const jsonCadastro = {
       nome: pessoalData.nome,
@@ -99,39 +98,38 @@ function Cadastro() {
       email: pessoalData.email,
       senha: pessoalData.senha,
       dataNascimento: pessoalData.dataNascimento,
-      genero: pessoalData.sexo === 'masculino' ? 'Masculino' : 'Feminino', 
-      tipoUsuario: pessoalData.perfil.toUpperCase(), 
+      genero: pessoalData.sexo === "masculino" ? "Masculino" : "Feminino",
+      tipoUsuario: pessoalData.perfil.toUpperCase(),
       endereco: {
         cep: enderecoData.cep,
         logradouro: enderecoData.logradouro,
         cidade: enderecoData.cidade,
         uf: enderecoData.estado.toUpperCase(),
-        numero: pessoalData.numero
+        numero: pessoalData.numero,
       },
     };
 
     if (pessoalData.imageUrl) {
       jsonCadastro.urlImagemUsuario = pessoalData.imageUrl;
     }
-  
+
     console.log("Enviando dados para o backend:", JSON.stringify(jsonCadastro));
-  
-    axios.post("http://localhost:8080/usuario/cadastrar", jsonCadastro)
-      .then(response => {
 
-      const { idUsuario, tipoUsuario } = response.data;
+    axios
+      .post("http://localhost:8080/usuario/cadastrar", jsonCadastro)
+      .then((response) => {
+        const { idUsuario, tipoUsuario } = response.data;
 
-      sessionStorage.setItem("idUsuario", idUsuario);
-      sessionStorage.setItem("tipoUsuario", tipoUsuario);
+        sessionStorage.setItem("idUsuario", idUsuario);
+        sessionStorage.setItem("tipoUsuario", tipoUsuario);
 
-      window.location.href = "/login";
+        window.location.href = "/login";
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Erro ao cadastrar usuário:", error);
       });
   };
-  
-  
+
   const handleCadastroCompleto = (formData) => {
     // Atualiza os dados de usuário com a senha e a URL da imagem
     setUserData({
@@ -139,9 +137,9 @@ function Cadastro() {
       urlImagem: formData.imageUrl,
     });
 
-    console.log("JSON DE USUARIO" + pessoalData)
-    console.log("JSON DE CADASTRO" + enderecoData)
-    console.log("JSON " + userData)
+    console.log("JSON DE USUARIO" + pessoalData);
+    console.log("JSON DE CADASTRO" + enderecoData);
+    console.log("JSON " + userData);
 
     // Aqui você pode enviar os dados para o backend, se necessário
     // enviarDadosParaBackend(formData);
@@ -166,28 +164,25 @@ function Cadastro() {
             />
           )}
           {currentComponent === 3 && (
-            <CadastroUser
-            handleUserEvent={handleUserEvent}
-          />
-        )}
-        <div className={styles["botoes"]}>
-          <ActionButton
-            onClickEvent={backHandleClick}
-            type="secondary"
-            label="Voltar"
-          />
-          <ActionButton
-            onClickEvent={handleClick}
-            type="primary"
-            label={currentComponent === 3 ? "Finalizar" : "Próximo"}
-            disabled={currentComponent !== 3 && !validatePessoalData()}
-          />
+            <CadastroUser handleUserEvent={handleUserEvent} />
+          )}
+          <div className={styles["botoes"]}>
+            <ActionButton
+              onClickEvent={backHandleClick}
+              type="secondary"
+              label="Voltar"
+            />
+            <ActionButton
+              onClickEvent={handleClick}
+              type="primary"
+              label={currentComponent === 3 ? "Finalizar" : "Próximo"}
+              disabled={currentComponent !== 3 && !validatePessoalData()}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </Container>
-);
+    </Container>
+  );
 }
 
 export default Cadastro;
-

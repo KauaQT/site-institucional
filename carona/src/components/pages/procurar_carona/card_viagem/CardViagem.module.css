@@ -1,0 +1,184 @@
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.169) 0px 13px 27px -5px, rgba(0, 0, 0, 0.123) 0px 8px 16px -8px;
+    height: 260px;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+
+    & .infos-motorista {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: 70px;
+
+        & img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            background-color: #173e6d;
+        }
+
+        & .nome-nota {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+            gap: 4px;
+
+            & h4 {
+                font-size: 24px;
+                font-weight: 600;
+                color: #173e6d;
+            }
+
+
+            & .nota-user {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+
+                & span {
+                    color: #173e6d;
+                    font-weight: 500;
+                    font-size: 20px;
+                }
+
+                & svg {
+                    font-size: 24px;
+                    color: #E6AD47;
+                }
+            }
+        }
+
+    }
+
+    & .line-separator {
+        width: 100%;
+        border-bottom: 2px solid #E6E6E6;
+        margin: 10px 0;
+    }
+
+    & .info-viagem {
+        width: 100%;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & .horarios-indicadores {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+            & .horarios {
+                width: 100%;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                & .horario {
+                    display: flex;
+                    align-items: start;
+                    justify-content: center;
+                    color: #173e6d;
+                    width: 90px;
+                    gap: 6px;
+
+                    & svg {
+                        font-size: 24px;
+                    }
+                    
+                    & span {
+                        font-size: 20px;
+                        font-weight: 600;
+                    }
+                }
+
+                & .dashed-line {
+                    border: 2px dashed #173e6d;
+                    width: 100px;
+                }
+            }
+
+            & .carros-indicadores {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                box-sizing: border-box;
+
+                & .carros {
+                    width: 90px;
+                    display: flex;
+                    justify-content: space-between;
+
+                    & svg {
+                        font-size: 24px;
+                        color: #b0b0b0;
+                    }
+
+                    & .carro-perto {
+                        font-size: 20px;
+                        color: #30B135;
+                    }
+
+                    & .carro-perto {
+                        font-size: 20px;
+                        color: #EF3F38;
+                    }
+
+                    & .carro-perto {
+                        font-size: 20px;
+                        color: #EFE338;
+                    }
+                }
+            }
+        }
+
+        & .preco-action-button {
+            width: 100%;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+
+            & span {
+                font-size: 20px;
+                font-weight: 600;
+                color: #173e6d;
+            }
+
+            & button {
+                margin: 0;
+                height: 100%;
+                width: 120px;
+                font-size: 20px;
+                font-weight: 600;
+                box-sizing: border-box;
+                background-color: #E6AD47;
+                transition: all 0.2s;
+            }
+
+            & button:hover {
+                color: #f1f1f1;
+                border: px solid #c0903b;
+                background-color: #c0903b;
+                transition: all 0.2s;
+            }
+        }
+    }
+}

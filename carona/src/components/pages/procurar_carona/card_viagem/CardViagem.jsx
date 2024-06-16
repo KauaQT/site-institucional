@@ -1,8 +1,21 @@
-import styles from './CardViagem.module.css'
+import styles from './CardViagem.module.css';
 import { FaCar, FaStar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 
-function CardViagem({ fotoUser, nomeUser, notaUser, horarioPartida, horarioChegada, preco, onClickEvent }) {
+function CardViagem({ fotoUser, nomeUser, notaUser, horarioPartida, horarioChegada, preco, distancia, onClickEvent }) {
+    
+    const getCarColor = (distance) => {
+        if (distance <= 30) {
+            return 'green';
+        } else if (distance > 30 && distance <= 60) {
+            return 'yellow';
+        } else {
+            return 'red';
+        }
+    };
+
+    const carColor = getCarColor(distancia);
+
     return (
         <div className={styles["card"]}>
             <div className={styles["infos-motorista"]}>
@@ -36,14 +49,14 @@ function CardViagem({ fotoUser, nomeUser, notaUser, horarioPartida, horarioChega
 
                     <div className={styles["carros-indicadores"]}>
                         <div className={styles["carros"]}>
-                            <FaCar />
-                            <FaCar />
-                            <FaCar />
+                            <FaCar style={{ color: carColor }} />
+                            <FaCar style={{ color: carColor }} />
+                            <FaCar style={{ color: carColor }} />
                         </div>
                         <div className={styles["carros"]}>
-                            <FaCar />
-                            <FaCar />
-                            <FaCar />
+                            <FaCar style={{ color: carColor }} />
+                            <FaCar style={{ color: carColor }} />
+                            <FaCar style={{ color: carColor }} />
                         </div>
                     </div>
                 </div>
@@ -60,7 +73,7 @@ function CardViagem({ fotoUser, nomeUser, notaUser, horarioPartida, horarioChega
             </div>
 
         </div>
-    )
+    );
 }
 
-export default CardViagem
+export default CardViagem;

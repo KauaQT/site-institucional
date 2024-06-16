@@ -1,22 +1,20 @@
-import styles from './ProcurarCarona.module.css'
+import styles from './ProcurarCarona.module.css';
 import { useLocation, useNavigate } from "react-router-dom";
-import Sidebar from "../../layout/sidebar/Sidebar"
+import Sidebar from "../../layout/sidebar/Sidebar";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { LuCircleDashed } from "react-icons/lu";
 import { FaCalendarDays } from "react-icons/fa6";
 import { FaDotCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import api from '../../../Api'
-import notFound from '../../../utils/assets/image-not-found-viagem.svg'
+import axios from 'axios';
 import AnimacaoEstrada from '../../layout/animacao_estrada/AnimacaoEstrada';
 import SearchGeocode from '../../map/search_geocode/SearchGeocode';
 import CardViagem from './card_viagem/CardViagem';
-import axios from 'axios';
+import notFound from '../../../utils/assets/image-not-found-viagem.svg';
 
 function ProcurarCarona() {
     let local = useLocation();
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const [viagemAPesquisar, setViagemAPesquisar] = useState({
         latitudePartida: '',
@@ -28,13 +26,18 @@ function ProcurarCarona() {
 
     const [viagensEncontradas, setViagensEncontradas] = useState([]);
 
+    const handleCardClick = (viagemId) => {
+        console.log("Valor do id " + viagemId)
+        navigate(`/viagens/detalhes/${viagemId}`);
+    };
+
     const handleSubmitViagem = async () => {
         console.log("Viagem a pesquisar: " + JSON.stringify(viagemAPesquisar));
     
         try {
             const response = await axios.post('http://localhost:8080/viagem/buscar-viagens', viagemAPesquisar);
 
-            console.log("ESSE FDP DO CARALHO DEU RESULTADO" + JSON.stringify(response.data))
+            console.log("ESSE FDP DO CARALHO DEU RESULTADO" + JSON.stringify(response.data));
             console.log(response.data);
             setViagensEncontradas(response.data);
         } catch (error) {
@@ -51,7 +54,6 @@ function ProcurarCarona() {
             <div className={styles["main"]}>
                 <div className={styles["container"]}>
                     <div className={styles["search-bar"]}>
-
                         <SearchGeocode
                             placeholder='Partida'
                             startIcon={<LuCircleDashed />}
@@ -59,8 +61,8 @@ function ProcurarCarona() {
                             className={styles["box-input"]}
                             onClickEvent={(place) => setViagemAPesquisar({
                                 ...viagemAPesquisar,
-                                latitudePartida: place.geometry.coordinates[1], // Correção de coordenadas
-                                longitudePartida: place.geometry.coordinates[0] // Correção de coordenadas
+                                latitudePartida: place.geometry.coordinates[1],
+                                longitudePartida: place.geometry.coordinates[0]
                             })}
                         />
 
@@ -80,7 +82,6 @@ function ProcurarCarona() {
 
                         <div className={styles["box-input-date"]}>
                             <FaCalendarDays />
-
                             <input type="date" name="diaViagem" className={styles["inputDate"]} id="dateId" onChange={(e) => setViagemAPesquisar({
                                 ...viagemAPesquisar,
                                 diaViagem: e.target.value
@@ -93,7 +94,6 @@ function ProcurarCarona() {
                         >
                             Ver caronas
                         </button>
-
                     </div>
 
                     {
@@ -131,22 +131,23 @@ function ProcurarCarona() {
                     {
                         viagensEncontradas.length > 0
                             ? <div className={styles["viagens"]}>
-                                <CardViagem
-                                    nomeUser={'Gustavo Medeiros'}
-                                    notaUser={4.7}
-                                    horarioPartida={"17:00"}
-                                    horarioChegada={"19:00"}
-                                    preco={30}
-                                    onClickEvent={() => navigate(`/viagens/detalhes/`)}
-                                />
-                                <CardViagem
-                                    nomeUser={'Gustavo Medeiros'}
-                                    notaUser={4.7}
-                                    horarioPartida={"17:00"}
-                                    horarioChegada={"19:00"}
-                                    preco={30}
-                                    onClickEvent={() => navigate(`/viagens/detalhes/`)}
-                                />
+                                {viagensEncontradas.map((viagem) => {
+                                    const horarioPartida = viagem.inicioViagem;
+                                    console.log("Id da viagem " + viagem.idViagem)
+                                    const horarioChegada = viagem.fimViagem.substring(11, 16);
+                                    return (
+                                        <CardViagem
+                                            key={viagem.idViagem}
+                                            nomeUser={viagem.nomeMotorista}
+                                            notaUser={viagem.quantidadeEstrelas}
+                                            horarioPartida={horarioPartida}
+                                            horarioChegada={horarioChegada}
+                                            preco={viagem.valor}
+                                            distancia={viagem.distanciaPontoDestinoViagem} // Passando a distância para o componente
+                                            onClickEvent={() => handleCardClick(viagem.idViagem)} 
+                                        />
+                                    );
+                                })}
                             </div>
                             : <div className={styles["not-to-show"]}>
                                 <h4>Nenhuma viagem para mostrar</h4>
@@ -156,7 +157,7 @@ function ProcurarCarona() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default ProcurarCarona
+export default ProcurarCarona;

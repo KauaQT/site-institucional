@@ -13,9 +13,66 @@ import { FaCar } from "react-icons/fa";
 import AnimacaoEstrada from '../../layout/animacao_estrada/AnimacaoEstrada';
 import CardPassageiro from './card_passageiro/CardPassageiro';
 import MapGeolocation from '../../map/MapGeolocation';
+import axios from 'axios';
+
+
+function convertMinutesToHours(minutes) {
+    if (minutes < 60) {
+        return `${Math.round(minutes)} minutos`;
+    } else {
+        const hours = Math.floor(minutes / 60);
+        const remainingMinutes = Math.round(minutes % 60);
+        return `${hours} horas e ${remainingMinutes} minutos`;
+    }
+}
+
 
 function DetalhesViagem() {
-    const { viagemId } = useParams()
+
+    const idViagem = getViagemIdFromUrl(); 
+    const [nome , setNome] = useState("");
+    const [mediaEstrelas , setMediaEstrelas] = useState("");
+    const [horarioPartida , setHorarioPartida] = useState("");
+    const [fimViagem , setFimViagem] = useState("");
+    const [tempoMedio , setTempoMedio] = useState("");
+    const [modeloCarro , setModeloCarro] = useState("");
+    const [marcaCarro , setMarca] = useState("");
+    const [placa , setPlaca] = useState("")
+    function getViagemIdFromUrl() {
+        const url = window.location.href;
+        const regex = /\/viagens\/detalhes\/(\d+)/;
+        const match = url.match(regex);
+        if (match) {
+            return match[1];
+        } else {
+            return null; 
+        }
+    }
+
+    // Extrai o ID da viagem ao montar o componente
+   
+    useEffect(() => {
+        const fetchViagem = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/viagem/detalhesViagens/${idViagem}`);
+                console.log("Resposta do back " + JSON.stringify(response))
+                setNome(response.data.nomeMotorista)
+                setMediaEstrelas(response.data.quantidadeEstrelas);
+                setHorarioPartida(response.data.inicioViagem);
+                setFimViagem(response.data.fimViagem);
+                const tempoMedioViagem = convertMinutesToHours(response.data.tempoMedioViagem);
+                setTempoMedio(tempoMedioViagem);
+                setModeloCarro(response.data.nomeCarro)
+                setMarca(response.data.modeloCarro)
+                setPlaca(response.data.placaCarro)
+                console.log(nome)
+            } catch (error) {
+                console.error("Erro ao buscar detalhes da viagem:", error);
+            }
+        };
+
+        fetchViagem();
+    }, [idViagem]);
 
     const [viagem, setViagem] = useState({
         preco: 36,
@@ -68,14 +125,8 @@ function DetalhesViagem() {
         ]
     })
 
-    useEffect(() => {
-        api.get('/viagens/detalhes/:id')
-            .then(res => {
-                console.log(res.data);
-                setViagem(res.data)
-            })
-            .catch(error => console.log(error))
-    }, [viagemId])
+ 
+    
 
     const reservarViagem = () => {
         console.log('');
@@ -115,10 +166,10 @@ function DetalhesViagem() {
                             <div className={styles["motorista"]}>
                                 <img src="" alt="Foto do Motorista" />
                                 <div className={styles["nome-nota"]}>
-                                    <h4>{viagem.motorista.nome}</h4>
+                                    <h4>{nome}</h4>
                                     <div className={styles["nota"]}>
                                         <FaStar />
-                                        <span>{viagem.motorista.nota}</span>
+                                        <span>{mediaEstrelas}</span>
                                     </div>
                                 </div>
                             </div>
@@ -127,9 +178,9 @@ function DetalhesViagem() {
 
                             <div className={styles["hora-endereco"]}>
                                 <div className={styles["horarios"]}>
-                                    <span className={styles["hora-definida"]}>{viagem.horarioSaida}h</span>
-                                    <span className={styles["tempo-estimado"]}>{viagem.tempoEstimado}h</span>
-                                    <span className={styles["hora-definida"]}>{viagem.horarioChegada}h</span>
+                                    <span className={styles["hora-definida"]}>{horarioPartida}h</span>
+                                    <span className={styles["tempo-estimado"]}>{tempoMedio}</span>
+                                    <span className={styles["hora-definida"]}>{fimViagem}h</span>
                                 </div>
                                 <div className={styles["enderecos"]}>
                                     <span>{viagem.enderecoDestino.logradouro}, {viagem.enderecoDestino.numero}</span>
@@ -142,11 +193,11 @@ function DetalhesViagem() {
                             <div className={styles["info-carro"]}>
                                 <div className={styles["modelo-carro"]}>
                                     <FaCar style={{ color: viagem.carro.cor }} />
-                                    <span>{viagem.carro.marca} {viagem.carro.modelo}</span>
+                                    <span>{marcaCarro} {modeloCarro}</span>
                                 </div>
                                 <div className={styles["placa-carro"]}>
                                     <img src={placaIcon} alt="Ícone de placa" />
-                                    <span>{viagem.carro.placa}</span>
+                                    <span>{placa}</span>
                                 </div>
                             </div>
 

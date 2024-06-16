@@ -10,11 +10,66 @@ import { IoMdChatbubbles } from "react-icons/io";
 import { PiSteeringWheelFill } from "react-icons/pi";
 import ActionButton from "../../layout/action_button/ActionButton";
 import { BsPencilFill } from "react-icons/bs";
-import { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import api from '../../../Api';
 
 function Perfil() {
   let local = useLocation();
   const [isFocused, setIsFocused] = useState(false);
+  const [nome , setNome] = useState("");
+  const [dataNascimento , setDataNascimento] = useState("");
+  const [cpf , setCpf] = useState("");
+  const [cep , setCep] = useState("");
+  const [email , setEmail] = useState("");
+  const [numero , setNumero] = useState("");
+  const [sexo , setSexo] = useState("");
+  const [perfil , setPerfil] = useState("");
+  const [quantidadeViagens , setQuantidadeViagens] = useState("");
+  
+
+  const chamarApi = async () => {
+    try {
+      const userId = sessionStorage.getItem('idUsuario');
+
+      if (!userId) {
+        console.log('idUsuario não encontrado em sessionStorage');
+        return;
+      }
+
+      const response = await api.post(`/usuario/detalhes/${userId}`);
+      setNome(response.data.nome);
+      let dataNascimento = response.data.dataNascimento;
+       dataNascimento = dataNascimento.split('-').reverse().join('-');
+       setDataNascimento(dataNascimento);
+      setCpf(response.data.cpf);
+      setCep(response.data.cep);
+      setEmail(response.data.email);
+      setNumero(response.data.numero);
+      setSexo(response.data.genero);
+      let tipoUsuario = response.data.tipoUsuario;
+      tipoUsuario = tipoUsuario.charAt(0).toUpperCase() + tipoUsuario.slice(1).toLowerCase();
+      setPerfil(tipoUsuario);
+      setQuantidadeViagens(response.data.quantidadeViagens);
+
+
+
+      sessionStorage.setItem('tipoUsuario', JSON.stringify(response.data.tipoUsuario));
+
+      // Redirecionar somente se não estamos já na página de perfil
+      if (window.location.pathname !== "/meu-perfil") {
+        window.location = "/meu-perfil";
+      }
+    } catch (error) {
+      console.log('Erro ao obter detalhes do perfil:', error);
+    }
+  };
+
+
+  useEffect(() => {
+    chamarApi();
+  }, []);
+
+
 
   const handleOnFocus = () => {
     console.log("focus");
@@ -34,7 +89,7 @@ function Perfil() {
             <div className={styles["viagens"]}>
               <img src={distanciaIcon} alt="icon viagens" />
               <div className={styles["registros"]}>
-                <span>4</span>
+                <span>{quantidadeViagens}</span>
                 <span>viagens realizadas</span>
               </div>
             </div>
@@ -113,35 +168,35 @@ function Perfil() {
           <div className={styles["info-user"]}>
             <div className={styles["conjunto-user"]}>
               <h4>Nome</h4>
-              <span>Gustavo Medeiros Silva</span>
+              <span>{nome}</span>
             </div>
             <div className={styles["conjunto-user"]}>
               <h4>Data</h4>
-              <span>10/06/2003</span>
+              <span>{dataNascimento}</span>
             </div>
             <div className={styles["conjunto-user"]}>
               <h4>CPF</h4>
-              <span>503.788.148-00</span>
+              <span>{cpf}</span>
             </div>
             <div className={styles["conjunto-user"]}>
               <h4>CEP</h4>
-              <span>04244-000</span>
+              <span>{cep}</span>
             </div>
             <div className={styles["conjunto-user"]}>
               <h4>Email</h4>
-              <span>gustavo@email.com</span>
+              <span>{email}</span>
             </div>
             <div className={styles["conjunto-user"]}>
               <h4>Número</h4>
-              <span>3621</span>
+              <span>{numero}</span>
             </div>
             <div className={styles["conjunto-user"]}>
               <h4>Sexo</h4>
-              <span>Feminino</span>
+              <span>{sexo}</span>
             </div>
             <div className={styles["conjunto-user"]}>
               <h4>Perfil</h4>
-              <span>Motorista</span>
+              <span>{perfil}</span>
             </div>
           </div>
         </div>

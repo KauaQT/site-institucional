@@ -102,14 +102,14 @@ function Cadastro() {
       genero: pessoalData.sexo === 'masculino' ? 'Masculino' : 'Feminino', 
       tipoUsuario: pessoalData.perfil.toUpperCase(), 
       endereco: {
+        cep: enderecoData.cep,
         logradouro: enderecoData.logradouro,
-        numero: enderecoData.numero || "", 
         cidade: enderecoData.cidade,
         uf: enderecoData.estado.toUpperCase(),
+        numero: pessoalData.numero
       },
     };
-  
-    console.log(pessoalData.imageUrl)
+
     if (pessoalData.imageUrl) {
       jsonCadastro.urlImagemUsuario = pessoalData.imageUrl;
     }

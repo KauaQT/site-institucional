@@ -22,7 +22,9 @@ function CadastroEndereco({ handleUserEvent, handleAddressData, onNextClick }) {
       handleAddressData(response.data);
       // Ao buscar o CEP, preencha o número se já estiver definido
       if (numero) {
+        console.log(numero)
         setNumero(numero);
+      
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -33,17 +35,20 @@ function CadastroEndereco({ handleUserEvent, handleAddressData, onNextClick }) {
   };
 
   const handleInputChange = (e) => {
-    setCep(e.target.value);
+    const { value } = e.target;
+    setCep(value);
+    handleUserEvent({ target: { name: 'cep', value: value } })
   };
 
   const handleNumeroChange = (e) => {
     const { value } = e.target;
-    setNumero(value); // Atualiza o estado 'numero' com o valor digitado
+    setNumero(value);
     setAddress({
       ...address,
-      numero: value, // Define o valor do número no estado 'address'
+      numero: value,
     });
-  };
+    handleUserEvent({ target: { name: 'numero', value: value } }); 
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -11,7 +11,7 @@ function Navbar() {
       <div className={styles["conjunto-logo"]}>
         <img src={logo} className={styles["img-logo"]} alt="Logo CaRona" />
       </div>
-      <Container>
+      
         <ul>
           <li>
             <Link>Como funciona</Link>
@@ -33,7 +33,7 @@ function Navbar() {
         <Link to='login'>
           <FaUserCircle className={styles["icon-user"]} />
         </Link>
-      </Container>
+
     </nav>
   );
 }

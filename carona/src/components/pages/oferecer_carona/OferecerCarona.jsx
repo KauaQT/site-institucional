@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+
 import Sidebar from "../../layout/sidebar/Sidebar"
 import styles from './OferecerCarona.module.css'
 import { FaCar, FaSearch } from "react-icons/fa";
@@ -7,103 +8,129 @@ import { FaMinus } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import MapGeolocation from "../../map/MapGeolocation";
 import SearchGeocode from "../../map/search_geocode/SearchGeocode";
-import api from '../../../Api'
-import loading from '../../../utils/assets/loading.gif'
+import api from "../../../Api";
+import loading from "../../../utils/assets/loading.gif";
 import { inputSomenteNumero } from "../../../utils/InputValidations";
+import { toast } from "react-toastify";
 
 function OferecerCarona() {
-    const idUser = localStorage.getItem('idUser')
-    // const generoUser = localStorage.getItem('generoUser')
-    const generoUser = 'FEMININO'
 
+  const idUser = localStorage.getItem("idUser");
+  // const generoUser = localStorage.getItem('generoUser')
+  const generoUser = "FEMININO";
 
-    let local = useLocation();
-    const navigate = useNavigate()
+  let local = useLocation();
+  const navigate = useNavigate();
 
-    const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
-    const [carrosUser, setCarrosUser] = useState([
-        {
-            id: 1,
-            marca: "Ford",
-            modelo: "Ka"
-        }
-    ])
+  const [carrosUser, setCarrosUser] = useState([
+    {
+      id: 1,
+      marca: "Ford",
+      modelo: "Ka",
+    },
+  ]);
 
-    // useEffect(() => {
-    //     api.get(`/carros/${idUser}`)
-    //     .then((res) => {
-    //         console.log(res.data);
-    //         setCarrosUser(res.data)
-    //     })
-    //     .catch(error => console.log(error))
-    // }, [idUser])
+  useEffect(() => {
+    api
+      .get(`/carros/${idUser}`)
+      .then((res) => {
+        console.log(res.data);
+        setCarrosUser(res.data);
+      })
+      .catch((error) => console.log(error));
+  }, [idUser]);
 
-    // gerar horas para combo box a partir da hora atual
-    function gerarHorarioComboBox() {
-        const timestamps = [];
+  // gerar horas para combo box a partir da hora atual
+  function gerarHorarioComboBox() {
+    const timestamps = [];
 
-        let horaAtual = new Date().getHours();
-        let minutoAtual = new Date().getMinutes()
+    let horaAtual = new Date().getHours();
+    let minutoAtual = new Date().getMinutes();
 
-        for (let hour = horaAtual; hour <= 23; hour++) {
-            if (hour > horaAtual) {
-                timestamps.push(formatHour(hour, 0));
-                timestamps.push(formatHour(hour, 30));
-                continue
-            }
+    for (let hour = horaAtual; hour <= 23; hour++) {
+      if (hour > horaAtual) {
+        timestamps.push(formatHour(hour, 0));
+        timestamps.push(formatHour(hour, 30));
+        continue;
+      }
 
-            if (minutoAtual < 30) {
-                timestamps.push(formatHour(hour, 30));
-            }
-        }
-
-        return timestamps;
+      if (minutoAtual < 30) {
+        timestamps.push(formatHour(hour, 30));
+      }
     }
 
-    const formatHour = (hour, minute) => {
-        const date = new Date(0, 0, 0, hour, minute, 0);
-        return date.toLocaleTimeString('pt-BR', { hour: 'numeric', minute: 'numeric' });
-    }
+    return timestamps;
+  }
 
-    const horariosComboBox = gerarHorarioComboBox();
+  const formatHour = (hour, minute) => {
+    const date = new Date(0, 0, 0, hour, minute, 0);
+    return date.toLocaleTimeString("pt-BR", {
+      hour: "numeric",
+      minute: "numeric",
+    });
+  };
 
-    // dataHora pré formatação para post
-    const [dataHora, setDataHora] = useState({
-        data: '',
-        hora: ''
-    })
+  const horariosComboBox = gerarHorarioComboBox();
 
-    const [viagem, setViagem] = useState({
-        idMotorista: idUser,
-        latitudePartida: '',
-        longitudePartida: '',
-        latitudeDestino: '',
-        longitudeDestino: '',
-        horario: '',
-        idCarro: carrosUser[0].id,
-        valor: '',
-        qntPassageiros: 1,
-        soMulheres: false,
-    })
+  // dataHora pré formatação para post
+  const [dataHora, setDataHora] = useState({
+    data: "",
+    hora: "",
+  });
 
-    // useEffect(() => {
-    //     api.get(`/listar-carros/${idUser}`)
-    //         .then(res => {
-    //             console.log(res.data);
-    //             setCarrosUser(res.data)
-    //         })
-    //         .catch(error => console.log(error))
-    // }, [idUser])
+  const [viagem, setViagem] = useState({
+    idMotorista: idUser,
+    latitudePartida: "",
+    longitudePartida: "",
+    latitudeDestino: "",
+    longitudeDestino: "",
+    horario: "",
+    idCarro: carrosUser[0].id,
+    valor: "",
+    qntPassageiros: 1,
+    soMulheres: false,
+  });
 
-    const handleViagemSave = async () => {
-        setViagem({ ...viagem, horario: `${dataHora.data}T${dataHora.hora}:00` })
+  // useEffect(() => {
+  //     api.get(`/listar-carros/${idUser}`)
+  //         .then(res => {
+  //             console.log(res.data);
+  //             setCarrosUser(res.data)
+  //         })
+  //         .catch(error => console.log(error))
+  // }, [idUser])
 
+  const handleViagemSave = async () => {
+    if (
+      !viagem.latitudePartida ||
+      !viagem.longitudePartida ||
+      !viagem.latitudeDestino ||
+      !viagem.longitudeDestino ||
+      !dataHora.data ||
+      !dataHora.hora ||
+      !viagem.valor
+    ) {
+      toast.error("Preencha todos os campos!");
+    } else {
+      try {
         // let response = await api.post('/cadastrar', viagem)
         // console.log(response);
+        setViagem({
+          ...viagem,
+          horario: `${dataHora.data}T${dataHora.hora}:00`,
+        });
         console.log(viagem);
-    }
+        toast.success("Viagem cadastrada com sucesso!");
+      } catch (error) {
+        toast.error("Erro ao cadastrar a viagem.");
+      }
 
+      console.log(viagem);
+    }
+  };
+    
     return (
         <>
             <Sidebar currentPageName={local.pathname} />
@@ -267,12 +294,12 @@ function OferecerCarona() {
                                 longitudeDestino={viagem.longitudeDestino}
                             />
                         </div>
-                    </div>
-                </div>
-            </div>
-        </>
 
-    )
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default OferecerCarona
+export default OferecerCarona;

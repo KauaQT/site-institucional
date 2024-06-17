@@ -4,6 +4,7 @@ import styles from "./CadastroEndereco.module.css";
 import Input from "../../layout/input/Input";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
+import InputMask from "react-input-mask";
 
 function CadastroEndereco({ handleUserEvent, handleAddressData, onNextClick }) {
   const [progress, setProgress] = useState(66.6);

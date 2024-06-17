@@ -7,37 +7,44 @@
 }
 
 body {
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 }
 
 ul {
   list-style: none;
 }
 
-li, a {
+li,
+a {
   text-decoration: none;
 }
 
 h1 {
   font-size: 48px;
-  color: #173E6D;
+  color: #173e6d;
   font-weight: 700;
 }
 
 h2 {
   font-size: 36px;
-  color: #173E6D;
+  color: #173e6d;
   font-weight: 600;
 }
 
 h3 {
   font-size: 28px;
-  color: #173E6D;
+  color: #173e6d;
   font-weight: 500;
 }
 
 h4 {
   font-size: 20px;
-  color: #173E6D;
+  color: #173e6d;
   font-weight: 500;
+}
+
+.toast-body {
+  width: 150px;
+  font-size: 16px;
+  padding: 10px;
 }

@@ -84,6 +84,24 @@ body {
           display: flex;
           flex-direction: column;
 
+          & select {
+            max-width: 190px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 3px solid #173e6d;
+            color: #173e6d;
+          }
+
+          & input {
+            max-width: 190px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 3px solid #173e6d;
+            color: #173e6d;
+          }
+
           & label {
             color: #173e6d;
             font-weight: 600;
@@ -91,20 +109,6 @@ body {
         }
       }
 
-      & select {
-        max-width: 190px;
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: 3px solid #173e6d;
-        color: #173e6d;
-      }
-
-      & input {
-        width: 100%;
-        border: 3px solid #173e6d;
-        color: #173e6d;
-      }
       .botoes {
         display: flex;
         width: 50%;

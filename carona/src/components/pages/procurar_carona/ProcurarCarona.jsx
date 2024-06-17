@@ -12,6 +12,8 @@ import SearchGeocode from '../../map/search_geocode/SearchGeocode';
 import CardViagem from './card_viagem/CardViagem';
 import notFound from '../../../utils/assets/image-not-found-viagem.svg';
 import { toast } from "react-toastify";
+import imgUser from '../../../utils/assets/user-image.png'
+
 
 function ProcurarCarona() {
     let local = useLocation();
@@ -54,7 +56,7 @@ function ProcurarCarona() {
 
         try {
             const response = await axios.post('http://localhost:8080/viagem/buscar-viagens', viagemAPesquisar);
-            if(response.data.length > 0) {
+            if (response.data.length > 0) {
                 setViagensEncontradas(response.data);
                 toast.success('Viagens encontradas com sucesso!');
             } else {
@@ -166,15 +168,13 @@ function ProcurarCarona() {
                                         <CardViagem
                                             key={viagem.idViagem}
                                             nomeUser={viagem.nomeMotorista}
-                                            notaUser={viagem.quantidadeEstrelas}
-                                            horarioPartida={horarioPartida}
-                                            horarioChegada={horarioChegada}
+                                            notaUser={(viagem.quantidadeEstrelas > 0 && viagem.quantidadeEstrelas != null) ? viagem.quantidadeEstrelas : '--' }
                                             preco={viagem.valor}
-                                            // distancia={viagem.distanciaPontoPartidaViagem} 
-                                            distanciaPartida={3}
-                                            // distancia={viagem.distanciaPontoDestinoViagem} 
-                                            distanciaDestino={11}
-                                            onClickEvent={() => handleCardClick(viagem.idViagem)}
+                                            fotoUser={viagem.foto ? viagem.foto : imgUser}
+                                            horarioPartida={viagem.inicioViagem}
+                                            horarioChegada={horarioChegada}
+                                            distanciaPartida={viagem.distanciaPontoPartidaViagem}
+                                            distanciaDestino={viagem.distanciaPontoDestinoViagem}
                                         />
                                     );
                                 })}

@@ -52,6 +52,11 @@ body {
           transition: all 0.2s;
         }
       }
+
+      & .carros {
+        width: 100%;
+        height: 80%;
+      }
     }
 
     .form-container {

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CardCarro.module.css";
-import image from "../../../../utils/assets/image-proxima-viagem.svg"; // Atualize o caminho da imagem conforme necessário
+import image from "../../../../utils/assets/image-carro.svg"; 
 import { BsPencilFill } from "react-icons/bs";
 import { TfiTrash } from "react-icons/tfi";
 

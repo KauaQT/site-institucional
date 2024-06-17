@@ -18,7 +18,7 @@ function Sidebar({ currentPageName }) {
   // const tipoUser = localStorage.getItem('tipoUser');
   // const nomeUser = localStorage.getItem('nomeUser');
   // const notaUser = localStorage.getItem('notaUser');
-  const tipoUser = 'PASSAGEIRO';
+  const tipoUser = 'MOTORISTA';
   const nomeUser = 'Gustavo';
   const notaUser = '4.7';
 
@@ -47,7 +47,7 @@ function Sidebar({ currentPageName }) {
         </div>
       </div>
 
-      <ul className={styles["itens-sidebar"]} style={{height: tipoUser == 'MOTORISTA' ? '332px' : '300px'}}>
+      <ul className={styles["itens-sidebar"]} style={{height: tipoUser == 'MOTORISTA' ? '332px' : '280px'}}>
         <li onClick={() => navigate("/meu-perfil")} className={currentPageName == '/meu-perfil' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
           <ImProfile />
           <span>Meu perfil</span>
@@ -75,10 +75,11 @@ function Sidebar({ currentPageName }) {
           <GrTransaction />
           <span>Transações</span>
         </li>
-        <li onClick={() => navigate(`/fidelizados/${idUser}`)} className={currentPageName == '/fidelizados' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
+        { tipoUser == 'MOTORISTA' &&
+          <li onClick={() => navigate(`/fidelizados/${idUser}`)} className={currentPageName == '/fidelizados' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>
           <MdOutlineLoyalty />
           <span>Fidelizados</span>
-        </li>
+        </li>}
         {
           tipoUser == 'MOTORISTA' &&
           <li onClick={() => navigate(`/carros/${idUser}`)} className={currentPageName == '/carros' ? `${styles["item"]} ${styles["current-page"]}` : styles["item"]}>

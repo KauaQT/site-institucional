@@ -11,6 +11,7 @@ import AnimacaoEstrada from '../../layout/animacao_estrada/AnimacaoEstrada';
 import SearchGeocode from '../../map/search_geocode/SearchGeocode';
 import CardViagem from './card_viagem/CardViagem';
 import notFound from '../../../utils/assets/image-not-found-viagem.svg';
+import { toast } from "react-toastify";
 
 function ProcurarCarona() {
     let local = useLocation();
@@ -36,12 +37,20 @@ function ProcurarCarona() {
     
         try {
             const response = await axios.post('http://localhost:8080/viagem/buscar-viagens', viagemAPesquisar);
+            if(response.data.length > 0) {
+                setViagensEncontradas(response.data);
+                toast.success('Viagens encontradas com sucesso!');
+            } else {
+                setViagensEncontradas([]);
+                toast.info('Nenhuma viagem encontrada.');
+            }
 
             console.log("ESSE FDP DO CARALHO DEU RESULTADO" + JSON.stringify(response.data));
             console.log(response.data);
             setViagensEncontradas(response.data);
         } catch (error) {
             console.log(error);
+            toast.error('Erro ao buscar viagens');
         }
     }
     

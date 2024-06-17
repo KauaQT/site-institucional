@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Input from "../../layout/input/Input";
 import { BsFillPencilFill } from "react-icons/bs";
 import axios from "axios";
+import InputMask from "react-input-mask";
 
 function CadastroUser({ handleUserEvent }) {
   const [progress, setProgress] = useState(99.9);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Container from "../../layout/container/Container";
 import styles from "./CadastroPessoal.module.css";
 import Input from "../../layout/input/Input";
+import InputMask from "react-input-mask";
 
 function CadastroPessoal({ handleUserEvent }) {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -83,7 +84,7 @@ function CadastroPessoal({ handleUserEvent }) {
               id="email"
               onChangeEvent={handleUserEvent}
             />
-
+            
             <Input
               type="text"
               placeholder="Digite o CPF"

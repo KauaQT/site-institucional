@@ -31,12 +31,14 @@
 }
 
 .botoes {
+  gap: 50px;
   /* background-color: #173e6d; */
   position: relative;
   bottom: 50px;
   display: flex;
   width: 60%;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 }
 
 .grupo-progress {

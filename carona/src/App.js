@@ -23,9 +23,6 @@ import PerfilUser from "./components/pages/perfil/PerfilUser";
 // Importando elementos de layout
 import Container from './components/layout/container/Container'
 
-import 'mapbox-gl/dist/mapbox-gl.css';
-
-
 function App() {
   return (
     <Router>

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../../layout/sidebar/Sidebar"
 import styles from './OferecerCarona.module.css'
-import { FaSearch } from "react-icons/fa";
+import { FaCar, FaSearch } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -30,14 +30,14 @@ function OferecerCarona() {
         }
     ])
 
-    useEffect(() => {
-        api.get(`/carros/${idUser}`)
-        .then((res) => {
-            console.log(res.data);
-            setCarrosUser(res.data)
-        })
-        .catch(error => console.log(error))
-    }, [idUser])
+    // useEffect(() => {
+    //     api.get(`/carros/${idUser}`)
+    //     .then((res) => {
+    //         console.log(res.data);
+    //         setCarrosUser(res.data)
+    //     })
+    //     .catch(error => console.log(error))
+    // }, [idUser])
 
     // gerar horas para combo box a partir da hora atual
     function gerarHorarioComboBox() {
@@ -126,8 +126,8 @@ function OferecerCarona() {
                                         className={styles["input-div"]}
                                         onClickEvent={(place) => setViagem({
                                             ...viagem,
-                                            latitudePartida: place.geometry.coordinates[0],
-                                            longitudePartida: place.geometry.coordinates[1]
+                                            latitudePartida: place.geometry.coordinates[1],
+                                            longitudePartida: place.geometry.coordinates[0]
                                         })}
                                     />
 
@@ -143,8 +143,8 @@ function OferecerCarona() {
                                         className={styles["input-div"]}
                                         onClickEvent={(place) => setViagem({
                                             ...viagem,
-                                            latitudeDestino: place.geometry.coordinates[0],
-                                            longitudeDestino: place.geometry.coordinates[1]
+                                            latitudeDestino: place.geometry.coordinates[1],
+                                            longitudeDestino: place.geometry.coordinates[0]
                                         })}
                                     />
                                 </div>
@@ -260,7 +260,12 @@ function OferecerCarona() {
                         </div>
 
                         <div className={styles["box-mapa"]}>
-                            {/* <MapGeolocation /> */}
+                            <MapGeolocation 
+                                latitudePartida={viagem.latitudePartida}
+                                longitudePartida={viagem.longitudePartida}
+                                latitudeDestino={viagem.latitudeDestino}
+                                longitudeDestino={viagem.longitudeDestino}
+                            />
                         </div>
                     </div>
                 </div>

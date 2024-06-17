@@ -219,7 +219,7 @@ function DetalhesViagem() {
                         </div>
 
                         <div className={styles["mapa"]}>
-                            {/* <MapGeolocation /> */}
+                            <MapGeolocation />
                         </div>
                     </div>
                 </div>

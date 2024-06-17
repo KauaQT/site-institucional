@@ -43,6 +43,7 @@ body {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                border: 1px solid #fff;
 
                 & .form {
                     width: 90%;
@@ -287,6 +288,7 @@ body {
                 height: 100%;
                 border-top-right-radius: 10px;
                 border-bottom-right-radius: 10px;
+                box-sizing: border-box;                
             }
         }
     }

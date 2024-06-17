@@ -29,15 +29,20 @@ function convertMinutesToHours(minutes) {
 
 function DetalhesViagem() {
 
-    const idViagem = getViagemIdFromUrl(); 
-    const [nome , setNome] = useState("");
-    const [mediaEstrelas , setMediaEstrelas] = useState("");
-    const [horarioPartida , setHorarioPartida] = useState("");
-    const [fimViagem , setFimViagem] = useState("");
-    const [tempoMedio , setTempoMedio] = useState("");
-    const [modeloCarro , setModeloCarro] = useState("");
-    const [marcaCarro , setMarca] = useState("");
-    const [placa , setPlaca] = useState("")
+    const idViagem = getViagemIdFromUrl();
+    const [nome, setNome] = useState("");
+    const [mediaEstrelas, setMediaEstrelas] = useState("");
+    const [horarioPartida, setHorarioPartida] = useState("");
+    const [fimViagem, setFimViagem] = useState("");
+    const [tempoMedio, setTempoMedio] = useState("");
+    const [modeloCarro, setModeloCarro] = useState("");
+    const [marcaCarro, setMarca] = useState("");
+    const [placa, setPlaca] = useState("")
+    const [latitudePontoPartida, setLatitudePontoPartida] = useState('')
+    const [longitudePontoPartida, setLongitudePontoPartida] = useState('')
+    const [latitudePontoDestino, setLatitudePontoDestino] = useState('')
+    const [longitudePontoDestino, setLongitudePontoDestino] = useState('')
+
     function getViagemIdFromUrl() {
         const url = window.location.href;
         const regex = /\/viagens\/detalhes\/(\d+)/;
@@ -45,12 +50,12 @@ function DetalhesViagem() {
         if (match) {
             return match[1];
         } else {
-            return null; 
+            return null;
         }
     }
 
     // Extrai o ID da viagem ao montar o componente
-   
+
     useEffect(() => {
         const fetchViagem = async () => {
             try {
@@ -65,6 +70,10 @@ function DetalhesViagem() {
                 setModeloCarro(response.data.nomeCarro)
                 setMarca(response.data.modeloCarro)
                 setPlaca(response.data.placaCarro)
+                setLatitudePontoPartida(response.data.latitudePontoPartida)
+                setLongitudePontoPartida(response.data.longitudePontoPartida)
+                setLatitudePontoDestino(response.data.latitudePontoDestino)
+                setLongitudePontoDestino(response.data.longitudePontoDestino)
                 console.log(nome)
             } catch (error) {
                 console.error("Erro ao buscar detalhes da viagem:", error);
@@ -74,59 +83,7 @@ function DetalhesViagem() {
         fetchViagem();
     }, [idViagem]);
 
-    const [viagem, setViagem] = useState({
-        preco: 36,
-        data: "17/05/2024",
-        horarioSaida: "15:00",
-        horarioChegada: "17:00",
-        tempoEstimado: "2:00",
-        carro: {
-            marca: "Ford",
-            modelo: "Ka",
-            placa: "ABC1D23",
-            cor: "red"
-        },
-        enderecoPartida: {
-            logradouro: "Av. Paulista",
-            numero: '2000',
-            cidade: 'São Paulo',
-            uf: 'SP',
-            bairro: 'Consolação',
-            latitude: '',
-            longitude: ''
-        },
-        enderecoDestino: {
-            logradouro: "Av. Ricardo Peixoto",
-            numero: '234',
-            cidade: 'Campinas',
-            uf: 'SP',
-            bairro: 'Jardim Brasil',
-            latitude: '',
-            longitude: ''
-        },
-        motorista: {
-            id: '1',
-            nome: "Gustavo Medeiros",
-            nota: "4.5"
-        },
-        passageiros: [
-            {
-                id: '1',
-                nome: "Lucas Arantes",
-                nota: "4.7",
-                foto: ""
-            },
-            {
-                id: '2',
-                nome: "Ewerton Oliveira",
-                nota: "4.9",
-                foto: ""
-            }
-        ]
-    })
-
- 
-    
+    const [viagem, setViagem] = useState()
 
     const reservarViagem = () => {
         console.log('');
@@ -219,7 +176,12 @@ function DetalhesViagem() {
                         </div>
 
                         <div className={styles["mapa"]}>
-                            <MapGeolocation />
+                            <MapGeolocation
+                                latitudePartida={latitudePontoPartida}
+                                longitudePartida={longitudePontoPartida}
+                                latitudeDestino={latitudePontoDestino}
+                                longitudeDestino={longitudePontoDestino}
+                            />
                         </div>
                     </div>
                 </div>

@@ -260,7 +260,7 @@ function OferecerCarona() {
                         </div>
 
                         <div className={styles["box-mapa"]}>
-                            <MapGeolocation 
+                            <MapGeolocation
                                 latitudePartida={viagem.latitudePartida}
                                 longitudePartida={viagem.longitudePartida}
                                 latitudeDestino={viagem.latitudeDestino}

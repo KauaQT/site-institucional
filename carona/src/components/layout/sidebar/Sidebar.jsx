@@ -11,6 +11,7 @@ import { MdOutlineLoyalty } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import { MdOutlineAddCircle } from "react-icons/md";
 import { FaCar } from "react-icons/fa";
+import imgUser from '../../../utils/assets/user-image.png'
 
 function Sidebar({ currentPageName }) {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function Sidebar({ currentPageName }) {
 
       <div className={styles["box-user"]}>
         <div className={styles["user-foto"]}>
-          <img src={localStorage.getItem("userProfileImage")} alt="Profile" />
+          <img src={localStorage.getItem("userProfileImage") ? localStorage.getItem("userProfileImage") : imgUser} alt="Profile" />
         </div>
         <div className={styles["user-infos"]}>
           <p>{nomeUser}</p>

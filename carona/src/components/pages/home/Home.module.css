@@ -22,3 +22,98 @@
         width: 100%;
     }
 }
+
+.viagens {
+    margin: 20px 0;
+}
+
+.search-bar {
+    margin-top: 0px;
+    position: relative;
+    top: -30px;
+    width: 85%;
+    height: 70px;
+    background-color: #fff;
+    box-shadow: rgba(50, 50, 93, 0.169) 0px 13px 27px -5px, rgba(0, 0, 0, 0.123) 0px 8px 16px -8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: #173e6d;
+    padding: 0 5px;
+    box-sizing: border-box;
+
+    & .arrow {
+        font-size: 28px;
+    }
+
+    & .box-input {
+        width: 30%;
+        height: 36px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        position: relative;
+        gap: 15px;
+
+        & svg {
+            font-size: 24px;
+        }
+
+        & input {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #173e6d;
+            height: 100%;
+            width: 100%;
+        }
+
+    }
+
+    & .box-input-date {
+        width: 15%;
+        height: 36px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        position: relative;
+        gap: 15px;
+
+        & input {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #173e6d;
+            height: 100%;
+            width: 100%;
+        }
+
+        & input::-webkit-calendar-picker-indicator {
+            display: none;
+        }
+    }
+
+    & .search-button {
+        width: 15%;
+        height: 36px;
+        font-size: 16px;
+        background-color: #E6AD47;
+        border: 2px solid #E6AD47;
+        color: #fff;
+        transition: all 0.2s;
+        margin: 0;
+    }
+
+    & .search-button:hover {
+        background-color: #c0903b;
+        border: 2px solid #c0903b;
+        color: #f1f1f1;
+        transition: all 0.2s;
+    }
+}

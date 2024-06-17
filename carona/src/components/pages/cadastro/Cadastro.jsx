@@ -40,10 +40,9 @@ function Cadastro() {
     setEnderecoData({
       cep: data.cep || "",
       logradouro: data.logradouro || "",
-      numero: data.numero || "",
-      complemento: "",
       cidade: data.localidade || "",
       estado: data.uf || "",
+      numero: data.numero || "",
     });
 
     console.log("JSON de usuario " + JSON.stringify(pessoalData));
@@ -61,7 +60,33 @@ function Cadastro() {
     );
   };
 
+  const validateEnderecoData = () => {
+    return (
+      enderecoData.cep &&
+      enderecoData.numero
+    );
+  };
+
+  const validateUserData = () => {
+    return userData.senha;
+  };
+
   const handleClick = () => {
+    if (currentComponent === 1 && !validatePessoalData()) {
+      toast.error("Preencha todos os campos");
+      return;
+    }
+
+    if (currentComponent === 2 && validateEnderecoData()) {
+      toast.error("Preencha todos os campos");
+      return;
+    }
+
+    if (currentComponent === 3 && validateUserData()) {
+      toast.error("Preencha todos os campos");
+      return;
+    }
+
     if (currentComponent === 3) {
       const allData = {
         pessoalData,
@@ -71,12 +96,25 @@ function Cadastro() {
       console.log("Dados de Cadastro:", allData);
       enviarDadosParaBackend(allData);
       toast.success("Cadastro realizado com sucesso!");
-      // Navegar para outra página ou realizar ações após o cadastro
-    } else if (validatePessoalData()) {
-      setCurrentComponent((current) => current + 1);
     } else {
-      toast.error("Preencha todos os campos.");
+      setCurrentComponent((current) => current + 1);
     }
+    // if (currentComponent === 3) {
+    //   const allData = {
+    //     pessoalData,
+    //     enderecoData,
+    //     userData,
+    //   };
+    //   console.log("Dados de Cadastro:", allData);
+    //   enviarDadosParaBackend(allData);
+    //   toast.success("Cadastro realizado com sucesso!");
+    // } else if (validatePessoalData()) {
+    //   setCurrentComponent((current) => current + 1);
+    // } else if (validateEnderecoData()) {
+    //   setCurrentComponent((current) => current + 1);
+    // } else {
+    //   toast.error("Preencha todos os campos.");
+    // }
   };
 
   const backHandleClick = () => {
@@ -167,16 +205,21 @@ function Cadastro() {
             <CadastroUser handleUserEvent={handleUserEvent} />
           )}
           <div className={styles["botoes"]}>
-            <ActionButton
-              onClickEvent={backHandleClick}
-              type="secondary"
-              label="Voltar"
-            />
+            {currentComponent !== 1 && (
+              <ActionButton
+                onClickEvent={backHandleClick}
+                type="secondary"
+                label="Voltar"
+              />
+            )}
             <ActionButton
               onClickEvent={handleClick}
               type="primary"
               label={currentComponent === 3 ? "Finalizar" : "Próximo"}
-              disabled={currentComponent !== 3 && !validatePessoalData()}
+              // disabled={
+              //   (currentComponent !== 3 && !validatePessoalData()) ||
+              //   (currentComponent !== 3 && !validateEnderecoData())
+              // }
             />
           </div>
         </div>

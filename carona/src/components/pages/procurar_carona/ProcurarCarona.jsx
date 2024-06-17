@@ -25,7 +25,24 @@ function ProcurarCarona() {
         diaViagem: '',
     });
 
-    const [viagensEncontradas, setViagensEncontradas] = useState([]);
+    const [viagensEncontradas, setViagensEncontradas] = useState([
+        {
+            idViagem: 1,
+            nomeMotorista: "Gustavo",
+            quantidadeEstrelas: 5,
+            valor: 30,
+            inicioViagem: "17:00",
+            fimViagem: "19:00",
+        },
+        {
+            idViagem: 1,
+            nomeMotorista: "Gustavo",
+            quantidadeEstrelas: 5,
+            valor: 30,
+            inicioViagem: "17:00",
+            fimViagem: "19:00",
+        }
+    ]);
 
     const handleCardClick = (viagemId) => {
         console.log("Valor do id " + viagemId)
@@ -34,7 +51,7 @@ function ProcurarCarona() {
 
     const handleSubmitViagem = async () => {
         console.log("Viagem a pesquisar: " + JSON.stringify(viagemAPesquisar));
-    
+
         try {
             const response = await axios.post('http://localhost:8080/viagem/buscar-viagens', viagemAPesquisar);
             if(response.data.length > 0) {
@@ -53,7 +70,7 @@ function ProcurarCarona() {
             toast.error('Erro ao buscar viagens');
         }
     }
-    
+
     return (
         <>
             <Sidebar currentPageName={local.pathname} />
@@ -143,7 +160,8 @@ function ProcurarCarona() {
                                 {viagensEncontradas.map((viagem) => {
                                     const horarioPartida = viagem.inicioViagem;
                                     console.log("Id da viagem " + viagem.idViagem)
-                                    const horarioChegada = viagem.fimViagem.substring(11, 16);
+                                    // const horarioChegada = viagem.fimViagem.substring(11, 16);
+                                    const horarioChegada = viagem.fimViagem
                                     return (
                                         <CardViagem
                                             key={viagem.idViagem}
@@ -152,8 +170,11 @@ function ProcurarCarona() {
                                             horarioPartida={horarioPartida}
                                             horarioChegada={horarioChegada}
                                             preco={viagem.valor}
-                                            distancia={viagem.distanciaPontoDestinoViagem} // Passando a distância para o componente
-                                            onClickEvent={() => handleCardClick(viagem.idViagem)} 
+                                            // distancia={viagem.distanciaPontoPartidaViagem} 
+                                            distanciaPartida={3}
+                                            // distancia={viagem.distanciaPontoDestinoViagem} 
+                                            distanciaDestino={11}
+                                            onClickEvent={() => handleCardClick(viagem.idViagem)}
                                         />
                                     );
                                 })}

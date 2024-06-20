@@ -21,11 +21,11 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install and build
+      - name: npm install, build, and test
         run: |
-          cd carona
           npm install
           npm run build --if-present
+          npm run test --if-present
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
@@ -54,4 +54,18 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
       
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B5B204BD4F1E4EE8B3E1787FA776D864 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F4952B9F3F214A96AFBEF1C797A54E5F }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6E5374D05D6540B496D86817B3A839DE }}
+
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'front-carona'
+          slot-name: 'Production'
+          package: .
           

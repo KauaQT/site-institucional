@@ -7,6 +7,7 @@ import { useRef, useState } from 'react';
 import { FaRegCircle } from "react-icons/fa";
 import ActionButton from '../../layout/action_button/ActionButton';
 import { FaCheck } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 function RedefinirSenha() {
    // var keycode = require('keycode');
@@ -77,6 +78,22 @@ function RedefinirSenha() {
         console.log('Código formatado: ' + formattedString);
 
         setCodigoFormatado(formattedString)
+        if (!novaSenha || !confirmacaoNovaSenha) {
+            toast.error('Preencha todos os campos.');
+            return;
+        }
+
+        if (novaSenha !== confirmacaoNovaSenha) {
+            toast.error('As senhas não coincidem.');
+            return;
+        }
+
+        if (!(hasMaiuscula && hasMinuscula && hasNumero && hasEspecial)) {
+            toast.error('A senha não atende aos critérios de segurança.');
+            return;
+        }
+
+        toast.success('Senha redefinida com sucesso!');
     }
 
     return (

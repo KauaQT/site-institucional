@@ -5,6 +5,8 @@ import { MdOutlineAddCircle } from "react-icons/md";
 import ActionButton from "../../layout/action_button/ActionButton";
 import { useLocation } from "react-router-dom";
 import CardCarro from "./card_carro/CardCarro";
+import { toast } from "react-toastify";
+import InputMask from "react-input-mask";
 
 const CadastroCarro = () => {
   const [formData, setFormData] = useState({
@@ -59,9 +61,22 @@ const CadastroCarro = () => {
     };
   }, [formData.marca]);
 
+  const validateForm = () => {
+    const { marca, modelo, placa, cor } = formData;
+    if (!marca || !modelo || !placa || !cor) {
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = () => {
-    setIsSubmitted(true);
-    setShowForm(false);
+    if (validateForm()) {
+      setIsSubmitted(true);
+      setShowForm(false);
+      toast.success("Carro cadastrado!");
+    } else {
+      toast.error("Preencha todos os campos!");
+    }
   };
 
   const fechar = () => {
@@ -76,7 +91,7 @@ const CadastroCarro = () => {
 
   return (
     <>
-      <Sidebar currentPageName={'/carros'} />
+      <Sidebar currentPageName={"/carros"} />
       <div className={styles["main"]}>
         <div className={styles["container"]}>
           <div className={styles["container-meu-carro"]}>
@@ -91,7 +106,10 @@ const CadastroCarro = () => {
               </button>
             </div>
 
-            <CardCarro nomeCarro="Fiat Mobi" placa={"DDR7F99"} />
+            <div className={styles["carros"]}>
+              <CardCarro nomeCarro="Fiat Mobi" placa={"DDR7F99"} />
+              <CardCarro nomeCarro="Fiat Mobi" placa={"DDR7F99"} />
+            </div>
           </div>
           {showForm && (
             <div className={styles["form-container"]}>
@@ -129,7 +147,8 @@ const CadastroCarro = () => {
                 </div>
                 <div className={styles["conjunto-input"]}>
                   <label htmlFor="placa">Placa</label>
-                  <input
+                  <InputMask
+                    mask="aaa-9a99"
                     type="text"
                     id="placa"
                     value={formData.placa}
@@ -139,7 +158,11 @@ const CadastroCarro = () => {
                         placa: e.target.value.toUpperCase(),
                       })
                     }
-                  />
+                  >
+                    {(inputProps) => (
+                      <input {...inputProps} type="text" id="placa" />
+                    )}
+                  </InputMask>
                 </div>
                 <div className={styles["conjunto-input"]}>
                   <label htmlFor="cor">Cor</label>

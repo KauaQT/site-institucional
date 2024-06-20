@@ -1,55 +1,77 @@
-.div-illustration {
-    height: 100%;
-    width: 50%;
+.login-screen {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
 
-    & img {
-        width: 90%;
-        height: 90%;
+    & .voltar {
         display: flex;
-        align-self: center;
-    }
-}
-
-.div-forms {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    & .forms {
-        height: 80%;
-        width: 80%;
-        display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        gap: 8px;
+        justify-content: start;
+        gap: 10px;
+        color: #173E6D;
+        font-size: 24px;
+        width: 140px;
+        margin-left: 24px;
+        padding-top: 24px;
+        box-sizing: border-box;
+        
+    }
 
+    & .voltar:hover {
+        cursor: pointer;
+    }
+    & .div-illustration {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        & .box-inputs {
-            width: 280px;
-            height: 220px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
+        & img {
+            width: 90%;
+            height: 90%;
+            display: flex;
+            align-self: center;
+        }
+    }
+
+    & .div-forms {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & .forms {
+            height: 80%;
+            width: 80%;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
+            justify-content: space-between;
+            gap: 8px;
 
-        & p {
-            width: 250px;
-            font-size: 20px;
-            color: #173E6D;
-            font-weight: 500;
-            margin-top: 10px;
-        }
 
-        & p:hover {
-            text-decoration: underline;
+            & .box-inputs {
+                width: 280px;
+                height: 220px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            & p {
+                width: 250px;
+                font-size: 20px;
+                color: #173E6D;
+                font-weight: 500;
+                margin-top: 10px;
+            }
+
+            & p:hover {
+                text-decoration: underline;
+            }
         }
     }
 }

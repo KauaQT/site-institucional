@@ -3,7 +3,7 @@
     top: 0;
     right: 0;
     width: 85%;
-    z-index: -3;
+    z-index: 0;
 
     & .estrada {
         width: 100%;

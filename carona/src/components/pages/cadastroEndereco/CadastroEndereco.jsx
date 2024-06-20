@@ -4,13 +4,15 @@ import styles from "./CadastroEndereco.module.css";
 import Input from "../../layout/input/Input";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
+import InputMask from "react-input-mask";
+import { toast } from "react-toastify";
 
 function CadastroEndereco({ handleUserEvent, handleAddressData, onNextClick }) {
   const [progress, setProgress] = useState(66.6);
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState({});
   const [error, setError] = useState();
-  const [numero, setNumero] = useState(""); // Estado para armazenar o número digitado
+  const [numero, setNumero] = useState("");
 
   const handleSearch = async () => {
     try {
@@ -20,15 +22,15 @@ function CadastroEndereco({ handleUserEvent, handleAddressData, onNextClick }) {
       setAddress(response.data);
       setError(null);
       handleAddressData(response.data);
-      // Ao buscar o CEP, preencha o número se já estiver definido
+
       if (numero) {
-        console.log(numero)
+        console.log(numero);
         setNumero(numero);
-      
       }
     } catch (error) {
       console.error("Error fetching data:", error);
-      setError("CEP não encontrado");
+      // setError("CEP não encontrado");
+      toast.error("CEP não encontrado");
       setAddress({});
       handleAddressData({});
     }
@@ -37,7 +39,7 @@ function CadastroEndereco({ handleUserEvent, handleAddressData, onNextClick }) {
   const handleInputChange = (e) => {
     const { value } = e.target;
     setCep(value);
-    handleUserEvent({ target: { name: 'cep', value: value } })
+    handleUserEvent({ target: { name: "cep", value: value } });
   };
 
   const handleNumeroChange = (e) => {
@@ -47,12 +49,12 @@ function CadastroEndereco({ handleUserEvent, handleAddressData, onNextClick }) {
       ...address,
       numero: value,
     });
-    handleUserEvent({ target: { name: 'numero', value: value } }); 
-};
+    handleUserEvent({ target: { name: "numero", value: value } });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Verifica se o número está preenchido antes de permitir avançar
+
     if (!numero) {
       setError("Por favor, preencha o número.");
       return;

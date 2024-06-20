@@ -1,20 +1,24 @@
+import { useState } from 'react';
 import styles from './CardViagem.module.css';
 import { FaCar, FaStar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 
-function CardViagem({ fotoUser, nomeUser, notaUser, horarioPartida, horarioChegada, preco, distancia, onClickEvent }) {
-    
+function CardViagem({ fotoUser, nomeUser, notaUser, horarioPartida, horarioChegada, preco, distanciaPartida, distanciaDestino, onClickEvent }) {
+    const [chegadaIsFocused, setChegadaIsFocused] = useState(false);
+    const [destinoIsFocused, setDestinoIsFocused] = useState(false);
+
     const getCarColor = (distance) => {
-        if (distance <= 30) {
-            return 'green';
-        } else if (distance > 30 && distance <= 60) {
-            return 'yellow';
+        if (distance <= 3) {
+            return 'perto';
+        } else if (distance > 3 && distance <= 10) {
+            return 'medio';
         } else {
-            return 'red';
+            return 'longe';
         }
     };
 
-    const carColor = getCarColor(distancia);
+    const carColorPartida = getCarColor(distanciaPartida);
+    const carColorDestino = getCarColor(distanciaDestino);
 
     return (
         <div className={styles["card"]}>
@@ -48,15 +52,51 @@ function CardViagem({ fotoUser, nomeUser, notaUser, horarioPartida, horarioChega
                     </div>
 
                     <div className={styles["carros-indicadores"]}>
-                        <div className={styles["carros"]}>
-                            <FaCar style={{ color: carColor }} />
-                            <FaCar style={{ color: carColor }} />
-                            <FaCar style={{ color: carColor }} />
+                        <div
+                            className={styles["carros"]}
+                            onMouseOver={() => setChegadaIsFocused(true)}
+                            onMouseLeave={() => setChegadaIsFocused(false)}
+                        >
+                            {
+                                chegadaIsFocused &&
+                                <div
+                                    className={`${styles["aviso-proximidade"]} ${styles["left"]}`}
+                                >
+                                    <h4>Ponto de Partida</h4>
+                                    <div className={styles["carro"]}>
+                                        <FaCar className={styles[carColorPartida]} />
+                                        <span>{carColorPartida.charAt(0).toUpperCase() + carColorPartida.slice(1)}</span>
+                                    </div>
+                                    <p><span>{distanciaPartida} km</span> de distância</p>
+                                </div>
+                            }
+
+                            <FaCar className={carColorPartida === 'perto' ? styles['perto'] : ''} />
+                            <FaCar className={carColorPartida === 'medio' ? styles['medio'] : ''} />
+                            <FaCar className={carColorPartida === 'longe' ? styles['longe'] : ''} />
                         </div>
-                        <div className={styles["carros"]}>
-                            <FaCar style={{ color: carColor }} />
-                            <FaCar style={{ color: carColor }} />
-                            <FaCar style={{ color: carColor }} />
+                        <div
+                            className={styles["carros"]}
+                            onMouseOver={() => setDestinoIsFocused(true)}
+                            onMouseLeave={() => setDestinoIsFocused(false)}
+                        >
+                            {
+                                destinoIsFocused &&
+                                <div
+                                    className={`${styles["aviso-proximidade"]} ${styles["right"]}`}
+                                >
+                                    <h4>Ponto de Destino</h4>
+                                    <div className={styles["carro"]}>
+                                        <FaCar className={styles[carColorDestino]} />
+                                        <span>{carColorDestino.charAt(0).toUpperCase() + carColorDestino.slice(1)}</span>
+                                    </div>
+                                    <p><span>{distanciaDestino} km</span> de distância</p>
+                                </div>
+                            }
+
+                            <FaCar className={carColorDestino === 'perto' ? styles['perto'] : ''} />
+                            <FaCar className={carColorDestino === 'medio' ? styles['medio'] : ''} />
+                            <FaCar className={carColorDestino === 'longe' ? styles['longe'] : ''} />
                         </div>
                     </div>
                 </div>

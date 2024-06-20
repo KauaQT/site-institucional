@@ -1,12 +1,13 @@
 import styles from './FidelizadoCard.module.css'
 import { IoChatbubblesSharp } from "react-icons/io5";
 import { FaTrashAlt } from "react-icons/fa";
+import imgUser from '../../../../utils/assets/user-image.png'
 
-function FidelizadoCard({ nome, idade, totalViagens, onRemoveClick, onConversarClick }) {
+function FidelizadoCard({ nome, idade, totalViagens, foto, onRemoveClick, onConversarClick }) {
     return (
         <div className={styles["box-fidelizado"]}>
 
-            <img src={''} alt="Imagem de Transação" />
+            <img src={foto ? foto : imgUser} alt="Imagem de Fidelizado" />
 
             <div className={styles["fidelizado-info"]}>
                 <h4 id="nome-fidelizado">{nome}</h4>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios'
 import styles from './SearchGeocode.module.css'
 
-const TOKEN = process.env.REACT_APP_TOKEN;
+const TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 function SearchGeocode({ placeholder, className, name, startIcon, endIcon, onClickEvent }) {
     const [places, setPlaces] = useState([])
@@ -15,25 +15,38 @@ function SearchGeocode({ placeholder, className, name, startIcon, endIcon, onCli
         if (value.length > 2) {
             const promise = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${value}.json?access_token=${TOKEN}`)
 
-            console.log(promise.data.features)
             setPlaces(promise.data.features)
         } else {
             setPlaces([])
         }
-        
+
     }
 
     const handleOnClick = (place) => {
         onClickEvent(place)
         setIsFocused(false)
-        console.log(place);
+        setInputValue(place.place_name)
+    }
+
+    const handleOnChange = (e) => {
+        getPlaces(e)
+        setInputValue(e.target.value)
     }
 
     return (
 
         <div className={className}>
             {startIcon}
-            <input type="text" placeholder={placeholder} name={name} onChange={(e) => getPlaces(e)} onFocus={() => setIsFocused(true)} />
+
+            <input
+                type="text"
+                placeholder={placeholder}
+                value={inputValue}
+                name={name}
+                onChange={(e) => handleOnChange(e)}
+                onFocus={() => setIsFocused(true)} 
+            />
+
             {endIcon}
 
             {
